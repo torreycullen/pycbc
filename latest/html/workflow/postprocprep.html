@@ -956,22 +956,51 @@ Thus if in the [workflow-postprocprep] section there is</p>
 <h4>pycbc_sqlite_simplify<a class="headerlink" href="#pycbc-sqlite-simplify" title="Permalink to this headline">¶</a></h4>
 <p>This code is responsible for combining together multiple xml or sql files into a single database. It also includes the code in dbsimplify for removing repeated entries to avoid the resulting database from getting too huge.</p>
 <div class="highlight-text"><div class="highlight"><pre>$ pycbc_sqlite_simplify --help
-Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/bin/pycbc_sqlite_simplify&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;PyCBC===fcf486&#39;)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3084, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3070, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3097, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 651, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 952, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 839, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution was not found and is required by the application
+
+usage: pycbc_sqlite_simplify [-h] [--version] -o OUTFILENAME [-p] [-t PATH]
+                             [-i FILE] [-s TAG] [--vacuum] [-v]
+                             INPUT_FILE [INPUT_FILE ...]
+
+Add xml files to a SQLite database and simplify the output to remove redundant
+or unused entries (basically a combination of ligolw_sqlite and
+ligolw_cbc_dbsimplify)
+
+positional arguments:
+  INPUT_FILE            List of files to add to SQLITE database.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  -o OUTFILENAME, --output-file OUTFILENAME
+                        The name of the SQLite output file. If this exists it
+                        will be overwritten.
+  -p, --preserve-ids    Preserve row IDs from the XML in the database. The
+                        default is to assign new IDs to prevent collisisions.
+                        Inserts will fail if collisions occur.
+  -t PATH, --tmp-space PATH
+                        Path to a directory suitable for use as a work area
+                        while manipulating the database file. The database
+                        file will be worked on in this directory, and then
+                        moved to the final location when complete. This option
+                        is intended to improve performance when running in a
+                        networked environment, where there might be a local
+                        disk with higher bandwidth than is available to the
+                        filesystem on which the final output will reside.
+  -i FILE, --injection-file FILE
+                        Injection file to add to the database and add in the
+                        experiment tables.
+  -s TAG, --simulation-tag TAG
+                        Identifying string used to distinguish the injections
+                        provided here from injections provided elsewhere once
+                        they are combined. Required if injection-file is
+                        given.
+  --vacuum              If turned on, will vacuum the database before saving.
+                        This cleans any fragmentation and removes empty space
+                        left behind by all the DELETEs, making the output
+                        database smaller and more efficient. WARNING: Since
+                        this requires rebuilding the entire database, this can
+                        take awhile for larger files.
+  -v, --verbose         Be verbose.
 </pre></div>
 </div>
 <p>Of these options the workflow module will automatically add the following, which are unique for each job. <strong>DO NOT ADD THESE OPTIONS IN THE CONFIGURATION FILE</strong>.</p>
@@ -1108,7 +1137,7 @@ Options:
 <h4>ligolw_dbinjfind<a class="headerlink" href="#ligolw-dbinjfind" title="Permalink to this headline">¶</a></h4>
 <p>This code is used to perform &#8220;injection finding&#8221; - it associates injection entries in the sim_inspiral table with coincident triggers in the coinc_inspiral table.</p>
 <div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/dbrown/src/pycbc/src/pycbc/docs/workflow/postprocprep.rst</tt>, line 336)</p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/cbc/pycbc/pycbc/docs/workflow/postprocprep.rst</tt>, line 336)</p>
 Command u&#8217;ligolw_dbinjfind &#8211;help&#8217; failed: [Errno 2] No such file or directory</div>
 <p>Of these options the workflow module will automatically add the following, which are unique for each job. <strong>DO NOT ADD THESE OPTIONS IN THE CONFIGURATION FILE</strong>.</p>
 <ul class="simple">
@@ -1120,7 +1149,7 @@ Command u&#8217;ligolw_dbinjfind &#8211;help&#8217; failed: [Errno 2] No such fi
 <h4>ligolw_cbc_repop_coinc<a class="headerlink" href="#ligolw-cbc-repop-coinc" title="Permalink to this headline">¶</a></h4>
 <p>This code is used to calculate a function of the single trigger parameters and populate a column in the coinc table with the result (typically for use as a ranking statistic).</p>
 <div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/dbrown/src/pycbc/src/pycbc/docs/workflow/postprocprep.rst</tt>, line 349)</p>
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/cbc/pycbc/pycbc/docs/workflow/postprocprep.rst</tt>, line 349)</p>
 Command u&#8217;ligolw_cbc_repop_coinc &#8211;help&#8217; failed: [Errno 2] No such file or directory</div>
 <p>Of these options the workflow module will automatically add the following, which are unique for each job. <strong>DO NOT ADD THESE OPTIONS IN THE CONFIGURATION FILE</strong>.</p>
 <ul class="simple">

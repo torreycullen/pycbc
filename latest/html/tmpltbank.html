@@ -470,22 +470,280 @@ from that.</p>
 <h3>Command line options<a class="headerlink" href="#command-line-options" title="Permalink to this headline">¶</a></h3>
 <p>The command line options read as follows</p>
 <div class="highlight-text"><div class="highlight"><pre>$ pycbc_geom_nonspinbank --help
-Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/bin/pycbc_geom_nonspinbank&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;PyCBC===fcf486&#39;)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3084, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3070, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3097, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 651, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 952, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 839, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution was not found and is required by the application
+
+usage: pycbc_geom_nonspinbank [-h] [--version] [-V]
+                              [--random-seed RANDOM_SEED] -m MIN_MATCH -O
+                              OUTPUT_FILE --pn-order PN_ORDER [--f0 F0]
+                              --f-low F_LOW --f-upper F_UPPER --delta-f
+                              DELTA_F [--write-metric] --min-mass1 MIN_MASS1
+                              --max-mass1 MAX_MASS1 --min-mass2 MIN_MASS2
+                              --max-mass2 MAX_MASS2
+                              [--max-total-mass MAX_TOTAL_MASS]
+                              [--min-total-mass MIN_TOTAL_MASS]
+                              [--max-chirp-mass MAX_CHIRP_MASS]
+                              [--min-chirp-mass MIN_CHIRP_MASS]
+                              [--max-eta MAX_ETA] [--min-eta MIN_ETA]
+                              [--ns-eos NS_EOS]
+                              [--remnant-mass-threshold REMNANT_MASS_THRESHOLD]
+                              [--use-eos-max-ns-mass]
+                              [--delta-bh-spin DELTA_BH_SPIN]
+                              [--delta-ns-mass DELTA_NS_MASS]
+                              [--psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                              [--psd-file PSD_FILE] [--asd-file ASD_FILE]
+                              [--psd-estimation {mean,median,median-mean}]
+                              [--psd-segment-length PSD_SEGMENT_LENGTH]
+                              [--psd-segment-stride PSD_SEGMENT_STRIDE]
+                              [--psd-inverse-length PSD_INVERSE_LENGTH]
+                              [--psd-output PSD_OUTPUT]
+                              [--gps-start-time GPS_START_TIME]
+                              [--gps-end-time GPS_END_TIME]
+                              [--strain-high-pass STRAIN_HIGH_PASS]
+                              [--pad-data PAD_DATA]
+                              [--sample-rate SAMPLE_RATE]
+                              [--channel-name CHANNEL_NAME]
+                              [--frame-cache FRAME_CACHE [FRAME_CACHE ...]]
+                              [--frame-files FRAME_FILES [FRAME_FILES ...]]
+                              [--frame-type FRAME_TYPE]
+                              [--fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                              [--fake-strain-seed FAKE_STRAIN_SEED]
+                              [--injection-file INJECTION_FILE]
+                              [--sgburst-injection-file SGBURST_INJECTION_FILE]
+                              [--gating-file GATING_FILE]
+                              [--normalize-strain NORMALIZE_STRAIN]
+                              [--zpk-z ZPK_Z [ZPK_Z ...]]
+                              [--zpk-p ZPK_P [ZPK_P ...]] [--zpk-k ZPK_K]
+                              [--calculate-time-metric-components]
+                              [--calculate-ethinca-metric]
+                              [--ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}]
+                              [--filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}]
+                              [--ethinca-frequency-step ETHINCA_FREQUENCY_STEP]
+
+Template bank generator for placing a bank of non-spinning templates.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  -V, --verbose         verbose output (default: False)
+  --random-seed RANDOM_SEED
+                        Random seed to use when calling numpy.random functions
+                        used in obtaining the principal components and when
+                        translating points back to physical space. If given,
+                        the code should give the same output when run with the
+                        same random seed. (default: None)
+  -m MIN_MATCH, --min-match MIN_MATCH
+                        Generate bank with specified minimum match. Required.
+                        (default: None)
+  -O OUTPUT_FILE, --output-file OUTPUT_FILE
+                        Output file name. Required. (default: None)
+
+Options related to calculating the parameter space metric:
+  --pn-order PN_ORDER   Determines the PN order to use. For a bank of non-
+                        spinning templates, spin-related terms in the metric
+                        will be zero. REQUIRED. Choices: * zeroPN: Will only
+                        include the dominant term (proportional to chirp mass)
+                        * onePN: Will only the leading orbit term and first
+                        correction at 1PN * onePointFivePN: Will include orbit
+                        and spin terms to 1.5PN. * twoPN: Will include orbit
+                        and spin terms to 2PN. * twoPointFivePN: Will include
+                        orbit and spin terms to 2.5PN. * threePN: Will include
+                        orbit terms to 3PN and spin terms to 2.5PN. *
+                        threePointFivePN: Include orbit terms to 3.5PN and
+                        spin terms to 2.5PN * taylorF4_45PN: Will use the R2F4
+                        metric to 4.5PN. This includes partial spin terms from
+                        3 to 4.5PN and partial orbit terms from 4 to 4.5PN.
+                        (default: None)
+  --f0 F0               f0 is used as a dynamic scaling factor when
+                        calculating integrals used in metric construction.
+                        I.e. instead of integrating F(f) we integrate F(f/f0)
+                        then rescale by powers of f0. The default value 70Hz
+                        should be fine for most applications. OPTIONAL.
+                        UNITS=Hz. **WARNING: If the ethinca metric is to be
+                        calculated, f0 must be set equal to f-low** (default:
+                        70.0)
+  --f-low F_LOW         Lower frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --f-upper F_UPPER     Upper frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --delta-f DELTA_F     Frequency spacing used in computing the parameter
+                        space metric: integrals of the form \int F(f) df are
+                        approximated as \sum F(f) delta_f. REQUIRED. UNITS=Hz
+                        (default: None)
+  --write-metric        If given write the metric components to disk as they
+                        are calculated. (default: False)
+
+Options related to mass and spin limits for bank generation:
+  --min-mass1 MIN_MASS1
+                        Minimum mass1: must be &gt;= min-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --max-mass1 MAX_MASS1
+                        Maximum mass1: must be &gt;= max-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --min-mass2 MIN_MASS2
+                        Minimum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-mass2 MAX_MASS2
+                        Maximum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-total-mass MAX_TOTAL_MASS
+                        Maximum total mass. OPTIONAL, if not provided the max
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-total-mass MIN_TOTAL_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-chirp-mass MAX_CHIRP_MASS
+                        Maximum chirp mass. OPTIONAL, if not provided the max
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-chirp-mass MIN_CHIRP_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-eta MAX_ETA     Maximum symmetric mass ratio. OPTIONAL, no upper bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.25)
+  --min-eta MIN_ETA     Minimum symmetric mass ratio. OPTIONAL, no lower bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.0)
+  --ns-eos NS_EOS       Select the EOS to be used for the NS when calculating
+                        the remnant disk mass. Only 2H is currently supported.
+                        OPTIONAL (default: None)
+  --remnant-mass-threshold REMNANT_MASS_THRESHOLD
+                        Setting this filters EM dim NS-BH binaries: if the
+                        remnant disk mass does not exceed this value, the NS-
+                        BH binary is dropped from the target parameter space.
+                        When it is set to None (default value) the EM dim
+                        filter is not activated. OPTIONAL (default: None)
+  --use-eos-max-ns-mass
+                        Cut the mass range of the smaller object to the
+                        maximum mass allowed by EOS. OPTIONAL (default: False)
+  --delta-bh-spin DELTA_BH_SPIN
+                        Grid spacing used for the BH spin z component when
+                        generating the surface of the minumum minimum
+                        symmetric mass ratio as a function of BH spin and NS
+                        mass required to produce a remnant disk mass that
+                        exceeds the threshold specificed in --remnant-mass-
+                        threshold. OPTIONAL (0.1 by default) (default: None)
+  --delta-ns-mass DELTA_NS_MASS
+                        Grid spacing used for the NS mass when generating the
+                        surface of the minumum minimum symmetric mass ratio as
+                        a function of BH spin and NS mass required to produce
+                        a remnant disk mass that exceeds the thrsehold
+                        specified in --remnant-mass-threshold. OPTIONAL (0.1
+                        by default) (default: None)
+
+Options to select the method of PSD generation:
+  The options --psd-model, --psd-file, --asd-file, and --psd-estimation are
+  mutually exclusive.
+
+  --psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Get PSD from given analytical model. (default: None)
+  --psd-file PSD_FILE   Get PSD using given PSD ASCII file (default: None)
+  --asd-file ASD_FILE   Get PSD using given ASD ASCII file (default: None)
+  --psd-estimation {mean,median,median-mean}
+                        Measure PSD from the data, using given average method.
+                        (default: None)
+  --psd-segment-length PSD_SEGMENT_LENGTH
+                        (Required for --psd-estimation) The segment length for
+                        PSD estimation (s) (default: None)
+  --psd-segment-stride PSD_SEGMENT_STRIDE
+                        (Required for --psd-estimation) The separation between
+                        consecutive segments (s) (default: None)
+  --psd-inverse-length PSD_INVERSE_LENGTH
+                        (Optional) The maximum length of the impulse response
+                        of the overwhitening filter (s) (default: None)
+  --psd-output PSD_OUTPUT
+                        (Optional) Write PSD to specified file (default: None)
+
+Options for obtaining h(t):
+  These options are used for generating h(t) either by reading from a file
+  or by generating it. This is only needed if the PSD is to be estimated
+  from the data, ie. if the --psd-estimation option is given.
+
+  --gps-start-time GPS_START_TIME
+                        The gps start time of the data (integer seconds)
+                        (default: None)
+  --gps-end-time GPS_END_TIME
+                        The gps end time of the data (integer seconds)
+                        (default: None)
+  --strain-high-pass STRAIN_HIGH_PASS
+                        High pass frequency (default: None)
+  --pad-data PAD_DATA   Extra padding to remove highpass corruption (integer
+                        seconds) (default: None)
+  --sample-rate SAMPLE_RATE
+                        The sample rate to use for h(t) generation (integer
+                        Hz). (default: None)
+  --channel-name CHANNEL_NAME
+                        The channel containing the gravitational strain data
+                        (default: None)
+  --frame-cache FRAME_CACHE [FRAME_CACHE ...]
+                        Cache file containing the frame locations. (default:
+                        None)
+  --frame-files FRAME_FILES [FRAME_FILES ...]
+                        list of frame files (default: None)
+  --frame-type FRAME_TYPE
+                        (optional), replaces frame-files. Use datafind to get
+                        the needed frame file(s) of this type. (default: None)
+  --fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Name of model PSD for generating fake gaussian noise.
+                        (default: None)
+  --fake-strain-seed FAKE_STRAIN_SEED
+                        Seed value for the generation of fake colored gaussian
+                        noise (default: 0)
+  --injection-file INJECTION_FILE
+                        (optional) Injection file used to add waveforms into
+                        the strain (default: None)
+  --sgburst-injection-file SGBURST_INJECTION_FILE
+                        (optional) Injection file used to add sine-Gaussian
+                        burst waveforms into the strain (default: None)
+  --gating-file GATING_FILE
+                        (optional) Text file of gating segments to apply.
+                        Format of each line is (all times in secs): gps_time
+                        zeros_half_width pad_half_width (default: None)
+  --normalize-strain NORMALIZE_STRAIN
+                        (optional) Divide frame data by constant. (default:
+                        None)
+  --zpk-z ZPK_Z [ZPK_Z ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of zeros for transfer function (default: None)
+  --zpk-p ZPK_P [ZPK_P ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of poles for transfer function (default: None)
+  --zpk-k ZPK_K         (optional) Zero-pole-gain (zpk) filter strain.
+                        Transfer function gain (default: None)
+
+Ethinca metric options:
+  Options used in the calculation of Gamma metric components for the ethinca
+  coincidence test and for assigning high-frequency cutoffs to templates.
+
+  --calculate-time-metric-components
+                        If given, the ethinca metric will be calculated for
+                        only the time component, and stored in the Gamma0
+                        entry of the sngl_inspiral table. OPTIONAL,
+                        default=False (default: False)
+  --calculate-ethinca-metric
+                        If given, the ethinca metric will be calculated and
+                        stored in the Gamma entries of the sngl_inspiral
+                        table. OPTIONAL, default=False (default: False)
+  --ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}
+                        Specify a PN order to be used in calculating the
+                        ethinca metric. OPTIONAL: if not specified, the same
+                        order will be used as for the bank metric. (default:
+                        None)
+  --filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}
+                        Specify an upper frequency cutoff formula for the
+                        ethinca metric calculation, and for the values of
+                        f_final assigned to the templates. REQUIRED if the
+                        calculate-ethinca-metric option is given. (default:
+                        None)
+  --ethinca-frequency-step ETHINCA_FREQUENCY_STEP
+                        Control the precision of the upper frequency cutoff.
+                        For speed, the metric is calculated only for discrete
+                        f_max values with a spacing given by this option. Each
+                        template is assigned the metric for the f_max closest
+                        to its analytical cutoff formula. OPTIONAL,
+                        default=10. UNITS=Hz (default: 10.0)
 </pre></div>
 </div>
 <p>Some notes on these options:</p>
@@ -547,22 +805,329 @@ to the non-spinning code (not surprising as they actually use the same modules).
 <h3>Command line options<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>The command line options read as follows</p>
 <div class="highlight-text"><div class="highlight"><pre>$ pycbc_geom_aligned_bank --help
-Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/bin/pycbc_geom_aligned_bank&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;PyCBC===fcf486&#39;)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3084, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3070, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3097, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 651, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 952, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 839, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution was not found and is required by the application
+
+usage: pycbc_geom_aligned_bank [-h] [--version] [-V] -L LOG_PATH
+                               [-s STACK_DISTANCE] [-3] [-S SPLIT_BANK_NUM]
+                               [-F] [--random-seed RANDOM_SEED]
+                               [--print-chi-points FILENAME] -m MIN_MATCH -O
+                               OUTPUT_FILE --pn-order PN_ORDER [--f0 F0]
+                               --f-low F_LOW --f-upper F_UPPER --delta-f
+                               DELTA_F [--write-metric] --min-mass1 MIN_MASS1
+                               --max-mass1 MAX_MASS1 --min-mass2 MIN_MASS2
+                               --max-mass2 MAX_MASS2
+                               [--max-total-mass MAX_TOTAL_MASS]
+                               [--min-total-mass MIN_TOTAL_MASS]
+                               [--max-chirp-mass MAX_CHIRP_MASS]
+                               [--min-chirp-mass MIN_CHIRP_MASS]
+                               [--max-eta MAX_ETA] [--min-eta MIN_ETA]
+                               [--ns-eos NS_EOS]
+                               [--remnant-mass-threshold REMNANT_MASS_THRESHOLD]
+                               [--use-eos-max-ns-mass]
+                               [--delta-bh-spin DELTA_BH_SPIN]
+                               [--delta-ns-mass DELTA_NS_MASS]
+                               [--max-ns-spin-mag MAX_NS_SPIN_MAG]
+                               [--max-bh-spin-mag MAX_BH_SPIN_MAG]
+                               [--ns-bh-boundary-mass NS_BH_BOUNDARY_MASS]
+                               [--nsbh-flag]
+                               [--psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                               [--psd-file PSD_FILE] [--asd-file ASD_FILE]
+                               [--psd-estimation {mean,median,median-mean}]
+                               [--psd-segment-length PSD_SEGMENT_LENGTH]
+                               [--psd-segment-stride PSD_SEGMENT_STRIDE]
+                               [--psd-inverse-length PSD_INVERSE_LENGTH]
+                               [--psd-output PSD_OUTPUT]
+                               [--gps-start-time GPS_START_TIME]
+                               [--gps-end-time GPS_END_TIME]
+                               [--strain-high-pass STRAIN_HIGH_PASS]
+                               [--pad-data PAD_DATA]
+                               [--sample-rate SAMPLE_RATE]
+                               [--channel-name CHANNEL_NAME]
+                               [--frame-cache FRAME_CACHE [FRAME_CACHE ...]]
+                               [--frame-files FRAME_FILES [FRAME_FILES ...]]
+                               [--frame-type FRAME_TYPE]
+                               [--fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                               [--fake-strain-seed FAKE_STRAIN_SEED]
+                               [--injection-file INJECTION_FILE]
+                               [--sgburst-injection-file SGBURST_INJECTION_FILE]
+                               [--gating-file GATING_FILE]
+                               [--normalize-strain NORMALIZE_STRAIN]
+                               [--zpk-z ZPK_Z [ZPK_Z ...]]
+                               [--zpk-p ZPK_P [ZPK_P ...]] [--zpk-k ZPK_K]
+                               [--calculate-time-metric-components]
+                               [--calculate-ethinca-metric]
+                               [--ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}]
+                               [--filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}]
+                               [--ethinca-frequency-step ETHINCA_FREQUENCY_STEP]
+
+Aligned spin bank generator.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  -V, --verbose         verbose output (default: False)
+  -L LOG_PATH, --log-path LOG_PATH
+                        Directory to store condor logs. REQUIRED ARGUMENT
+                        (default: None)
+  -s STACK_DISTANCE, --stack-distance STACK_DISTANCE
+                        Minimum metric spacing before we stack. (default: 0.2)
+  -3, --threed-lattice  Set this to use a 3D lattice. OPTIONAL (default:
+                        False)
+  -S SPLIT_BANK_NUM, --split-bank-num SPLIT_BANK_NUM
+                        Number of points per job in dag. OPTIONAL (default:
+                        100)
+  -F, --filter-points   Remove nearby points before generating the bank.
+                        (default: False)
+  --random-seed RANDOM_SEED
+                        Random seed to use whenever the numpy random functions
+                        are called when doing the monte-carlo for obtaining
+                        the principal components and when translating all
+                        points back to physical space. If this is used the
+                        code should give the same output if run with the same
+                        random seed. (default: None)
+  --print-chi-points FILENAME
+                        Add a node to print off an ASCII list of mass
+                        parameters and corresponding location in the xi space
+                        using pycbc_tmpltbank_to_chi_params. This will be
+                        written to FILENAME. If this argument is not given, no
+                        chi points file will be written. (default: None)
+  -m MIN_MATCH, --min-match MIN_MATCH
+                        Generate bank with specified minimum match. Required.
+                        (default: None)
+  -O OUTPUT_FILE, --output-file OUTPUT_FILE
+                        Output file name. Required. (default: None)
+
+Options related to calculating the parameter space metric:
+  --pn-order PN_ORDER   Determines the PN order to use. For a bank of non-
+                        spinning templates, spin-related terms in the metric
+                        will be zero. REQUIRED. Choices: * zeroPN: Will only
+                        include the dominant term (proportional to chirp mass)
+                        * onePN: Will only the leading orbit term and first
+                        correction at 1PN * onePointFivePN: Will include orbit
+                        and spin terms to 1.5PN. * twoPN: Will include orbit
+                        and spin terms to 2PN. * twoPointFivePN: Will include
+                        orbit and spin terms to 2.5PN. * threePN: Will include
+                        orbit terms to 3PN and spin terms to 2.5PN. *
+                        threePointFivePN: Include orbit terms to 3.5PN and
+                        spin terms to 2.5PN * taylorF4_45PN: Will use the R2F4
+                        metric to 4.5PN. This includes partial spin terms from
+                        3 to 4.5PN and partial orbit terms from 4 to 4.5PN.
+                        (default: None)
+  --f0 F0               f0 is used as a dynamic scaling factor when
+                        calculating integrals used in metric construction.
+                        I.e. instead of integrating F(f) we integrate F(f/f0)
+                        then rescale by powers of f0. The default value 70Hz
+                        should be fine for most applications. OPTIONAL.
+                        UNITS=Hz. **WARNING: If the ethinca metric is to be
+                        calculated, f0 must be set equal to f-low** (default:
+                        70.0)
+  --f-low F_LOW         Lower frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --f-upper F_UPPER     Upper frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --delta-f DELTA_F     Frequency spacing used in computing the parameter
+                        space metric: integrals of the form \int F(f) df are
+                        approximated as \sum F(f) delta_f. REQUIRED. UNITS=Hz
+                        (default: None)
+  --write-metric        If given write the metric components to disk as they
+                        are calculated. (default: False)
+
+Options related to mass and spin limits for bank generation:
+  --min-mass1 MIN_MASS1
+                        Minimum mass1: must be &gt;= min-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --max-mass1 MAX_MASS1
+                        Maximum mass1: must be &gt;= max-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --min-mass2 MIN_MASS2
+                        Minimum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-mass2 MAX_MASS2
+                        Maximum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-total-mass MAX_TOTAL_MASS
+                        Maximum total mass. OPTIONAL, if not provided the max
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-total-mass MIN_TOTAL_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-chirp-mass MAX_CHIRP_MASS
+                        Maximum chirp mass. OPTIONAL, if not provided the max
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-chirp-mass MIN_CHIRP_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-eta MAX_ETA     Maximum symmetric mass ratio. OPTIONAL, no upper bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.25)
+  --min-eta MIN_ETA     Minimum symmetric mass ratio. OPTIONAL, no lower bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.0)
+  --ns-eos NS_EOS       Select the EOS to be used for the NS when calculating
+                        the remnant disk mass. Only 2H is currently supported.
+                        OPTIONAL (default: None)
+  --remnant-mass-threshold REMNANT_MASS_THRESHOLD
+                        Setting this filters EM dim NS-BH binaries: if the
+                        remnant disk mass does not exceed this value, the NS-
+                        BH binary is dropped from the target parameter space.
+                        When it is set to None (default value) the EM dim
+                        filter is not activated. OPTIONAL (default: None)
+  --use-eos-max-ns-mass
+                        Cut the mass range of the smaller object to the
+                        maximum mass allowed by EOS. OPTIONAL (default: False)
+  --delta-bh-spin DELTA_BH_SPIN
+                        Grid spacing used for the BH spin z component when
+                        generating the surface of the minumum minimum
+                        symmetric mass ratio as a function of BH spin and NS
+                        mass required to produce a remnant disk mass that
+                        exceeds the threshold specificed in --remnant-mass-
+                        threshold. OPTIONAL (0.1 by default) (default: None)
+  --delta-ns-mass DELTA_NS_MASS
+                        Grid spacing used for the NS mass when generating the
+                        surface of the minumum minimum symmetric mass ratio as
+                        a function of BH spin and NS mass required to produce
+                        a remnant disk mass that exceeds the thrsehold
+                        specified in --remnant-mass-threshold. OPTIONAL (0.1
+                        by default) (default: None)
+  --max-ns-spin-mag MAX_NS_SPIN_MAG
+                        Maximum neutron star spin magnitude. Neutron stars are
+                        defined as components lighter than the NS-BH boundary
+                        (3 Msun by default). REQUIRED if min-mass2 &lt; ns-bh-
+                        boundary-mass (default: None)
+  --max-bh-spin-mag MAX_BH_SPIN_MAG
+                        Maximum black hole spin magnitude. Black holes are
+                        defined as components at or above the NS-BH boundary
+                        (3 Msun by default). REQUIRED if max-mass1 &gt;= ns-bh-
+                        boundary-mass (default: None)
+  --ns-bh-boundary-mass NS_BH_BOUNDARY_MASS
+                        Mass boundary between neutron stars and black holes.
+                        Components below this mass are considered neutron
+                        stars and are subject to the neutron star spin limits.
+                        Components at/above are subject to the black hole spin
+                        limits. OPTIONAL, default=3.000000. UNITS=Solar mass
+                        (default: None)
+  --nsbh-flag           Set this flag if generating a bank that contains only
+                        systems with 1 black hole and 1 neutron star. With
+                        this flag set the heavier body will always be subject
+                        to the black hole spin restriction and the lighter to
+                        the neutron star spin restriction, regardless of mass.
+                        OPTIONAL. If set, the value of --ns-bh-boundary-mass
+                        will be ignored. (default: False)
+
+Options to select the method of PSD generation:
+  The options --psd-model, --psd-file, --asd-file, and --psd-estimation are
+  mutually exclusive.
+
+  --psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Get PSD from given analytical model. (default: None)
+  --psd-file PSD_FILE   Get PSD using given PSD ASCII file (default: None)
+  --asd-file ASD_FILE   Get PSD using given ASD ASCII file (default: None)
+  --psd-estimation {mean,median,median-mean}
+                        Measure PSD from the data, using given average method.
+                        (default: None)
+  --psd-segment-length PSD_SEGMENT_LENGTH
+                        (Required for --psd-estimation) The segment length for
+                        PSD estimation (s) (default: None)
+  --psd-segment-stride PSD_SEGMENT_STRIDE
+                        (Required for --psd-estimation) The separation between
+                        consecutive segments (s) (default: None)
+  --psd-inverse-length PSD_INVERSE_LENGTH
+                        (Optional) The maximum length of the impulse response
+                        of the overwhitening filter (s) (default: None)
+  --psd-output PSD_OUTPUT
+                        (Optional) Write PSD to specified file (default: None)
+
+Options for obtaining h(t):
+  These options are used for generating h(t) either by reading from a file
+  or by generating it. This is only needed if the PSD is to be estimated
+  from the data, ie. if the --psd-estimation option is given.
+
+  --gps-start-time GPS_START_TIME
+                        The gps start time of the data (integer seconds)
+                        (default: None)
+  --gps-end-time GPS_END_TIME
+                        The gps end time of the data (integer seconds)
+                        (default: None)
+  --strain-high-pass STRAIN_HIGH_PASS
+                        High pass frequency (default: None)
+  --pad-data PAD_DATA   Extra padding to remove highpass corruption (integer
+                        seconds) (default: None)
+  --sample-rate SAMPLE_RATE
+                        The sample rate to use for h(t) generation (integer
+                        Hz). (default: None)
+  --channel-name CHANNEL_NAME
+                        The channel containing the gravitational strain data
+                        (default: None)
+  --frame-cache FRAME_CACHE [FRAME_CACHE ...]
+                        Cache file containing the frame locations. (default:
+                        None)
+  --frame-files FRAME_FILES [FRAME_FILES ...]
+                        list of frame files (default: None)
+  --frame-type FRAME_TYPE
+                        (optional), replaces frame-files. Use datafind to get
+                        the needed frame file(s) of this type. (default: None)
+  --fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Name of model PSD for generating fake gaussian noise.
+                        (default: None)
+  --fake-strain-seed FAKE_STRAIN_SEED
+                        Seed value for the generation of fake colored gaussian
+                        noise (default: 0)
+  --injection-file INJECTION_FILE
+                        (optional) Injection file used to add waveforms into
+                        the strain (default: None)
+  --sgburst-injection-file SGBURST_INJECTION_FILE
+                        (optional) Injection file used to add sine-Gaussian
+                        burst waveforms into the strain (default: None)
+  --gating-file GATING_FILE
+                        (optional) Text file of gating segments to apply.
+                        Format of each line is (all times in secs): gps_time
+                        zeros_half_width pad_half_width (default: None)
+  --normalize-strain NORMALIZE_STRAIN
+                        (optional) Divide frame data by constant. (default:
+                        None)
+  --zpk-z ZPK_Z [ZPK_Z ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of zeros for transfer function (default: None)
+  --zpk-p ZPK_P [ZPK_P ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of poles for transfer function (default: None)
+  --zpk-k ZPK_K         (optional) Zero-pole-gain (zpk) filter strain.
+                        Transfer function gain (default: None)
+
+Ethinca metric options:
+  Options used in the calculation of Gamma metric components for the ethinca
+  coincidence test and for assigning high-frequency cutoffs to templates.
+
+  --calculate-time-metric-components
+                        If given, the ethinca metric will be calculated for
+                        only the time component, and stored in the Gamma0
+                        entry of the sngl_inspiral table. OPTIONAL,
+                        default=False (default: False)
+  --calculate-ethinca-metric
+                        If given, the ethinca metric will be calculated and
+                        stored in the Gamma entries of the sngl_inspiral
+                        table. OPTIONAL, default=False (default: False)
+  --ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}
+                        Specify a PN order to be used in calculating the
+                        ethinca metric. OPTIONAL: if not specified, the same
+                        order will be used as for the bank metric. (default:
+                        None)
+  --filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}
+                        Specify an upper frequency cutoff formula for the
+                        ethinca metric calculation, and for the values of
+                        f_final assigned to the templates. REQUIRED if the
+                        calculate-ethinca-metric option is given. (default:
+                        None)
+  --ethinca-frequency-step ETHINCA_FREQUENCY_STEP
+                        Control the precision of the upper frequency cutoff.
+                        For speed, the metric is calculated only for discrete
+                        f_max values with a spacing given by this option. Each
+                        template is assigned the metric for the f_max closest
+                        to its analytical cutoff formula. OPTIONAL,
+                        default=10. UNITS=Hz (default: 10.0)
 </pre></div>
 </div>
 <p>As before some notes on these options:</p>
@@ -699,22 +1264,333 @@ to the non-spinning code and the aligned-spin geometric code (they use the same 
 <h3>Command line options: pycbc_aligned_stoch_bank<a class="headerlink" href="#command-line-options-pycbc-aligned-stoch-bank" title="Permalink to this headline">¶</a></h3>
 <p>The command line options read as follows</p>
 <div class="highlight-text"><div class="highlight"><pre>$ pycbc_aligned_stoch_bank --help
-Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/bin/pycbc_aligned_stoch_bank&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;PyCBC===fcf486&#39;)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3084, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3070, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3097, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 651, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 952, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 839, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution was not found and is required by the application
+
+usage: pycbc_aligned_stoch_bank [-h] [--version] [--verbose] [-V]
+                                [--bank-fupper-step BANK_FUPPER_STEP]
+                                [--bank-fupper-formula {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}]
+                                [-N NUM_SEEDS] [-n NUM_FAILED_CUTOFF]
+                                [--random-seed RANDOM_SEED] -m MIN_MATCH -O
+                                OUTPUT_FILE --pn-order PN_ORDER [--f0 F0]
+                                --f-low F_LOW --f-upper F_UPPER --delta-f
+                                DELTA_F [--write-metric] --min-mass1 MIN_MASS1
+                                --max-mass1 MAX_MASS1 --min-mass2 MIN_MASS2
+                                --max-mass2 MAX_MASS2
+                                [--max-total-mass MAX_TOTAL_MASS]
+                                [--min-total-mass MIN_TOTAL_MASS]
+                                [--max-chirp-mass MAX_CHIRP_MASS]
+                                [--min-chirp-mass MIN_CHIRP_MASS]
+                                [--max-eta MAX_ETA] [--min-eta MIN_ETA]
+                                [--ns-eos NS_EOS]
+                                [--remnant-mass-threshold REMNANT_MASS_THRESHOLD]
+                                [--use-eos-max-ns-mass]
+                                [--delta-bh-spin DELTA_BH_SPIN]
+                                [--delta-ns-mass DELTA_NS_MASS]
+                                [--max-ns-spin-mag MAX_NS_SPIN_MAG]
+                                [--max-bh-spin-mag MAX_BH_SPIN_MAG]
+                                [--ns-bh-boundary-mass NS_BH_BOUNDARY_MASS]
+                                [--nsbh-flag]
+                                [--psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                                [--psd-file PSD_FILE] [--asd-file ASD_FILE]
+                                [--psd-estimation {mean,median,median-mean}]
+                                [--psd-segment-length PSD_SEGMENT_LENGTH]
+                                [--psd-segment-stride PSD_SEGMENT_STRIDE]
+                                [--psd-inverse-length PSD_INVERSE_LENGTH]
+                                [--psd-output PSD_OUTPUT]
+                                [--gps-start-time GPS_START_TIME]
+                                [--gps-end-time GPS_END_TIME]
+                                [--strain-high-pass STRAIN_HIGH_PASS]
+                                [--pad-data PAD_DATA]
+                                [--sample-rate SAMPLE_RATE]
+                                [--channel-name CHANNEL_NAME]
+                                [--frame-cache FRAME_CACHE [FRAME_CACHE ...]]
+                                [--frame-files FRAME_FILES [FRAME_FILES ...]]
+                                [--frame-type FRAME_TYPE]
+                                [--fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}]
+                                [--fake-strain-seed FAKE_STRAIN_SEED]
+                                [--injection-file INJECTION_FILE]
+                                [--sgburst-injection-file SGBURST_INJECTION_FILE]
+                                [--gating-file GATING_FILE]
+                                [--normalize-strain NORMALIZE_STRAIN]
+                                [--zpk-z ZPK_Z [ZPK_Z ...]]
+                                [--zpk-p ZPK_P [ZPK_P ...]] [--zpk-k ZPK_K]
+                                [--calculate-time-metric-components]
+                                [--calculate-ethinca-metric]
+                                [--ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}]
+                                [--filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}]
+                                [--ethinca-frequency-step ETHINCA_FREQUENCY_STEP]
+
+Stochastic aligned spin bank generator.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  --verbose             verbose output (default: False)
+  -V, --vary-fupper     Use a variable upper frequency cutoff in laying out
+                        the bank. OPTIONAL. (default: False)
+  --bank-fupper-step BANK_FUPPER_STEP
+                        Size of discrete frequency steps used when varying the
+                        fupper. If --calculate-ethinca-metric and --ethinca-
+                        freq-step are also given, the code will use the
+                        smaller of the two step values. OPTIONAL. Units=Hz
+                        (default: 10.0)
+  --bank-fupper-formula {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}
+                        Frequency cutoff formula for varying fupper.
+                        Frequencies will be rounded to the nearest discrete
+                        step. OPTIONAL. (default: SchwarzISCO)
+  -N NUM_SEEDS, --num-seeds NUM_SEEDS
+                        Number of seed points used in bank construction.
+                        OPTIONAL. (default: 5000000)
+  -n NUM_FAILED_CUTOFF, --num-failed-cutoff NUM_FAILED_CUTOFF
+                        Maximum number of consecutive, not-accepted test
+                        points after which bank generation will be stopped.
+                        OPTIONAL. Default value is really large as --num-seeds
+                        is intended to provide the termination condition.
+                        (default: 1000000000)
+  --random-seed RANDOM_SEED
+                        Random seed to use when calling numpy.random functions
+                        used in obtaining the principal components in
+                        parameter space and when translating points back to
+                        physical space. If given, the code should give the
+                        same output when run with the same random seed.
+                        (default: None)
+  -m MIN_MATCH, --min-match MIN_MATCH
+                        Generate bank with specified minimum match. Required.
+                        (default: None)
+  -O OUTPUT_FILE, --output-file OUTPUT_FILE
+                        Output file name. Required. (default: None)
+
+Options related to calculating the parameter space metric:
+  --pn-order PN_ORDER   Determines the PN order to use. For a bank of non-
+                        spinning templates, spin-related terms in the metric
+                        will be zero. REQUIRED. Choices: * zeroPN: Will only
+                        include the dominant term (proportional to chirp mass)
+                        * onePN: Will only the leading orbit term and first
+                        correction at 1PN * onePointFivePN: Will include orbit
+                        and spin terms to 1.5PN. * twoPN: Will include orbit
+                        and spin terms to 2PN. * twoPointFivePN: Will include
+                        orbit and spin terms to 2.5PN. * threePN: Will include
+                        orbit terms to 3PN and spin terms to 2.5PN. *
+                        threePointFivePN: Include orbit terms to 3.5PN and
+                        spin terms to 2.5PN * taylorF4_45PN: Will use the R2F4
+                        metric to 4.5PN. This includes partial spin terms from
+                        3 to 4.5PN and partial orbit terms from 4 to 4.5PN.
+                        (default: None)
+  --f0 F0               f0 is used as a dynamic scaling factor when
+                        calculating integrals used in metric construction.
+                        I.e. instead of integrating F(f) we integrate F(f/f0)
+                        then rescale by powers of f0. The default value 70Hz
+                        should be fine for most applications. OPTIONAL.
+                        UNITS=Hz. **WARNING: If the ethinca metric is to be
+                        calculated, f0 must be set equal to f-low** (default:
+                        70.0)
+  --f-low F_LOW         Lower frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --f-upper F_UPPER     Upper frequency cutoff used in computing the parameter
+                        space metric. REQUIRED. UNITS=Hz (default: None)
+  --delta-f DELTA_F     Frequency spacing used in computing the parameter
+                        space metric: integrals of the form \int F(f) df are
+                        approximated as \sum F(f) delta_f. REQUIRED. UNITS=Hz
+                        (default: None)
+  --write-metric        If given write the metric components to disk as they
+                        are calculated. (default: False)
+
+Options related to mass and spin limits for bank generation:
+  --min-mass1 MIN_MASS1
+                        Minimum mass1: must be &gt;= min-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --max-mass1 MAX_MASS1
+                        Maximum mass1: must be &gt;= max-mass2. REQUIRED.
+                        UNITS=Solar mass (default: None)
+  --min-mass2 MIN_MASS2
+                        Minimum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-mass2 MAX_MASS2
+                        Maximum mass2. REQUIRED. UNITS=Solar mass (default:
+                        None)
+  --max-total-mass MAX_TOTAL_MASS
+                        Maximum total mass. OPTIONAL, if not provided the max
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-total-mass MIN_TOTAL_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        total mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-chirp-mass MAX_CHIRP_MASS
+                        Maximum chirp mass. OPTIONAL, if not provided the max
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --min-chirp-mass MIN_CHIRP_MASS
+                        Minimum total mass. OPTIONAL, if not provided the min
+                        chirp mass is determined by the component masses.
+                        UNITS=Solar mass (default: None)
+  --max-eta MAX_ETA     Maximum symmetric mass ratio. OPTIONAL, no upper bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.25)
+  --min-eta MIN_ETA     Minimum symmetric mass ratio. OPTIONAL, no lower bound
+                        on eta will be imposed if not provided. UNITS=Solar
+                        mass. (default: 0.0)
+  --ns-eos NS_EOS       Select the EOS to be used for the NS when calculating
+                        the remnant disk mass. Only 2H is currently supported.
+                        OPTIONAL (default: None)
+  --remnant-mass-threshold REMNANT_MASS_THRESHOLD
+                        Setting this filters EM dim NS-BH binaries: if the
+                        remnant disk mass does not exceed this value, the NS-
+                        BH binary is dropped from the target parameter space.
+                        When it is set to None (default value) the EM dim
+                        filter is not activated. OPTIONAL (default: None)
+  --use-eos-max-ns-mass
+                        Cut the mass range of the smaller object to the
+                        maximum mass allowed by EOS. OPTIONAL (default: False)
+  --delta-bh-spin DELTA_BH_SPIN
+                        Grid spacing used for the BH spin z component when
+                        generating the surface of the minumum minimum
+                        symmetric mass ratio as a function of BH spin and NS
+                        mass required to produce a remnant disk mass that
+                        exceeds the threshold specificed in --remnant-mass-
+                        threshold. OPTIONAL (0.1 by default) (default: None)
+  --delta-ns-mass DELTA_NS_MASS
+                        Grid spacing used for the NS mass when generating the
+                        surface of the minumum minimum symmetric mass ratio as
+                        a function of BH spin and NS mass required to produce
+                        a remnant disk mass that exceeds the thrsehold
+                        specified in --remnant-mass-threshold. OPTIONAL (0.1
+                        by default) (default: None)
+  --max-ns-spin-mag MAX_NS_SPIN_MAG
+                        Maximum neutron star spin magnitude. Neutron stars are
+                        defined as components lighter than the NS-BH boundary
+                        (3 Msun by default). REQUIRED if min-mass2 &lt; ns-bh-
+                        boundary-mass (default: None)
+  --max-bh-spin-mag MAX_BH_SPIN_MAG
+                        Maximum black hole spin magnitude. Black holes are
+                        defined as components at or above the NS-BH boundary
+                        (3 Msun by default). REQUIRED if max-mass1 &gt;= ns-bh-
+                        boundary-mass (default: None)
+  --ns-bh-boundary-mass NS_BH_BOUNDARY_MASS
+                        Mass boundary between neutron stars and black holes.
+                        Components below this mass are considered neutron
+                        stars and are subject to the neutron star spin limits.
+                        Components at/above are subject to the black hole spin
+                        limits. OPTIONAL, default=3.000000. UNITS=Solar mass
+                        (default: None)
+  --nsbh-flag           Set this flag if generating a bank that contains only
+                        systems with 1 black hole and 1 neutron star. With
+                        this flag set the heavier body will always be subject
+                        to the black hole spin restriction and the lighter to
+                        the neutron star spin restriction, regardless of mass.
+                        OPTIONAL. If set, the value of --ns-bh-boundary-mass
+                        will be ignored. (default: False)
+
+Options to select the method of PSD generation:
+  The options --psd-model, --psd-file, --asd-file, and --psd-estimation are
+  mutually exclusive.
+
+  --psd-model {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Get PSD from given analytical model. (default: None)
+  --psd-file PSD_FILE   Get PSD using given PSD ASCII file (default: None)
+  --asd-file ASD_FILE   Get PSD using given ASD ASCII file (default: None)
+  --psd-estimation {mean,median,median-mean}
+                        Measure PSD from the data, using given average method.
+                        (default: None)
+  --psd-segment-length PSD_SEGMENT_LENGTH
+                        (Required for --psd-estimation) The segment length for
+                        PSD estimation (s) (default: None)
+  --psd-segment-stride PSD_SEGMENT_STRIDE
+                        (Required for --psd-estimation) The separation between
+                        consecutive segments (s) (default: None)
+  --psd-inverse-length PSD_INVERSE_LENGTH
+                        (Optional) The maximum length of the impulse response
+                        of the overwhitening filter (s) (default: None)
+  --psd-output PSD_OUTPUT
+                        (Optional) Write PSD to specified file (default: None)
+
+Options for obtaining h(t):
+  These options are used for generating h(t) either by reading from a file
+  or by generating it. This is only needed if the PSD is to be estimated
+  from the data, ie. if the --psd-estimation option is given.
+
+  --gps-start-time GPS_START_TIME
+                        The gps start time of the data (integer seconds)
+                        (default: None)
+  --gps-end-time GPS_END_TIME
+                        The gps end time of the data (integer seconds)
+                        (default: None)
+  --strain-high-pass STRAIN_HIGH_PASS
+                        High pass frequency (default: None)
+  --pad-data PAD_DATA   Extra padding to remove highpass corruption (integer
+                        seconds) (default: None)
+  --sample-rate SAMPLE_RATE
+                        The sample rate to use for h(t) generation (integer
+                        Hz). (default: None)
+  --channel-name CHANNEL_NAME
+                        The channel containing the gravitational strain data
+                        (default: None)
+  --frame-cache FRAME_CACHE [FRAME_CACHE ...]
+                        Cache file containing the frame locations. (default:
+                        None)
+  --frame-files FRAME_FILES [FRAME_FILES ...]
+                        list of frame files (default: None)
+  --frame-type FRAME_TYPE
+                        (optional), replaces frame-files. Use datafind to get
+                        the needed frame file(s) of this type. (default: None)
+  --fake-strain {AdvVirgo,GEO,GEOHF,KAGRA,TAMA,Virgo,aLIGOBHBH20Deg,aLIGOHighFrequency,aLIGONSNSOpt,aLIGONoSRMHighPower,aLIGONoSRMLowPower,aLIGOQuantumBHBH20Deg,aLIGOQuantumHighFrequency,aLIGOQuantumNSNSOpt,aLIGOQuantumNoSRMHighPower,aLIGOQuantumNoSRMLowPower,aLIGOQuantumZeroDetHighPower,aLIGOQuantumZeroDetLowPower,aLIGOThermal,aLIGOZeroDetHighPower,aLIGOZeroDetLowPower,eLIGOModel,eLIGOShot,iLIGOModel,iLIGOSRD,iLIGOSeismic,iLIGOShot,iLIGOThermal}
+                        Name of model PSD for generating fake gaussian noise.
+                        (default: None)
+  --fake-strain-seed FAKE_STRAIN_SEED
+                        Seed value for the generation of fake colored gaussian
+                        noise (default: 0)
+  --injection-file INJECTION_FILE
+                        (optional) Injection file used to add waveforms into
+                        the strain (default: None)
+  --sgburst-injection-file SGBURST_INJECTION_FILE
+                        (optional) Injection file used to add sine-Gaussian
+                        burst waveforms into the strain (default: None)
+  --gating-file GATING_FILE
+                        (optional) Text file of gating segments to apply.
+                        Format of each line is (all times in secs): gps_time
+                        zeros_half_width pad_half_width (default: None)
+  --normalize-strain NORMALIZE_STRAIN
+                        (optional) Divide frame data by constant. (default:
+                        None)
+  --zpk-z ZPK_Z [ZPK_Z ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of zeros for transfer function (default: None)
+  --zpk-p ZPK_P [ZPK_P ...]
+                        (optional) Zero-pole-gain (zpk) filter strain. A list
+                        of poles for transfer function (default: None)
+  --zpk-k ZPK_K         (optional) Zero-pole-gain (zpk) filter strain.
+                        Transfer function gain (default: None)
+
+Ethinca metric options:
+  Options used in the calculation of Gamma metric components for the ethinca
+  coincidence test and for assigning high-frequency cutoffs to templates.
+
+  --calculate-time-metric-components
+                        If given, the ethinca metric will be calculated for
+                        only the time component, and stored in the Gamma0
+                        entry of the sngl_inspiral table. OPTIONAL,
+                        default=False (default: False)
+  --calculate-ethinca-metric
+                        If given, the ethinca metric will be calculated and
+                        stored in the Gamma entries of the sngl_inspiral
+                        table. OPTIONAL, default=False (default: False)
+  --ethinca-pn-order {threePointFivePN,twoPN,twoPointFivePN,threePN,onePointFivePN,onePN,zeroPN}
+                        Specify a PN order to be used in calculating the
+                        ethinca metric. OPTIONAL: if not specified, the same
+                        order will be used as for the bank metric. (default:
+                        None)
+  --filter-cutoff {LightRing,SEOBNRv1Peak,FRD,SEOBNRv2Peak,ERD,IMRPhenomCFinal,SchwarzISCO,MECO,LRD,EOBNRv2RD,BKLISCO,SEOBNRv1RD,EOBNRv2HMRD,SEOBNRv2RD,IMRPhenomBFinal}
+                        Specify an upper frequency cutoff formula for the
+                        ethinca metric calculation, and for the values of
+                        f_final assigned to the templates. REQUIRED if the
+                        calculate-ethinca-metric option is given. (default:
+                        None)
+  --ethinca-frequency-step ETHINCA_FREQUENCY_STEP
+                        Control the precision of the upper frequency cutoff.
+                        For speed, the metric is calculated only for discrete
+                        f_max values with a spacing given by this option. Each
+                        template is assigned the metric for the f_max closest
+                        to its analytical cutoff formula. OPTIONAL,
+                        default=10. UNITS=Hz (default: 10.0)
 </pre></div>
 </div>
 <p>As before some notes on these options:</p>
@@ -737,7 +1613,7 @@ pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution wa
 <p>The command line options read as follows</p>
 <div class="highlight-text"><div class="highlight"><pre>$ lalapps_cbc_sbank --help
 Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/opt/lalsuite/libexec/lalapps/lalapps_cbc_sbank.py&quot;, line 31, in &lt;module&gt;
+  File &quot;/home/cbc/pycbc/pycbc-virtualenv/opt/lalsuite/libexec/lalapps/lalapps_cbc_sbank.py&quot;, line 31, in &lt;module&gt;
     from pylal.inspiral_metric import compute_metric
 ImportError: No module named inspiral_metric
 </pre></div>

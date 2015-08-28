@@ -504,22 +504,69 @@ executable being used to generate the file.</p>
 <h4>pycbc_timeslides<a class="headerlink" href="#pycbc-timeslides" title="Permalink to this headline">¶</a></h4>
 <p>pycbc_timeslides is the pycbc python code that is almost identical to the code used for making time slide tables in ihope. The help message for pycbc_timeslides follows</p>
 <div class="highlight-text"><div class="highlight"><pre>$ pycbc_timeslides --help
-Traceback (most recent call last):
-  File &quot;/home/dbrown/src/pycbc/bin/pycbc_timeslides&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;PyCBC===fcf486&#39;)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3084, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3070, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 3097, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 651, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 952, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/dbrown/src/pycbc/lib/python2.6/site-packages/pkg_resources/__init__.py&quot;, line 839, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;PyCBC===fcf486&#39; distribution was not found and is required by the application
+
+usage: pycbc_timeslides [-h] [--version] [-a filename] [--comment text] [-v]
+                        [-i [name=first:last:step [name=first:last:step ...]]]
+                        [--inspiral-num-slides [count:instrument=offset[,instrument=offset...]
+                        [count:instrument=offset[,instrument=offset...] ...]]]
+                        [-n [name=offset [name=offset ...]]]
+                        [--remove-zero-lag] --output-files FILE [FILE ...]
+
+pycbc_timeslides constructs time_slide tables, writing the result to one or
+more files. Inspiral-style slides are specified by multiples of a fixed offset
+vector, with equal numbers of +ve and -ve multiples: the total number of time
+slide entries including zerolag is 2*nslides+1. Tisi-style slides are
+specified via one or more ranges of offsets for each instrument. If more than
+one instrument and set of offsets is given, the time slide table will contain
+entries corresponding to all combinations of offsets, one each from the
+different instruments. If no file names are given on the command line, output
+is written to stdout. If more than one file name is given on the command line,
+the time slides are distributed uniformly between files with each file being
+given a disjoint subset. Output files whose names end in &#39;.gz&#39; will be gzip
+compressed. Example: pycbc_timeslides --verbose --tisi-slides H1=-100:+100:10
+L1=-100:+100:+10 time_slides.xml.gz
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  -a filename, --add-to filename
+                        Add the time slides from this file to the newly-
+                        generated time slides If the name ends in &#39;.gz&#39; it
+                        will be gzip-decompressed on input.
+  --comment text        Set comment string in process table (default = None).
+  -v, --verbose         Be verbose.
+  -i [name=first:last:step [name=first:last:step ...]], --tisi-slides [name=first:last:step [name=first:last:step ...]]
+                        Generate tisi-style (i.e. &#39;new-style&#39;) slides by
+                        giving a space-separated list of instrument-specific
+                        sets of offsets. The set of offsets is (first + &quot;n *
+                        step) where n is an integer such that first &lt;= offset
+                        &lt;= last. More than one set of offsets can be given for
+                        the same instrument, in which case the union is used.
+  --inspiral-num-slides [count:instrument=offset[,instrument=offset...] [count:instrument=offset[,instrument=offset...] ...]]
+                        Generate a set of lalapps-thinca-style time slides.
+                        The collection of instrument/offset pairs defines an
+                        offset vector, the time slides produced are integer
+                        multiples n * {offsets} where n is a non-zero integer
+                        in [-count, +count]. To generate multiple set of
+                        slides, give the option multiple times separated by
+                        spaces, e.g. --inspiral-num-slides &#39;50:H1=0,L1=5
+                        25:H1=10,V1=0&#39;
+  -n [name=offset [name=offset ...]], --normalize [name=offset [name=offset ...]]
+                        Normalize the time slides so that a given instrument
+                        has the specified offset in all slides. The other
+                        offsets in each time slide are adjusted so that the
+                        relative offsets are preserved. Time slides that do
+                        not involve this instrument are unaffected. If
+                        multiple instrument/offset pairs are given, then for
+                        each time slide they are considered in alphabetical
+                        order by instrument until the first is found that
+                        affects the offsets of that time slide. YMMV.
+  --remove-zero-lag     Remove the time slide with offsets of 0 for all
+                        instruments.
+  --output-files FILE [FILE ...]
+                        The path to the file(s) in which to write the
+                        resulting time slides. If more than one file is
+                        present, split the time slides equally over the files.
 </pre></div>
 </div>
 <p>An example of a pycbc_timeslides call, for time slides, is given below</p>
