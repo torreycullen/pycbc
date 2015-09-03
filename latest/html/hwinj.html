@@ -488,7 +488,7 @@ CHANNEL_NAME=L1:GDS-CALIB_STRAIN
 </pre></div>
 </div>
 <p>We select to use the <code class="docutils literal"><span class="pre">SpinTaylorT4</span></code> approximant and begin the waveforms at 10.0Hz. Here we taper the injection at the start and end of the injection. The command line options will be</p>
-<div class="highlight-python"><div class="highlight"><pre>--waveform SpinTaylorT4threePointFivePN --f-lower 10 --taper-injection start --band-pass-injection
+<div class="highlight-python"><div class="highlight"><pre>--waveform SpinTaylorT4threePointFivePN --f-lower 10 --taper-injection startend --band-pass-injection
 </pre></div>
 </div>
 <p>Now we can combine all the options above and run <code class="docutils literal"><span class="pre">lalapps_inspinj</span></code> as</p>
@@ -562,7 +562,7 @@ gw_data_find --observatory H --type H1_RDS --gps-start-time 1124380361  --gps-en
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Aug 27, 2015.
+      Last updated on Sep 03, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
