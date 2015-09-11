@@ -20,6 +20,14 @@ pycbc.results.followup module
     :undoc-members:
     :show-inheritance:
 
+pycbc.results.legacy_grb module
+-------------------------------
+
+.. automodule:: pycbc.results.legacy_grb
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.results.metadata module
 -----------------------------
 

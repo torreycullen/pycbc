@@ -52,6 +52,14 @@ pycbc.workflow.datafind module
     :undoc-members:
     :show-inheritance:
 
+pycbc.workflow.grb_utils module
+-------------------------------
+
+.. automodule:: pycbc.workflow.grb_utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.workflow.injection module
 -------------------------------
 
@@ -108,10 +116,26 @@ pycbc.workflow.postprocessing module
     :undoc-members:
     :show-inheritance:
 
+pycbc.workflow.postprocessing_cohptf module
+-------------------------------------------
+
+.. automodule:: pycbc.workflow.postprocessing_cohptf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.workflow.postprocessing_prep module
 -----------------------------------------
 
 .. automodule:: pycbc.workflow.postprocessing_prep
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+pycbc.workflow.psd module
+-------------------------
+
+.. automodule:: pycbc.workflow.psd
     :members:
     :undoc-members:
     :show-inheritance:
