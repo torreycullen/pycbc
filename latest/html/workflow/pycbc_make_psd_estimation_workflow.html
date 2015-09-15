@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The workflow injection generation module &mdash; PyCBC 0.1 documentation</title>
+  <title>Estimating average noise PSDs over long stretches of data &mdash; PyCBC 0.1 documentation</title>
   
 
   
@@ -31,9 +31,8 @@
 
   
     <link rel="top" title="PyCBC 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="Workflow: the inspiral analysis workflow generator (pycbc.workflow)" href="../workflow.html"/>
-        <link rel="next" title="The workflow time-slide generation module" href="time_slides.html"/>
-        <link rel="prev" title="The workflow datafind and validation module" href="datafind.html"/> 
+        <link rel="next" title="Waveforms" href="../waveform.html"/>
+        <link rel="prev" title="Walkthrough of running the PyCBC BNS focused pipeline on SUGAR" href="pycbc_bns_hdf_config_walkthrough.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -115,8 +114,8 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a><ul class="current">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../workflow.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../workflow.html#workflow-to-do-list">Workflow to do list</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../workflow.html#examples">Examples</a><ul>
@@ -138,7 +137,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../workflow.html#workflow-module-documentation">Workflow module documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html#workflow-module-documentation">Workflow module documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../workflow.html#initialization">Initialization</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="initialization.html">Pycbc&#8217;s workflow module configuration file(s) and command line interface</a></li>
 </ul>
@@ -151,8 +150,8 @@
 <li class="toctree-l4"><a class="reference internal" href="datafind.html">The workflow datafind and validation module</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="../workflow.html#injection-generation">Injection generation</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="">The workflow injection generation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#injection-generation">Injection generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="injections.html">The workflow injection generation module</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../workflow.html#time-slide-generation">Time-slide generation</a><ul>
@@ -312,15 +311,15 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html">Walkthrough of running the PyCBC BNS focused pipeline on SUGAR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html#run-sh">run.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html#config-file">config file</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html">Estimating average noise PSDs over long stretches of data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#configuration-file">Configuration file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#generating-and-running-the-workflow">Generating and running the workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Estimating average noise PSDs over long stretches of data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-and-running-the-workflow">Generating and running the workflow</a></li>
 </ul>
 </li>
 </ul>
@@ -388,13 +387,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a> &raquo;</li>
-      
-    <li>The workflow injection generation module</li>
+    <li>Estimating average noise PSDs over long stretches of data</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/workflow/injections.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/workflow/pycbc_make_psd_estimation_workflow.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -403,309 +400,172 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="the-workflow-injection-generation-module">
-<span id="workflowinjectionsmod"></span><h1>The workflow injection generation module<a class="headerlink" href="#the-workflow-injection-generation-module" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The injection generation module of pycbc&#8217;s workflow
-is responsible for generating or
-gathering the injection files that will be used to assess the performance of a
-pipeline to detect simulated signals. This can be run
-either by generating injection files at run time, by generating injection files
-within the workflow or by using pregenerated injection files.</p>
-<p>The return of the injection generation module is a FileList of the injection files generated/supplied to this module. It is possible to call this module
-multiple times by using the tags key-word argument, but we have not foreseen
-a case where this would be needed.</p>
-</div>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Using this module requires a number of things</p>
-<ul class="simple">
-<li>A configuration file (or files) containing the information needed to tell this module how to generate the injection files (described below).</li>
-<li>An initialized instance of the pycbc Workflow class, containing the ConfigParser.</li>
-</ul>
-<p>The module is then called according to</p>
-<dl class="function">
-<dt>
-<code class="descclassname">pycbc.workflow.</code><code class="descname">setup_injection_workflow</code><span class="sig-paren">(</span><em>workflow</em>, <em>output_dir=None</em>, <em>inj_section_name='injections'</em>, <em>tags=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycbc/workflow/injection.html#setup_injection_workflow"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>This function is the gateway for setting up injection-generation jobs in a
-workflow. It should be possible for this function to support a number
-of different ways/codes that could be used for doing this, however as this
-will presumably stay as a single call to a single code (which need not be
-inspinj) there are currently no subfunctions in this moudle.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>workflow</strong> : pycbc.workflow.core.Workflow</p>
+  <div class="section" id="estimating-average-noise-psds-over-long-stretches-of-data">
+<h1>Estimating average noise PSDs over long stretches of data<a class="headerlink" href="#estimating-average-noise-psds-over-long-stretches-of-data" title="Permalink to this headline">¶</a></h1>
+<p>It can be useful to estimate the average noise PSD of a long period of data, for
+instance for building template banks manually or doing bank simulations. The
+program <code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code> is devoted to this task.</p>
+<p>The program sets up a Pegasus workflow which is basically a small subset of a
+coincident search workflow:</p>
 <blockquote>
-<div><p>The Workflow instance that the coincidence jobs will be added to.</p>
-</div></blockquote>
-<p><strong>output_dir</strong> : path</p>
-<blockquote>
-<div><p>The directory in which injection files will be stored.</p>
-</div></blockquote>
-<p><strong>inj_section_name</strong> : string (optional, default=&#8217;injections&#8217;)</p>
-<blockquote>
-<div><p>The string that corresponds to the option describing the exe location
-in the [executables] section of the .ini file and that corresponds to
-the section (and sub-sections) giving the options that will be given to
-the code at run time.</p>
-</div></blockquote>
-<p><strong>tags</strong> : list of strings (optional, default = [])</p>
-<blockquote>
-<div><p>A list of the tagging strings that will be used for all jobs created
-by this call to the workflow. This will be used in output names.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>inj_files</strong> : pycbc.workflow.core.FileList</p>
-<blockquote>
-<div><p>The list of injection files created by this call.</p>
-</div></blockquote>
-<p><strong>inj_tags</strong> : list of strings</p>
-<blockquote class="last">
-<div><p>The tag corresponding to each injection file and used to uniquely
-identify them. The FileList class contains functions to search
-based on tags.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<div class="section" id="configuration-file-setup">
-<h3>Configuration file setup<a class="headerlink" href="#configuration-file-setup" title="Permalink to this headline">¶</a></h3>
-<p>Here we describe the options given in the configuration file used in the workflow that will be needed in this section</p>
-<div class="section" id="workflow-injections-section">
-<h4>[workflow-injections] section<a class="headerlink" href="#workflow-injections-section" title="Permalink to this headline">¶</a></h4>
-<p>The configuration file must have a [workflow-injections] section, which is used to
-tell the workflow how to construct (or gather) the injection files. The first option to choose and provide is</p>
-<ul class="simple">
-<li>injections-method = VALUE</li>
+<div><ul class="simple">
+<li>Find the data frames and the segments</li>
+<li>Segment the analyzable data in each detector</li>
+<li>Run <code class="docutils literal"><span class="pre">pycbc_calculate_psd</span></code> to estimate the PSD in each segment in each
+detector</li>
+<li>Run <code class="docutils literal"><span class="pre">pycbc_average_psd</span></code> to combine the PSD estimates over time for each
+detector, as well as over time and detectors.</li>
 </ul>
-<p>The choices here and their description are as described below</p>
-<ul class="simple">
-<li>IN_WORKFLOW - The injection file generation will be added as jobs in the workflow and will be generated after submission of the workflow.</li>
-<li>AT_RUNTIME - The injection jobs will be run directly within this module.</li>
-<li>PREGENERATED - The injection files will be supplied as pregenerated files.</li>
-</ul>
-<p>When using IN_WORKFLOW or AT_RUNTIME no additional options are required in the [workflow-injections] section.</p>
-<p>When using PREGENERATED the additional option is needed:</p>
-<ul class="simple">
-<li>injections-pregenerated-file = PATH - Specifies the location of the pregenerated injection file.</li>
-</ul>
-</div>
-<div class="section" id="executables">
-<h4>[executables]<a class="headerlink" href="#executables" title="Permalink to this headline">¶</a></h4>
-<p><strong>PLEASE READ THIS EVEN IF USING method=PREGENERATED</strong></p>
-<p>In this section, if not using PREGENERATED, you need to supply the executable that will be used to generate the injection files. This is done in the [executables] section by adding something like:</p>
-<p>injections = /path/to/lalapps_inspinj</p>
-<p>The option, in this case &#8216;injections&#8217;, will be used to specify the constant command line options that are sent to all lalapps_inspinj jobs. The tag &#8216;injections&#8217; can be changed, it is currently supplied as a key-word argument when calling the function. &#8216;injections&#8217; is the default, and must be used if you want to use pipedown.</p>
-<p><strong>IMPORTANT</strong> this injSectionName tag, &#8220;injections&#8221; by default, is used to identify which injections are to be performed. The module will search for modules called [injections-XXXX] and generate one injection file for every sub-section using XXXX as a tag.</p>
-<p>When using IN_WORKFLOW option, value pairs in [injections-XXXX]
-are also used to specify options specific to that
-particular injection set. These options will be directly supplied to the
-executable being used to generate the file.</p>
-<p><strong>PLEASE NOTE:</strong> When using PREGENERATED the injection names are still identified by looking in the &#8220;injections-XXXX&#8221; sections (a path in [executables] is not needed). These sections will be empty in this case. Also note that as XXXX is used as a tag you can use [workflow-injections-XXXX] section to supply unique pregenerated injection files.</p>
-</div>
-</div>
-<div class="section" id="supported-injection-executables-and-instructions-for-using-them">
-<h3>Supported injection executables and instructions for using them<a class="headerlink" href="#supported-injection-executables-and-instructions-for-using-them" title="Permalink to this headline">¶</a></h3>
-<p>The following injection generation executables are currently supported</p>
-<ul class="simple">
-<li>lalapps_inspinj</li>
-</ul>
-<p>Adding a new executable is not too hard, please ask a developer for some pointers on how to do this if you want to add a new code.</p>
-<div class="section" id="lalapps-inspinj">
-<h4>lalapps_inspinj<a class="headerlink" href="#lalapps-inspinj" title="Permalink to this headline">¶</a></h4>
-<p>lalapps_inspinj is the legacy C-code that has been used to generate injection files for gravitational-wave data analysis since the dawn of time. The help message for lalapps_inspinj follows</p>
-<div class="highlight-text"><div class="highlight"><pre>$ lalapps_inspinj --help
-lalapps_inspinj [options]
-The following options are recognized.  Options not surrounded in []
-are required. Defaults are shown in brackets
- [--help ]                 display this message
- [--verbose]               print progress information
- [--user-tag] usertag      set the usertag 
- [--output ] name          overwrite the standard file naming convention
- [--write-compress]        write a compressed xml file
+</div></blockquote>
+<div class="section" id="configuration-file">
+<h2>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code> is configured through an .ini file,
+similarly to search workflows. An example for ER8 data, broken by sections, is
+given here.</p>
+<div class="highlight-python"><div class="highlight"><pre>[workflow]
+start-time = 1123858817
+end-time = 1125217722
+h1-channel-name = H1:GDS-CALIB_STRAIN
+l1-channel-name = L1:GDS-CALIB_STRAIN
+file-retention-level = no_intermediates
 
-Waveform details:
- [--seed] randomSeed       seed for random number generator (default : 1)
-  --f-lower freq           lower cut-off frequency.
-  --waveform wfm           set waveform type to wfm
-  --amp-order              set PN order in amplitude
+[workflow-ifos]
+h1 =
+l1 =
 
-Time distribution information:
-  --gps-start-time start   GPS start time for injections
-  --gps-end-time end       GPS end time for injections
-  --ipn-gps-time IPNtime   GPS end time for IPN trigger
-  --t-distr timeDist       set the time step distribution of injections
-                           fixed: fixed time step
-                           uniform: uniform distribution
-                           exponential: exponential distribution for Poisson process
-  [--time-step] step       space injections by average of step seconds
-                           (suggestion : 2630 / pi seconds)
-  [--time-interval] int    distribute injections in an interval, int s
-                           (default : 0 seconds)
+[workflow-datafind]
+datafind-h1-frame-type = H1_HOFT_C00
+datafind-l1-frame-type = L1_HOFT_C00
+datafind-method = AT_RUNTIME_SINGLE_FRAMES
+datafind-check-segment-gaps = update_times
+datafind-check-frames-exist = raise_error
+datafind-check-segment-summary = warn
 
-Source distribution information:
-  --l-distr  locDist       set the source location distribution,
-                           locDist must be one of:
-                           source: use locations from source-file
-                           exttrig: use external trigger file
-                           random: uses random locations
-                           fixed: set fixed location
-                           ipn: random locations from IPN skypoints
- [--longitude] longitude   read longitude if fixed value (degrees)
- [--latitude] latitude     read latitude if fixed value (degrees)
- [--d-distr] distDist      use a distribution over physical distance
-                           source: take distance from galaxy source file
-                           uniform: uniform distribution in distance
-                           distancesquared: uniform distribution in distance^2
-                           log10: uniform distribution in log10(d) 
-                           volume: uniform distribution in volume
-                           sfr: distribution derived from the SFR
- [--min-distance] DMIN     set the minimum (chirp) distance to DMIN kpc
- [--max-distance] DMAX     set the maximum (chirp) distance to DMAX kpc
-                           min/max distance required if d-distr not &#39;source&#39;
- [--source-file] sources   read source parameters from sources
-                           requires enable/disable milkyway
- [--sourcecomplete] distance 
-                           complete galaxy catalog out to distance (kPc)
- [--make-catalog]          create a text file of the completed galaxy catalog
- [--enable-milkyway] lum   enables MW injections, set MW luminosity
- [--disable-milkyway]      disables Milky Way injections
- [--dchirp-distr]          use a distribution over chirp distance
-                           (normalized to a 1.4,1.4 Msun binary)
- [--z-distr]               use a distribution over redshift
-                           currently only &#39;sfr&#39; is supported
- [--local-rate] rho        set the local coalescence rate for --z-distr sfr
-                           (suggestion: 1 per Mpc^3 per Myr)
- [--min-z]                 set the minimum redshift: at least 0.2 for sfr
- [--max-z]                 set the maximum redshift: at most 1.0 for sfr
- [--snr-distr]             use a distribution over expected (optimal) network SNR
-                           uniform: uniform in SNR, log10: uniform in log10(SNR)
-                           volume: uniform in 1/SNR^3
-                           ( Setting max-snr == min-snr will allow you to choose a fixed SNR )
- [--ninja-snr]             use a NINJA waveform SNR calculation (if not set, use LALSimulation)
- [--min-snr] SMIN          set the minimum network snr
- [--max-snr] SMAX          set the maximum network snr
- [--min-coinc-snr] sm      Set the minimum SNR in two IFOs. Neglected if a single IFO is used
- [--ligo-psd] filename     Ascii, tab-separated file of frequency, value pairs to use for LIGO PSD in snr computation
- [--ligo-fake-psd] PSD     LALsimulation PSD fit to use instead of a file. Allowed values: LALLIGO, LALAdLIGO
- [--ligo-start-freq] freq  Frequency in Hz to use for LIGO snr computation
- [--virgo-psd] filename    Ascii, tab-separated file of frequency, value pairs to use for Virgo PSD in snr computation
- [--virgo-fake-psd] PSD    LALsimulation PSD fit to use instead of a file. Allowed values: LALVirgo, LALAdVirgo
- [--virgo-start-freq] freq Frequency in Hz to use for Virgo snr computation
- [--ifos] ifos             Comma-separated list of ifos to include in network SNR
+[workflow-segments]
+segments-h1-science-name = H1:DMT-ANALYSIS_READY:1
+segments-l1-science-name = L1:DMT-ANALYSIS_READY:1
+segments-database-url = https://segments.ligo.org
+segments-veto-definer-url = file:///home/tito/er8/H1L1V1-ER8_CBC_OFFLINE.xml
+segments-science-veto = 1
+segments-veto-groups =
+segments-final-veto-group = 12H
+segments-method = ALL_SINGLE_IFO_TIME
 
-  --i-distr INCDIST        set the inclination distribution, must be either
-                           uniform: distribute uniformly over arccos(i)
-                           gaussian: gaussian distributed in (i)
-                           fixed: no distribution, fixed values of (i)
- [--polarization] psi      set the polarization angle for all injections (degrees)
- [--incl-std]  inclStd     std dev for gaussian inclination dist
- [--fixed-inc]  fixed_inc  value for the fixed inclination angle (in degrees) if &#39;--i-distr fixed&#39; is chosen.
- [--max-inc]  max_inc      value for the maximum inclination angle (in degrees) if &#39;--i-distr uniform&#39; is chosen. 
- [--coa-phase-distr] cDist set the coalescence phase distribution,
-                           cDist must be one of:
-                           uniform: use random, uniformly distributed coalescence phase [default]
-                           fixed: set fixed coalescence phase
- [--fixed-coa-phase] phase set the coalescence phase (in degrees) for all injections if --coa-phase-distr=fixed
- [--ipn-file] ipnskypoints read IPN sky points from file
- [--exttrig-file] exttrig  XML file containing external trigger
+[datafind]
+urltype = file
 
-Mass distribution information:
-  --m-distr massDist       set the mass distribution of injections
-                           must be one of:
-                           source: using file containing list of mass pairs
-                           nrwaves: using xml file with list of NR waveforms
-                           (requires setting max/min total masses)
-                           totalMass: uniform distribution in total mass
-                           componentMass: uniform in m1 and m2
-                           gaussian: gaussian mass distribution
-                           log: log distribution in component mass
-                           totalMassRatio: uniform distribution in total mass and
-                           mass ratio m1 /m2
-                           logTotalMassUniformMassRatio: log distribution in total mass
-                           and uniform in mass ratio
-                           totalMassFraction: uniform distribution in total mass and
-                           in m1 /(m1+m2)
-                           m1m2SquareGrid: component masses on a square grid
-                           fixMasses: fix m1 and m2 to specific values
- [--ninja2-mass]           use the NINJA 2 mass-selection algorithm
- [--real8-ninja2]          when distributing by SNR for NINJA2, assume frames are REAL8
- [--mass-file] mFile       read population mass parameters from mFile
- [--nr-file] nrFile        read mass/spin parameters from xml nrFile
- [--min-mass1] m1min       set the minimum component mass to m1min
- [--max-mass1] m1max       set the maximum component mass to m1max
- [--min-mass2] m2min       set the min component mass2 to m2min
- [--max-mass2] m2max       set the max component mass2 to m2max
- [--min-mtotal] minTotal   sets the minimum total mass to minTotal
- [--max-mtotal] maxTotal   sets the maximum total mass to maxTotal
- [--fixed-mass1] fixMass1  set mass1 to fixMass1
- [--fixed-mass2] fixMass2  set mass2 to fixMass2
- [--mean-mass1] m1mean     set the mean value for mass1
- [--stdev-mass1] m1std     set the standard deviation for mass1
- [--mean-mass2] m2mean     set the mean value for mass2
- [--stdev-mass2] m2std     set the standard deviation for mass2
- [--min-mratio] minr       set the minimum mass ratio
- [--max-mratio] maxr       set the maximum mass ratio
- [--mass1-points] m1pnt    set the number of grid points in the m1 direction if &#39;--m-distr=m1m2SquareGrid&#39;
- [--mass2-points] m2pnt    set the number of grid points in the m2 direction if &#39;--m-distr=m1m2SquareGrid&#39;
-
-Spin distribution information:
-  --disable-spin           disables spinning injections
-  --enable-spin            enables spinning injections
-                           One of these is required.
-  [--spin-gaussian]        enable gaussian spin distribution
-  --aligned                enforces the spins to be along the direction
-                           of orbital angular momentum. Spin z-components are the only non-vanishing (unless &#39;--axis-choice view&#39; convention is chosen)
-  [--axis-choice] choice   frame axis choice: &#39;angmomentum&#39; (default) or &#39;view&#39; to define convention for spin aligned case
-  [--min-spin1] spin1min   Set the minimum spin1 to spin1min (0.0)
-  [--max-spin1] spin1max   Set the maximum spin1 to spin1max (0.0)
-  [--mean-spin1] spin1mean Set the mean for |spin1| distribution
-  [--stdev-spin1] spin1std Set the standard deviation for |spin1|
-  [--min-spin2] spin2min   Set the minimum spin2 to spin2min (0.0)
-  [--max-spin2] spin2max   Set the maximum spin2 to spin2max (0.0)
-  [--mean-spin2] spin2mean Set the mean for |spin2| distribution
-  [--stdev-spin2] spin2std Set the standard deviation for |spin2|
-  [--min-kappa1] kappa1min Set the minimum cos(S1.L_N) to kappa1min (-1.0)
-  [--max-kappa1] kappa1max Set the maximum cos(S1.L_N) to kappa1max (1.0)
-  [--min-abskappa1] abskappa1min 
-                           Set the minimum absolute value of cos(S1.L_N)
-                           to abskappa1min (0.0)
-  [--max-abskappa1] abskappa1max 
-                           Set the maximum absolute value of cos(S1.L_N) 
-                           to abskappa1max (1.0)
-
-Tapering the injection waveform:
-  [--taper-injection] OPT  Taper the inspiral template using option OPT
-                            (start|end|startend) 
-  [--band-pass-injection]  sets the tapering method of the injected waveform
-
-Output:
- [--write-sim-ring]        Writes a sim_ringdown table
+[workflow-matchedfilter]
+matchedfilter-method = WORKFLOW_INDEPENDENT_IFOS
+analysis-length = 2048
+min-analysis-segments = 15
+max-analysis-segments = 15
+output-type = hdf
 </pre></div>
 </div>
-<p>Of these options the workflow will automatically add the following. <strong>DO NOT ADD THESE OPTIONS IN THE CONFIGURATION FILE</strong>.</p>
-<ul class="simple">
-<li>&#8211;gps-start-time</li>
-<li>&#8211;gps-end-time</li>
-<li>&#8211;output</li>
-</ul>
-<p>All other options must be provided in the configuration file. Here is an example of a lalapps_inspinj call.</p>
-<div class="highlight-bash"><div class="highlight"><pre>lalapps_inspinj --gps-end-time <span class="m">961671943</span> --i-distr uniform --max-mass1 3.1 --max-mass2 3.1 --m-distr componentMass --disable-spin  --min-mtotal 2.0 --output /home/spxiwh/lscsoft_git/src/pycbc/examples/ahope/weekly_ahope/961585543-961671943/inj_files/HL-INJECTIONS_BNSLININJ_2134-961585543-86400.xml --max-mtotal 6.2 --waveform TaylorT4threePointFivePN --time-interval <span class="m">300</span> --time-step 837.155 --min-mass2 1.0 --f-lower <span class="m">30</span> --l-distr random --min-mass1 1.0 --min-distance <span class="m">1000</span> --gps-start-time <span class="m">961585543</span> --d-distr uniform --max-distance 60000
+<p>The above sections control which data are being used and they are basically the
+same as found in a coincidence workflow. In this example, ER8 data are used and
+the analyzable time is broken into 2048 s segments for PSD estimation.</p>
+<div class="highlight-python"><div class="highlight"><pre>[executables]
+segment_query = ${which:ligolw_segment_query_dqsegdb}
+segments_from_cats = ${which:ligolw_segments_from_cats_dqsegdb}
+llwadd = ${which:ligolw_add}
+ligolw_combine_segments = ${which:ligolw_combine_segments}
+plot_segments = ${which:pycbc_page_segments}
+calculate_psd = ${which:pycbc_calculate_psd}
+average_psd = ${which:pycbc_average_psd}
+plot_spectrum = ${which:pycbc_plot_psd_file}
+plot_range = ${which:pycbc_plot_range}
+page_segtable = ${which:pycbc_page_segtable}
+page_segplot = ${which:pycbc_page_segplot}
 </pre></div>
 </div>
+<p>The above section specifies the location of the various executables called by
+the workflow. The <code class="docutils literal"><span class="pre">${which:X}</span></code> syntax replaces the line with the full path to
+the executable, wherever that happens to be at the time of running
+<code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">llwadd</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">segments_from_cats</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">ligolw_combine_segments</span><span class="p">]</span>
+</pre></div>
 </div>
+<p>I&#8217;m not actually sure these sections are needed: FIXME ;)</p>
+<div class="highlight-python"><div class="highlight"><pre>[calculate_psd]
+cores = 4
+low-frequency-cutoff = 10
+pad-data = 8
+strain-high-pass = 8
+sample-rate = 4096
+segment-length = 256
+segment-start-pad = 64
+segment-end-pad = 64
+psd-estimation = median
+psd-segment-length = 16
+psd-segment-stride = 8
+
+[calculate_psd-h1]
+channel-name = H1:GDS-CALIB_STRAIN
+
+[calculate_psd-l1]
+channel-name = L1:GDS-CALIB_STRAIN
+
+[pegasus_profile-calculate_psd]
+condor|request_cpus = 4
+</pre></div>
 </div>
+<p>The above sections control how the PSD is estimated in each segment. The program
+devoted to this is <code class="docutils literal"><span class="pre">pycbc_calculate_psd</span></code>, see its <code class="docutils literal"><span class="pre">--help</span></code> for details. In
+this example, two instances of <code class="docutils literal"><span class="pre">pycbc_calculate_psd</span></code> are launched (one per
+detector) and each instance uses 4 CPU cores. For details on PSD estimation,
+see for instance the <a class="reference external" href="http://arxiv.org/abs/gr-qc/0509116">FindChirp paper</a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">average_psd</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="pycbc-workflow-injection-module">
-<h2><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.injection" title="pycbc.workflow.injection"><code class="xref py py-mod docutils literal"><span class="pre">pycbc.workflow.injection</span></code></a> Module<a class="headerlink" href="#pycbc-workflow-injection-module" title="Permalink to this headline">¶</a></h2>
-<p>This is complete documentation of this module&#8217;s code</p>
+<p>The above section controls how the averaging of the PSDs over time and detector
+is done, i.e. it contains options for the <code class="docutils literal"><span class="pre">pycbc_average_psd</span></code> program.
+Currently the program does not take options and the only supported averaging
+method is the harmonic mean.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">plot_segments</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">plot_range</span><span class="p">]</span>
+<span class="n">mass1</span> <span class="o">=</span> <span class="mf">1.4</span>
+<span class="n">mass2</span> <span class="o">=</span> <span class="mf">1.4</span>
+<span class="n">approximant</span> <span class="o">=</span> <span class="n">SPAtmplt</span>
+
+<span class="p">[</span><span class="n">plot_spectrum</span><span class="p">]</span>
+<span class="n">psd</span><span class="o">-</span><span class="n">model</span> <span class="o">=</span> <span class="n">aLIGOZeroDetHighPower</span>
+
+<span class="p">[</span><span class="n">page_segtable</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">page_segplot</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The above sections control plotting jobs.</p>
+</div>
+<div class="section" id="generating-and-running-the-workflow">
+<h2>Generating and running the workflow<a class="headerlink" href="#generating-and-running-the-workflow" title="Permalink to this headline">¶</a></h2>
+<p>Once you have an .ini file at <code class="docutils literal"><span class="pre">/path/to/ini/file</span></code>, create the workflow in the
+following way:</p>
+<div class="highlight-python"><div class="highlight"><pre>pycbc_make_psd_estimation_workflow \
+    --workflow-name RUN_NAME \
+    --output-dir /path/to/run/directory \
+    --local-config-files /path/to/ini/file
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">RUN_NAME</span></code> should be replaced with a meaningful descriptive name for the
+workflow and <code class="docutils literal"><span class="pre">/path/to/run/directory</span></code> should point to the directory where the
+run is supposed to take place. Once the workflow is generated, move to
+<code class="docutils literal"><span class="pre">/path/to/run/directory</span></code> and start the workflow with</p>
+<div class="highlight-python"><div class="highlight"><pre>pycbc_submit_dax \
+    --dax RUN_NAME.dax \
+    --accounting-group ACCOUNTING_TAG
+</pre></div>
+</div>
+<p>where again <code class="docutils literal"><span class="pre">RUN_NAME</span></code> and <code class="docutils literal"><span class="pre">ACCOUNTING_TAG</span></code> should be given meaningful
+values. When the workflow completes, the average PSDs should be available in
+<code class="docutils literal"><span class="pre">/path/to/run/directory/psds</span></code> and diagnostic plots should be in
+<code class="docutils literal"><span class="pre">/path/to/run/directory/plots</span></code>.</p>
 </div>
 </div>
 
@@ -715,10 +575,10 @@ Output:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="time_slides.html" class="btn btn-neutral float-right" title="The workflow time-slide generation module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../waveform.html" class="btn btn-neutral float-right" title="Waveforms" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="datafind.html" class="btn btn-neutral" title="The workflow datafind and validation module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pycbc_bns_hdf_config_walkthrough.html" class="btn btn-neutral" title="Walkthrough of running the PyCBC BNS focused pipeline on SUGAR" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

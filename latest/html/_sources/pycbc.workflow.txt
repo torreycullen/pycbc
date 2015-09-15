@@ -92,6 +92,14 @@ pycbc.workflow.matched_filter module
     :undoc-members:
     :show-inheritance:
 
+pycbc.workflow.minifollowups module
+-----------------------------------
+
+.. automodule:: pycbc.workflow.minifollowups
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.workflow.pegasus_workflow module
 --------------------------------------
 
