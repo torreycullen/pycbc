@@ -4,6 +4,14 @@ pycbc.filter package
 Submodules
 ----------
 
+pycbc.filter.fotonfilter module
+-------------------------------
+
+.. automodule:: pycbc.filter.fotonfilter
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 pycbc.filter.matchedfilter module
 ---------------------------------
 

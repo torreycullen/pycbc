@@ -452,8 +452,8 @@
 </div>
 <p>We will want to use data from when the detector was in science mode time to estimate the PSD. To check if the detector was in science mode you can query the segment database, check the section <span class="xref std std-ref">howtoquerysegdb</span> for an example command.</p>
 <p>Since we are using detector data we will need to read the data from frame files. We will need to specify the frame type and channel name. The frame type is a way to identify what list of channels is in the frame file. So on the command line we set</p>
-<div class="highlight-python"><div class="highlight"><pre>FRAME_TYPE=L1_RDS
-CHANNEL_NAME=L1:GDS-CALIB_STRAIN
+<div class="highlight-python"><div class="highlight"><pre>FRAME_TYPE=H1_HOFT_C00
+CHANNEL_NAME=H1:GDS-CALIB_STRAIN
 </pre></div>
 </div>
 <p>We can check that frames exist for this time by querying the LDR server, check the section <span class="xref std std-ref">howtoqueryldr</span> for an example command.</p>
@@ -461,15 +461,38 @@ CHANNEL_NAME=L1:GDS-CALIB_STRAIN
 </div>
 <div class="section" id="run-pycbc-generate-hwinj">
 <h3><a class="toc-backref" href="#id6">Run <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code></a><a class="headerlink" href="#run-pycbc-generate-hwinj" title="Permalink to this headline">¶</a></h3>
-<p>Now let&#8217;s specify the parameters of the waveform. A full list of the command line options is available with <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span> <span class="pre">--help</span></code>.</p>
-<p>Here we provide an example for generating a coherent 1.4-1.4 component mass binary using the <code class="docutils literal"><span class="pre">EOBNRv2</span></code> approximant.</p>
-<p>The sample rate of the output ASCII file is 16384Hz and the waveform begins at 10.0Hz.</p>
-<p>We do not want to inject a step-like response into the detector, therefore we taper the waveform at the beginning. The <code class="docutils literal"><span class="pre">EOBNRv2</span></code> has a ringdown at the end so we do not need to taper the end.</p>
-<p>We specify the network SNR we want the coherent injection to have on the command line with <code class="docutils literal"><span class="pre">--network-snr</span></code>, here it is set to 28. The options <code class="docutils literal"><span class="pre">--h1</span></code> and <code class="docutils literal"><span class="pre">--l1</span></code> specify to write the waveform for both detectors; here we write the L1 ASCII file only.</p>
-<p>We are going to use data to estimate the PSD so we must include <code class="docutils literal"><span class="pre">--pad-data</span></code> which is the number of seconds at the start and end of the h(t) time series to discard. The option <code class="docutils literal"><span class="pre">--strain-high-pass</span></code> applies a high-pass on the h(t) time series that will be used to calculate PSD.</p>
-<p>The method for PSD estimation is set with <code class="docutils literal"><span class="pre">--psd-estimation</span></code>. The option <code class="docutils literal"><span class="pre">--psd-segment-length</span></code> is how many seconds to use for a PSD and the option <code class="docutils literal"><span class="pre">--psd-segment-stride</span></code> is how many seconds the code will increment before calculating the next PSD.</p>
-<p>Here is the example command</p>
-<div class="highlight-python"><div class="highlight"><pre>pycbc_generate_hwinj --geocentric-end-time ${GEOCENT_END_TIME} --gps-start-time ${GPS_START_TIME} --gps-end-time ${GPS_END_TIME} --frame-type ${FRAME_TYPE} --channel-name ${CHANNEL_NAME} --approximant EOBNRv2 --order pseudoFourPN --mass1 1.4 --mass2 1.4 --inclination 60.0 --polarization 0.0 --ra 0.0 --dec 0.0 --taper TAPER_START --network-snr 28 --low-frequency-cutoff 10.0 --l1 --sample-rate 16384 --pad-data 8 --strain-high-pass 30.0 --psd-estimation median --psd-segment-length 16 --psd-segment-stride 8
+<p>The <code class="docutils literal"><span class="pre">--instruments</span></code> option specifies the IFOs to include in the injection. The executable <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> will write the waveform for all detectors listed with the <code class="docutils literal"><span class="pre">--instruments</span></code> option. There are a number of options, including <code class="docutils literal"><span class="pre">--instruments</span></code> that take a space-seperated list, example usage of this option is</p>
+<div class="highlight-python"><div class="highlight"><pre>--instruments H1 L1
+</pre></div>
+</div>
+<p>Now let&#8217;s specify the parameters of the waveform. A full list of the command line options is available with <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span> <span class="pre">--help</span></code>. Here we provide an example for generating a coherent 1.4-1.4 component mass binary using the <code class="docutils literal"><span class="pre">EOBNRv2</span></code> approximant. Here is an example of this command line case</p>
+<div class="highlight-python"><div class="highlight"><pre>--approximant SEOBNRv2 --order pseudoFourPN --mass1 25.0 --mass2 25.0 --inclination 0.0 --polarization 0.0 --ra 0.0 --dec 0.0
+</pre></div>
+</div>
+<p>The sample rate of the output ASCII file is given by the <code class="docutils literal"><span class="pre">--sample-rate</span></code> option. The sample rate for each IFO must match, example usage of this option is</p>
+<div class="highlight-python"><div class="highlight"><pre>--sample-rate H1:16384 L1:16384
+</pre></div>
+</div>
+<p>We have the option to query the LDR server directly with <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code>. So we only need to specify a <code class="docutils literal"><span class="pre">--frame-type</span></code> option to get the data. Alternatively you an pass a space-seperated list with <code class="docutils literal"><span class="pre">--frame-files</span></code> or a LAL frame cache with <code class="docutils literal"><span class="pre">--frame-cache</span></code>. We also need to say what channel to use for the PSD estimation with the <code class="docutils literal"><span class="pre">--channel-name</span></code> option. Example usage of <code class="docutils literal"><span class="pre">--frame-type</span></code> would be</p>
+<div class="highlight-python"><div class="highlight"><pre>--frame-type H1:${FRAME_TYPE} L1:${FRAME_TYPE} --channel-name H1:${CHANNEL_NAME} L1:${CHANNEL_NAME}
+</pre></div>
+</div>
+<p>We do not want to inject a step-like response into the detector, therefore we taper the waveform at the beginning. The <code class="docutils literal"><span class="pre">EOBNRv2</span></code> has a ringdown at the end so we do not need to taper the end. Example usage of this option is</p>
+<div class="highlight-python"><div class="highlight"><pre>--taper TAPER_START
+</pre></div>
+</div>
+<p>We specify the network SNR we want the coherent injection to have on the command line. The network SNR calculation includes all IFOs specified in the <code class="docutils literal"><span class="pre">--insturments</span></code> option, example usage of this option is</p>
+<div class="highlight-python"><div class="highlight"><pre>--network-snr 28
+</pre></div>
+</div>
+<p>In calculating the network SNR the executable <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> will generate a PSD and calculate an SNR for the waveform. The options <code class="docutils literal"><span class="pre">--psd-low-frequency-cutoff</span></code> and <code class="docutils literal"><span class="pre">--psd-high-frequency-cutoff</span></code> set the min and max frequency for the SNR calculation. The waveform used in the SNR calculation is also generated at this low-frequency cutoff, note the waveform is not written to disk with this low-frequency cutoff. Example usage of the PSD options is</p>
+<div class="highlight-python"><div class="highlight"><pre>--psd-low-frequency-cutoff 40.0 --psd-high-frequency-cutoff 1000.0 --psd-estimation median --psd-segment-length 16 --psd-segment-stride 8 --pad-data 8
+</pre></div>
+</div>
+<p>The additional PSD options dictate how the PSD will be calculated, ie. how many seconds per FFT and how much overlap. The <code class="docutils literal"><span class="pre">--pad-data</span></code> option is how much data to disgard at the edges of our time series used in PSD estimation to avoid data corruption.</p>
+<p>The <code class="docutils literal"><span class="pre">--waveform-low-frequency-cutoff</span></code> option is the frequency that <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> will begin generating the waveform that is written to file.</p>
+<p>Here is a full example command for generating an injection in only H1</p>
+<div class="highlight-python"><div class="highlight"><pre>pycbc_generate_hwinj --psd-high-frequency-cutoff 1000.0 --geocentric-end-time ${GEOCENT_END_TIME} --gps-start-time H1:${GPS_START_TIME} --gps-end-time H1:${GPS_END_TIME} --frame-type H1:${FRAME_TYPE} --channel-name H1:${CHANNEL_NAME} --approximant SEOBNRv2 --order pseudoFourPN --mass1 25.0 --mass2 25.0 --inclination 0.0 --polarization 0.0 --ra 0.0 --dec 0.0 --taper TAPER_START --network-snr 28 --waveform-low-frequency-cutoff 10.0 --psd-low-frequency-cutoff 40.0 --sample-rate 16384 --pad-data 8 --strain-high-pass 30.0 --psd-estimation median --psd-segment-length 16 --psd-segment-stride 8 --instruments H1
 </pre></div>
 </div>
 <p>This will generate a single-column ASCII files that contains the h(t) time series for each detector and a LIGOLW XML file with the waveform parameters. The output filenames are not specified on the command line, they are determined internally by <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code>. In this example the ASCII file with the waveform will be named <code class="docutils literal"><span class="pre">L1-HWINJ_CBC-${START}-${DURATION}.txt</span></code> where <code class="docutils literal"><span class="pre">${START}</span></code> is the start time stamp of the time series and <code class="docutils literal"><span class="pre">${DURATION}</span></code> is the length in seconds of the ASCII waveform file. The LIGOLW XML file will be named <code class="docutils literal"><span class="pre">H1L1-HWINJ_CBC-${START}-${DURATION}.xml.gz</span></code>.</p>
@@ -583,7 +606,7 @@ gw_data_find --observatory H --type H1_RDS --gps-start-time 1124380361  --gps-en
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Sep 17, 2015.
+      Last updated on Sep 19, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
