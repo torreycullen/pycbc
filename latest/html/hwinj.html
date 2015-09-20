@@ -418,10 +418,12 @@
 </li>
 <li><a class="reference internal" href="#checks-for-the-hardware-injection-output" id="id10">Checks for the hardware injection output</a><ul>
 <li><a class="reference internal" href="#plot-ascii-waveform-files-with-pycbc-plot-hwinj" id="id11">Plot ASCII waveform files with <code class="docutils literal"><span class="pre">pycbc_plot_hwinj</span></code></a></li>
+<li><a class="reference internal" href="#recover-software-injection-with-pycbc-inspiral" id="id12">Recover software injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a></li>
+<li><a class="reference internal" href="#recover-ascii-file-injection-with-pycbc-inspiral" id="id13">Recover ASCII file injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#how-to-query-the-segment-database" id="id12">How to query the segment database</a></li>
-<li><a class="reference internal" href="#how-to-query-the-ldr-server" id="id13">How to query the LDR server</a></li>
+<li><a class="reference internal" href="#how-to-query-the-segment-database" id="id14">How to query the segment database</a></li>
+<li><a class="reference internal" href="#how-to-query-the-ldr-server" id="id15">How to query the LDR server</a></li>
 </ul>
 </li>
 </ul>
@@ -439,7 +441,7 @@
 <div class="section" id="select-a-time-for-the-injection">
 <h3><a class="toc-backref" href="#id4">Select a time for the injection</a><a class="headerlink" href="#select-a-time-for-the-injection" title="Permalink to this headline">¶</a></h3>
 <p>First on the command line set a variable for the GPS geocentric end time of the coherent injection</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GEOCENT_END_TIME</span><span class="o">=</span><span class="mi">1126399769</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GEOCENT_END_TIME</span><span class="o">=</span><span class="mi">1124381661</span>
 </pre></div>
 </div>
 </div>
@@ -568,9 +570,34 @@ CHANNEL_NAME=H1:GDS-CALIB_STRAIN
 </pre></div>
 </div>
 </div>
+<div class="section" id="recover-software-injection-with-pycbc-inspiral">
+<h3><a class="toc-backref" href="#id12">Recover software injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a><a class="headerlink" href="#recover-software-injection-with-pycbc-inspiral" title="Permalink to this headline">¶</a></h3>
+<p>The executable <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> will create an XML file with both a <code class="docutils literal"><span class="pre">sim_inspiral</span></code> and <code class="docutils literal"><span class="pre">sngl_inspiral</span></code> table. Therefore we can inject the exact waveform parameters and recover them with the exact template.</p>
+<p>The analogous software injection command for the example above would be</p>
+<div class="highlight-python"><div class="highlight"><pre>TMPLTBANK_FILE=H1-HWINJ_CBC-${START}-${DURATION}.xml.gz
+INSPIRAL_FILE=H1-INSPIRAL_PYCBC-${GPS_START_TIME}-$((${GPS_END_TIME}-${GPS_START_TIME})).xml.gz
+pycbc_inspiral --segment-end-pad 64  --segment-length 256 --segment-start-pad 64 --psd-estimation median --psd-segment-length 16 --psd-segment-stride 8 --psd-inverse-length 16 --pad-data 8 --sample-rate 4096 --low-frequency-cutoff 40 --strain-high-pass 30 --filter-inj-only --processing-scheme cpu --cluster-method template --approximant SEOBNRv2 --order 8 --snr-threshold 5.5 --chisq-bins 16 --channel-name ${CHANNEL_NAME} --gps-start-time ${GPS_START_TIME} --gps-end-time ${GPS_END_TIME} --trig-start-time $(($GEOCENT_END_TIME - 2)) --trig-end-time $(($GEOCENT_END_TIME + 2)) --frame-type ${FRAME_TYPE} --injection-file ${TMPLTBANK_FILE}  --bank-file ${TMPLTBANK_FILE} --output ${INSPIRAL_FILE} --verbose
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">${START}</span></code> is the start of the injection and <code class="docutils literal"><span class="pre">${DURATION}</span></code> is the length of the injection. We kept the same PSD options (eg. <code class="docutils literal"><span class="pre">--psd-segment-length</span></code>, etc.), data, high-pass filter, and low-frequency-cutoff.</p>
+<p>You can print out the recovered SNR and other parameters with <code class="docutils literal"><span class="pre">lwtprint</span></code>, for example</p>
+<div class="highlight-python"><div class="highlight"><pre>lwtprint -t sngl_inspiral -c end_time,snr ${INSPIRAL_FILE}
+</pre></div>
+</div>
+</div>
+<div class="section" id="recover-ascii-file-injection-with-pycbc-inspiral">
+<h3><a class="toc-backref" href="#id13">Recover ASCII file injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a><a class="headerlink" href="#recover-ascii-file-injection-with-pycbc-inspiral" title="Permalink to this headline">¶</a></h3>
+<p>There is an executable <code class="docutils literal"><span class="pre">pycbc_insert_frame_hwinj</span></code> that will read the single-column ASCII file and insert it into frame data. An example command is here</p>
+<div class="highlight-python"><div class="highlight"><pre>HWINJ_FILE=H1-HWINJ_CBC-${START}-${DURATION}.txt
+pycbc_insert_frame_hwinj --frame-type ${FRAME_TYPE} --channel-name H1:${CHANNEL_NAME} --gps-start-time $((${GPS_START_TIME} - 16)) --gps-end-time $((${GPS_END_TIME} + 16)) --pad-data 8 --strain-high-pass 30.0 --sample-rate 16384 --hwinj-file ${HWINJ_FILE} --hwinj-start-time ${START} --ifo H1 --output-file H1-HWINJ.gwf
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">${START}</span></code> is the start of the injection and <code class="docutils literal"><span class="pre">${DURATION}</span></code> is the length of the injection.</p>
+<p>Then you can run pycbc on the output frame file <code class="docutils literal"><span class="pre">H1-HWINJ.gwf</span></code>.</p>
+</div>
 </div>
 <div class="section" id="how-to-query-the-segment-database">
-<h2><a class="toc-backref" href="#id12">How to query the segment database</a><a class="headerlink" href="#how-to-query-the-segment-database" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">How to query the segment database</a><a class="headerlink" href="#how-to-query-the-segment-database" title="Permalink to this headline">¶</a></h2>
 <p id="howtoquerysegdb">Here is an example on how to check if the detector was in science mode for a GPS time interval. To do this we query the segment database. A command line tool to do check the <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> example above is</p>
 <div class="highlight-python"><div class="highlight"><pre>ligolw_segment_query_dqsegdb --query-segments --segment-url https://dqsegdb5.phy.syr.edu --gps-start-time 1124380361 --gps-end-time 1124382409 --include-segments L1:DMT-ANALYSIS_READY:1 --output-file L1-SEGMENTS.xml
 ligolw_segment_query_dqsegdb --query-segments --segment-url https://dqsegdb5.phy.syr.edu --gps-start-time 1124380361 --gps-end-time 1124382409 --include-segments H1:DMT-ANALYSIS_READY:1 --output-file H1-SEGMENTS.xml
@@ -585,7 +612,7 @@ ligolw_print --table segment --column start_time --column end_time H1-SEGMENTS.x
 <p><strong>Do not assume that the segment databse URL and science-mode segment names are the same as in this section. These values are correct for this example.</strong></p>
 </div>
 <div class="section" id="how-to-query-the-ldr-server">
-<h2><a class="toc-backref" href="#id13">How to query the LDR server</a><a class="headerlink" href="#how-to-query-the-ldr-server" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">How to query the LDR server</a><a class="headerlink" href="#how-to-query-the-ldr-server" title="Permalink to this headline">¶</a></h2>
 <p id="howtoqueryldr">Here is an example on how to check if frame files exist for a GPS time interval. To do this we query the LDR server. A command line tool to do check the <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code> example above is</p>
 <div class="highlight-python"><div class="highlight"><pre>gw_data_find --observatory L --type L1_RDS --gps-start-time 1124380361  --gps-end-time 1124382409 --url-type file --gaps
 gw_data_find --observatory H --type H1_RDS --gps-start-time 1124380361  --gps-end-time 1124382409 --url-type file --gaps
@@ -606,7 +633,7 @@ gw_data_find --observatory H --type H1_RDS --gps-start-time 1124380361  --gps-en
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Sep 19, 2015.
+      Last updated on Sep 20, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
