@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="PyCBC 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="Waveforms" href="../waveform.html"/>
+        <link rel="next" title="Estimating average noise PSDs over long stretches of data" href="pycbc_make_psd_estimation_workflow.html"/>
         <link rel="prev" title="Dag Generator for Doing Faithfulness Comparisons" href="../faithsim.html"/> 
 
   
@@ -193,14 +193,18 @@
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.configuration">pycbc.workflow.configuration module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.core">pycbc.workflow.core module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.datafind">pycbc.workflow.datafind module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-grb-utils-module">pycbc.workflow.grb_utils module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.injection">pycbc.workflow.injection module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.jobsetup">pycbc.workflow.jobsetup module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.legacy_ihope">pycbc.workflow.legacy_ihope module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.matched_filter">pycbc.workflow.matched_filter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-minifollowups-module">pycbc.workflow.minifollowups module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.pegasus_workflow">pycbc.workflow.pegasus_workflow module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.plotting">pycbc.workflow.plotting module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.postprocessing">pycbc.workflow.postprocessing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-postprocessing-cohptf-module">pycbc.workflow.postprocessing_cohptf module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.postprocessing_prep">pycbc.workflow.postprocessing_prep module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-psd-module">pycbc.workflow.psd module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.segment">pycbc.workflow.segment module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.splittable">pycbc.workflow.splittable module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.summaryplots">pycbc.workflow.summaryplots module</a></li>
@@ -313,6 +317,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#config-file">config file</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html">Estimating average noise PSDs over long stretches of data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#configuration-file">Configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#generating-and-running-the-workflow">Generating and running the workflow</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../waveform.html">Waveforms</a><ul>
@@ -331,6 +340,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-the-pycbc-package">Documenting the PyCBC package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-pycbc-modules">Documenting PyCBC modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-pycbc-scripts">Documenting PyCBC scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Creating Releases of PyCBC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#creating-the-release-on-github">Creating the release on GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#uploading-to-the-python-package-index">Uploading to the Python Package Index</a></li>
 </ul>
 </li>
 </ul>
@@ -406,7 +420,7 @@ end time of your analysis</p>
 <p>Name of output directory - what ever you want</p>
 <p><code class="docutils literal"><span class="pre">--workflow-name</span> <span class="pre">er6_test</span> <span class="pre">\</span></code></p>
 <p>Name of the dax file - what ever you want</p>
-<p><code class="docutils literal"><span class="pre">--local-config-files</span> <span class="pre">er6_bns.ini</span> <span class="pre">\</span></code></p>
+<p><code class="docutils literal"><span class="pre">--config-files</span> <span class="pre">er6_bns.ini</span> <span class="pre">\</span></code></p>
 <p>Name of the config file</p>
 <p><code class="docutils literal"><span class="pre">--config-overrides</span> <span class="pre">\</span></code></p>
 <p>Options to be added to the config file</p>
@@ -803,7 +817,7 @@ analysis-subtitle=&quot;...&quot;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../waveform.html" class="btn btn-neutral float-right" title="Waveforms" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pycbc_make_psd_estimation_workflow.html" class="btn btn-neutral float-right" title="Estimating average noise PSDs over long stretches of data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../faithsim.html" class="btn btn-neutral" title="Dag Generator for Doing Faithfulness Comparisons" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -816,7 +830,7 @@ analysis-subtitle=&quot;...&quot;
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Aug 27, 2015.
+      Last updated on Sep 23, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

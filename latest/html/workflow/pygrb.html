@@ -199,6 +199,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.jobsetup">pycbc.workflow.jobsetup module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.legacy_ihope">pycbc.workflow.legacy_ihope module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.matched_filter">pycbc.workflow.matched_filter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-minifollowups-module">pycbc.workflow.minifollowups module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.pegasus_workflow">pycbc.workflow.pegasus_workflow module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.plotting">pycbc.workflow.plotting module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.postprocessing">pycbc.workflow.postprocessing module</a></li>
@@ -315,6 +316,11 @@
 <li class="toctree-l1"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html">Walkthrough of running the PyCBC BNS focused pipeline on SUGAR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html#run-sh">run.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html#config-file">config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html">Estimating average noise PSDs over long stretches of data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#configuration-file">Configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#generating-and-running-the-workflow">Generating and running the workflow</a></li>
 </ul>
 </li>
 </ul>
@@ -449,8 +455,7 @@ script:</p>
 </div>
 <p>This should produce a help message like the following:</p>
 <div class="highlight-python"><div class="highlight"><pre>usage: pygrb_make_offline_workflow [-h] [--version] [-d OUTPUT_DIR]
-                                   [--local-config-files CONFIGFILE [CONFIGFILE ...]]
-                                   [--installed-config-files CONFIGFILE [CONFIGFILE ...]]
+                                   [--config-files CONFIGFILE [CONFIGFILE ...]]
                                    [--config-overrides [SECTION:OPTION:VALUE [SECTION:OPTION:VALUE ...]]]
 
 optional arguments:
@@ -462,11 +467,8 @@ optional arguments:
 workflow:
   Options needed for workflow setup.
 
-  --local-config-files CONFIGFILE [CONFIGFILE ...]
+  --config-files CONFIGFILE [CONFIGFILE ...]
                         List of localconfig files to be used in analysis.
-  --installed-config-files CONFIGFILE [CONFIGFILE ...]
-                        List of preinstalled config files to be used in
-                        analysis
   --config-overrides [SECTION:OPTION:VALUE [SECTION:OPTION:VALUE ...]]
                         List of section,option,value combinations to add into
                         the configuration file. Normally the gps start and end
@@ -479,8 +481,8 @@ workflow:
 </div>
 <p>This outlines the command line arguments that may be passed to the executable.
 The majority of options passed to the workflow will come from configuration
-files, and these are known to the executable via the options
-&#8211;local-config-files and/or &#8211;installed-config-files.</p>
+files, and these are known to the executable via the option
+&#8211;config-files.</p>
 </div>
 <div class="section" id="set-up-a-run-directory">
 <h3>Set up a run directory<a class="headerlink" href="#set-up-a-run-directory" title="Permalink to this headline">¶</a></h3>
@@ -702,7 +704,7 @@ provide this too:</p>
 <p>If you are using locally editted or custom configuration files then you can
 create the workflow from within the run directory using:</p>
 <div class="highlight-python"><div class="highlight"><pre>pygrb_make_offline_workflow \
-         --local-config-files ${LOCAL_CONFIG_FILES} \
+         --config-files ${LOCAL_CONFIG_FILES} \
          --config-overrides workflow:ra:${RA} \
                             workflow:dec:${DEC} \
                             workflow:sky-error:${SKY_ERROR} \
@@ -843,7 +845,7 @@ workflow.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Sep 11, 2015.
+      Last updated on Sep 23, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

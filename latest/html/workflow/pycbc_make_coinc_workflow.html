@@ -194,14 +194,18 @@
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.configuration">pycbc.workflow.configuration module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.core">pycbc.workflow.core module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.datafind">pycbc.workflow.datafind module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-grb-utils-module">pycbc.workflow.grb_utils module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.injection">pycbc.workflow.injection module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.jobsetup">pycbc.workflow.jobsetup module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.legacy_ihope">pycbc.workflow.legacy_ihope module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.matched_filter">pycbc.workflow.matched_filter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-minifollowups-module">pycbc.workflow.minifollowups module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.pegasus_workflow">pycbc.workflow.pegasus_workflow module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.plotting">pycbc.workflow.plotting module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.postprocessing">pycbc.workflow.postprocessing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-postprocessing-cohptf-module">pycbc.workflow.postprocessing_cohptf module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.postprocessing_prep">pycbc.workflow.postprocessing_prep module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#pycbc-workflow-psd-module">pycbc.workflow.psd module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.segment">pycbc.workflow.segment module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.splittable">pycbc.workflow.splittable module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../pycbc.workflow.html#module-pycbc.workflow.summaryplots">pycbc.workflow.summaryplots module</a></li>
@@ -314,6 +318,11 @@
 <li class="toctree-l2"><a class="reference internal" href="pycbc_bns_hdf_config_walkthrough.html#config-file">config file</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html">Estimating average noise PSDs over long stretches of data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#configuration-file">Configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html#generating-and-running-the-workflow">Generating and running the workflow</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../waveform.html">Waveforms</a><ul>
@@ -332,6 +341,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-the-pycbc-package">Documenting the PyCBC package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-pycbc-modules">Documenting PyCBC modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation.html#documenting-pycbc-scripts">Documenting PyCBC scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Creating Releases of PyCBC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#creating-the-release-on-github">Creating the release on GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#uploading-to-the-python-package-index">Uploading to the Python Package Index</a></li>
 </ul>
 </li>
 </ul>
@@ -540,17 +554,7 @@ mkdir -p $LOGPATH
 </div>
 <p>If you are using locally editted or custom configuration files then you can
 create the workflow using:</p>
-<div class="highlight-python"><div class="highlight"><pre>pycbc_make_coinc_workflow --local-config-files ${LOCAL_CONFIG_FILES} \
-                          --config-overrides workflow:start-time:${GPS_START_TIME} \
-                                             workflow:end-time:${GPS_END_TIME} \
-                                             workflow:workflow-html-basedir:${HTMLDIR} \
-                                             workflow:pipedown-log-path:${LOGPATH} \
-                                             workflow:pipedown-tmp-space:${PIPEDOWNTMPSPACE}
-</pre></div>
-</div>
-<p>If you are using default installed configuration files then you can create the
-workflow using:</p>
-<div class="highlight-python"><div class="highlight"><pre>pycbc_make_coinc_workflow --installed-config-files ${INSTALLED_CONFIG_FILES} \
+<div class="highlight-python"><div class="highlight"><pre>pycbc_make_coinc_workflow --config-files ${LOCAL_CONFIG_FILES} \
                           --config-overrides workflow:start-time:${GPS_START_TIME} \
                                              workflow:end-time:${GPS_END_TIME} \
                                              workflow:workflow-html-basedir:${HTMLDIR} \
@@ -746,7 +750,7 @@ workflow.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014, Alexander Nitz.
-      Last updated on Aug 27, 2015.
+      Last updated on Sep 23, 2015.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
