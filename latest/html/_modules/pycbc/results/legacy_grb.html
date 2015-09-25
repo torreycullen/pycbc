@@ -1,0 +1,1232 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycbc.results.legacy_grb &mdash; PyCBC 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyCBC 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="pycbc" href="../../pycbc.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> PyCBC
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing PyCBC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#setting-up-a-virtual-environment-for-installing-pycbc">Setting up a virtual environment for installing PyCBC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../install_virtualenv.html">Setting up virtualenv</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../install_virtualenv.html#install-pip">Install pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../install_virtualenv.html#install-virtualenv">Install virtualenv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-lalsuite-into-a-virtual-environment">Installing lalsuite into a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../install_lalsuite.html">Installing lalsuite for PyCBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../install_lalsuite.html#obtaining-the-source-code-and-checking-out-a-version">Obtaining the source code and checking out a version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../install_lalsuite.html#building-and-installing-into-your-virtual-environment">Building and installing into your virtual environment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#installing-pycbc-in-a-virtual-environment">Installing PyCBC in a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../install.html#installing-a-released-version-of-pycbc">Installing a released version of PyCBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../install.html#installing-source-from-github-for-development">Installing source from GitHub for development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#building-and-installing-documentation">Building and Installing Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../build_gh_pages.html">Building Documentation for Git Hub Pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../build_gh_pages.html#creating-a-git-hub-project-page">Creating a Git Hub project page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../build_gh_pages.html#building-and-pushing-the-documentation">Building and pushing the documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#modifying-pycbc-glue-and-pycbc-pylal">Modifying pycbc-glue and pycbc-pylal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#use-of-intel-mkl-optimized-fft-libraries">Use of Intel MKL Optimized FFT libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../install.html#graphics-processing-unit-support-with-cuda">Graphics Processing Unit support with CUDA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../install_cuda.html">Instructions to add CUDA support (optional)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../install_cuda.html#installing-the-cuda-dependencies">Installing the CUDA dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../executables.html">pyCBC executables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-inspiral">pycbc_inspiral</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_inspiral.html">pycbc_inspiral</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../bin/pycbc_inspiral.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../bin/pycbc_inspiral.html#help-message">Help message</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-geom-nonspinbank">pycbc_geom_nonspinbank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_geom_nonspinbank.html">pycbc_geom_nonspinbank</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-aligned-stoch-bank">pycbc_aligned_stoch_bank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_aligned_stoch_bank.html">pycbc_aligned_stoch_bank</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-geom-aligned-bank">pycbc_geom_aligned_bank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_geom_aligned_bank.html">pycbc_geom_aligned_bank</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-geom-aligned-2dstack">pycbc_geom_aligned_2dstack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_geom_aligned_2dstack.html">pycbc_geom_aligned_2dstack</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../executables.html#pycbc-aligned-bank-cat">pycbc_aligned_bank_cat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bin/pycbc_aligned_bank_cat.html">pycbc_aligned_bank_cat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow.html#workflow-to-do-list">Workflow to do list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#pycbc-make-coinc-workflow"><code class="docutils literal"><span class="pre">pycbc_make_coinc_workflow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/pycbc_make_coinc_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_coinc_workflow</span></code>: A CBC analysis workflow generator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#pycbc-make-sngl-workflow"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/pycbc_make_sngl_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code>: A single-ifo detchar tool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#id1"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/pycbc_make_sngl_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code>: A single-ifo detchar tool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#data-checker"><cite>data_checker</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#pygrb"><code class="docutils literal"><span class="pre">pygrb</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/pygrb.html">PyGRB: A GRB triggered CBC analysis workflow generator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow.html#workflow-module-documentation">Workflow module documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#initialization">Initialization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/initialization.html">Pycbc&#8217;s workflow module configuration file(s) and command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#generating-segments">Generating segments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/segments.html">The workflow segment generation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#obtaining-data">Obtaining data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/datafind.html">The workflow datafind and validation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#injection-generation">Injection generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/injections.html">The workflow injection generation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#time-slide-generation">Time-slide generation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/time_slides.html">The workflow time-slide generation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#template-bank">Template bank</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/template_bank.html">The workflow template bank generation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#split-table">Split table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/splittable.html">The workflow table splitting module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#matched-filtering">Matched-filtering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/matched_filter.html">The workflow matched-filter module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#coincidence">Coincidence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/coincidence.html">The workflow coincidence module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#post-processing-preparation">Post processing preparation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/postprocprep.html">The workflow postprocessing preparation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow.html#post-processing">Post-processing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/postproc.html">The workflow postprocessing module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow.html#method-documentation">Method documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.workflow.html">pycbc.workflow package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.analysislogging">pycbc.workflow.analysislogging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.coincidence">pycbc.workflow.coincidence module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.configparser_test">pycbc.workflow.configparser_test module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.configuration">pycbc.workflow.configuration module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.core">pycbc.workflow.core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.datafind">pycbc.workflow.datafind module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.grb_utils">pycbc.workflow.grb_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.injection">pycbc.workflow.injection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.jobsetup">pycbc.workflow.jobsetup module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.legacy_ihope">pycbc.workflow.legacy_ihope module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.matched_filter">pycbc.workflow.matched_filter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.minifollowups">pycbc.workflow.minifollowups module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.pegasus_workflow">pycbc.workflow.pegasus_workflow module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.plotting">pycbc.workflow.plotting module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.postprocessing">pycbc.workflow.postprocessing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.postprocessing_cohptf">pycbc.workflow.postprocessing_cohptf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.postprocessing_prep">pycbc.workflow.postprocessing_prep module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.psd">pycbc.workflow.psd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.segment">pycbc.workflow.segment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.splittable">pycbc.workflow.splittable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.summaryplots">pycbc.workflow.summaryplots module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.timeslides">pycbc.workflow.timeslides module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow.tmpltbank">pycbc.workflow.tmpltbank module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html#module-pycbc.workflow">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tmpltbank.html">PyCBC template bank generation documentation (<code class="docutils literal"><span class="pre">pycbc.tmpltbank</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#non-spin-bank-placement-pycbc-geom-nonspinbank">Non spin bank placement: pycbc_geom_nonspinbank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#background">Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#some-examples">Some examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#command-line-options">Command line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#aligned-spin-geometric-placement-pycbc-geom-aligned-bank">Aligned-spin geometric placement: pycbc_geom_aligned_bank</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id1">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id2">Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id3">Some examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id4">Command line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#aligned-spin-stochastic-placement">Aligned-spin stochastic placement</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id5">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id6">Background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#ian-s-recommendation-which-stochastic-code-should-i-use">Ian&#8217;s recommendation: Which stochastic code should I use?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../tmpltbank.html#i-want-to-use-the-f2-or-r2f4-metric">I want to use the F2 or R2F4 metric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tmpltbank.html#i-want-to-use-another-metric-ie-an-imr-metric">I want to use another metric, ie. an IMR metric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tmpltbank.html#i-want-to-use-direct-match">I want to use direct match</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#id7">Some examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#command-line-options-pycbc-aligned-stoch-bank">Command line options: pycbc_aligned_stoch_bank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#command-line-options-lalapps-cbc-sbank">Command line options: lalapps_cbc_sbank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tmpltbank.html#command-line-options-lalapps-cbc-sbank-pipe">Command line options: lalapps_cbc_sbank_pipe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#hybrid-approaches-the-best-of-both-worlds">Hybrid approaches: the best of both worlds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tmpltbank.html#the-module-s-source-code">The module&#8217;s source code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.tmpltbank.html">pycbc.tmpltbank package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.bank_output_utils">pycbc.tmpltbank.bank_output_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.brute_force_methods">pycbc.tmpltbank.brute_force_methods module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.calc_moments">pycbc.tmpltbank.calc_moments module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.coord_utils">pycbc.tmpltbank.coord_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.em_progenitors">pycbc.tmpltbank.em_progenitors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.lambda_mapping">pycbc.tmpltbank.lambda_mapping module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.lattice_utils">pycbc.tmpltbank.lattice_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.option_utils">pycbc.tmpltbank.option_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank.partitioned_bank">pycbc.tmpltbank.partitioned_bank module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html#module-pycbc.tmpltbank">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.psd.html">pycbc.psd package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html#module-pycbc.psd.analytical">pycbc.psd.analytical module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html#module-pycbc.psd.estimate">pycbc.psd.estimate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html#module-pycbc.psd.read">pycbc.psd.read module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html#module-pycbc.psd">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.noise.html">pycbc.noise package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.noise.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.noise.html#module-pycbc.noise.gaussian">pycbc.noise.gaussian module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.noise.html#module-pycbc.noise">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../frame.html">Reading Gravitational-wave Frames (<code class="docutils literal"><span class="pre">pycbc.frame</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../frame.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../frame.html#module-pycbc.frame">Method documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../banksim.html">Dag Generator for Doing Banksims</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../banksim.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../banksim.html#how-to-generate-a-workflow-to-do-a-large-banksim">How to generate a workflow to do a large banksim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../banksim.html#creating-an-ini-file">Creating an INI file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../banksim.html#generating-the-workflow">Generating the workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../banksim.html#understanding-the-results">Understanding the results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../banksim.html#workflow-considerations">Workflow considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../banksim.html#example-config-files">Example config files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faithsim.html">Dag Generator for Doing Faithfulness Comparisons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faithsim.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faithsim.html#how-to-generate-a-workflow">How to generate a workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../faithsim.html#creating-a-configuration-ini-file">Creating a configuration (.ini) file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../faithsim.html#generating-the-workflow">Generating the workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../faithsim.html#understanding-the-results">Understanding the results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../faithsim.html#example-config-files">Example config files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_bns_hdf_config_walkthrough.html">Walkthrough of running the PyCBC BNS focused pipeline on SUGAR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/pycbc_bns_hdf_config_walkthrough.html#run-sh">run.sh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/pycbc_bns_hdf_config_walkthrough.html#config-file">config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_psd_estimation_workflow.html">Estimating average noise PSDs over long stretches of data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/pycbc_make_psd_estimation_workflow.html#configuration-file">Configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/pycbc_make_psd_estimation_workflow.html#generating-and-running-the-workflow">Generating and running the workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/configuration_files.html">Configuration File Sets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/configuration_files.html#the-example-set">The example set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/configuration_files.html#latest-review-configuration-file">latest review configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/configuration_files.html#daily-configuration-files">daily configuration files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow/configuration_files.html#daily-example-daily-lalapps-ini"><code class="docutils literal"><span class="pre">daily/example_daily_lalapps.ini</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow/configuration_files.html#daily-example-daily-pycbc-zpk-ini"><code class="docutils literal"><span class="pre">daily/example_daily_pycbc_zpk.ini</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/configuration_files.html#sngl-configuration-files">sngl configuration files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow/configuration_files.html#sngl-example-sngl-ini"><code class="docutils literal"><span class="pre">sngl/example_sngl.ini</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/hdf_coincidence.html">HDF5 Based Coincidence Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#configuration-file">Configuration File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#workflow-configuration">Workflow Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#executable-configuration">Executable Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#options-to-the-coincidence-background-executable">Options to the coincidence/background executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#options-to-the-coincidence-clustering-statistic-asignment-executable">Options to the coincidence clustering + statistic asignment executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#options-to-the-injection-finding-executable">Options to the injection finding executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#options-for-sensitivity-plotting">Options for sensitivity plotting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#workflow-generation-an-planning">Workflow Generation an Planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../workflow/hdf_coincidence.html#reusing-data-from-workflow-that-uses-some-other-post-processing">Reusing data from workflow that uses some other post-processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../uberbank_verify.html">Verifying the construction of banks with pycbc_banksim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../uberbank_verify.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uberbank_verify.html#procedure">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uberbank_verify.html#evaluation">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uberbank_verify.html#known-issues">Known issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hwinj.html">Hardware injection waveform generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#generate-waveform-from-command-line-pycbc-generate-hwinj">Generate waveform from command line (<code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#select-a-time-for-the-injection">Select a time for the injection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#select-data-for-psd-estimation">Select data for PSD estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#run-pycbc-generate-hwinj">Run <code class="docutils literal"><span class="pre">pycbc_generate_hwinj</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#generate-waveform-from-lalapps-inspinj-output-pycbc-generate-hwinj-from-xml">Generate waveform from <code class="docutils literal"><span class="pre">lalapps_inspinj</span></code> output (<code class="docutils literal"><span class="pre">pycbc_generate_hwinj_from_xml</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#run-lalapps-inspinj">Run <code class="docutils literal"><span class="pre">lalapps_inspinj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#run-pycbc-generate-hwinj-from-xml">Run <code class="docutils literal"><span class="pre">pycbc_generate_hwinj_from_xml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#checks-for-the-hardware-injection-output">Checks for the hardware injection output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#plot-ascii-waveform-files-with-pycbc-plot-hwinj">Plot ASCII waveform files with <code class="docutils literal"><span class="pre">pycbc_plot_hwinj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#recover-software-injection-with-pycbc-inspiral">Recover software injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hwinj.html#recover-ascii-file-injection-with-pycbc-inspiral">Recover ASCII file injection with <code class="docutils literal"><span class="pre">pycbc_inspiral</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#how-to-query-the-segment-database">How to query the segment database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hwinj.html#how-to-query-the-ldr-server">How to query the LDR server</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../waveform.html">Waveforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#what-waveforms-can-i-generate">What waveforms can I generate?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#plotting-time-domain-waveforms">Plotting Time Domain Waveforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#calculating-the-match-between-waveforms">Calculating the match between waveforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#plotting-a-td-and-fd-waveform-together-in-the-td">Plotting a TD and FD waveform together in the TD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#plotting-gw-phase-and-amplitude-of-td-waveform">Plotting GW phase and amplitude of TD waveform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../waveform.html#plotting-frequency-evolution-of-td-waveform">Plotting frequency evolution of TD waveform</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documenting PyCBC code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation.html#sphinx">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation.html#documenting-the-pycbc-package">Documenting the PyCBC package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation.html#documenting-pycbc-modules">Documenting PyCBC modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation.html#documenting-pycbc-scripts">Documenting PyCBC scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Creating Releases of PyCBC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../release.html#creating-the-release-on-github">Creating the release on GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../release.html#uploading-to-the-python-package-index">Uploading to the Python Package Index</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../formats/hdf_format.html">HDF files within the PyCBC workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../formats/hdf_format.html#single-inspiral-triggers">single inspiral triggers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../formats/hdf_format.html#executables">Executables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../formats/hdf_format.html#specification">Specification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../formats/hdf_format.html#combined-single-inspiral-triggers">combined single inspiral triggers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../formats/hdf_format.html#id1">Executables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../formats/hdf_format.html#id2">Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../formats/hdf_format.html#example-uses">Example uses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycbc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pycbc.html">pycbc package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.events.html">pycbc.events package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.fft.html">pycbc.fft package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.filter.html">pycbc.filter package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.io.html">pycbc.io package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.noise.html">pycbc.noise package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.psd.html">pycbc.psd package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.results.html">pycbc.results package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.tmpltbank.html">pycbc.tmpltbank package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.types.html">pycbc.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.vetoes.html">pycbc.vetoes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.waveform.html">pycbc.waveform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../pycbc.workflow.html">pycbc.workflow package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.detector">pycbc.detector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.frame">pycbc.frame module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.future">pycbc.future module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.inject">pycbc.inject module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.libutils">pycbc.libutils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.opt">pycbc.opt module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.pnutils">pycbc.pnutils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.scheme">pycbc.scheme module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.sensitivity">pycbc.sensitivity module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.strain">pycbc.strain module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.version">pycbc.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc.weave">pycbc.weave module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pycbc.html#module-pycbc">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PyCBC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../../pycbc.html">pycbc</a> &raquo;</li>
+      
+    <li>pycbc.results.legacy_grb</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for pycbc.results.legacy_grb</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+
+<span class="c"># Copyright (C) 2015 Andrew R. Williamson</span>
+<span class="c">#</span>
+<span class="c"># This program is free software; you can redistribute it and/or modify it</span>
+<span class="c"># under the terms of the GNU General Public License as published by the</span>
+<span class="c"># Free Software Foundation; either version 3 of the License, or (at your</span>
+<span class="c"># option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># This program is distributed in the hope that it will be useful, but</span>
+<span class="c"># WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General</span>
+<span class="c"># Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU General Public License along</span>
+<span class="c"># with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="c"># 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</span>
+
+<span class="c"># =============================================================================</span>
+<span class="c"># Preamble</span>
+<span class="c"># =============================================================================</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span>
+<span class="kn">from</span> <span class="nn">glue</span> <span class="kn">import</span> <span class="n">markup</span>
+<span class="kn">from</span> <span class="nn">pylal</span> <span class="kn">import</span> <span class="n">antenna</span><span class="p">,</span><span class="n">git_version</span>
+<span class="kn">from</span> <span class="nn">lal.gpstime</span> <span class="kn">import</span> <span class="n">gps_to_utc</span><span class="p">,</span><span class="n">LIGOTimeGPS</span>
+
+<span class="n">__author__</span>  <span class="o">=</span> <span class="s">&quot;Andrew Williamson &lt;andrew.williamson@ligo.org&gt;&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s">&quot;git id </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">git_version</span><span class="o">.</span><span class="n">id</span>
+<span class="n">__date__</span>    <span class="o">=</span> <span class="n">git_version</span><span class="o">.</span><span class="n">date</span>
+
+
+<div class="viewcode-block" id="initialize_page"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.initialize_page">[docs]</a><span class="k">def</span> <span class="nf">initialize_page</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">script</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A function that returns a markup.py page object with the required html</span>
+<span class="sd">    header.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s">&quot;strict_html&quot;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">_escape</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_banner"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_banner">[docs]</a><span class="k">def</span> <span class="nf">write_banner</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;&amp;nbsp;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write html &lt;title&gt; tag into markup.page object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s">&quot;strict_html&quot;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">_escape</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s">&quot;header&quot;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h1</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">hr</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">&quot;short&quot;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">hr</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s">&quot;long&quot;</span><span class="p">)</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_table"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_table">[docs]</a><span class="k">def</span> <span class="nf">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">cl</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write table in html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">cl</span><span class="p">)</span>
+
+    <span class="c"># list</span>
+    <span class="k">if</span> <span class="n">cl</span><span class="o">==</span><span class="s">&#39;list&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">headers</span><span class="p">)):</span>
+
+            <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">th</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">th</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">td</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">td</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">th</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">th</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;list&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                <span class="n">page</span><span class="o">.</span><span class="n">td</span><span class="p">()</span>
+                <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">item</span><span class="p">)</span>
+                <span class="n">page</span><span class="o">.</span><span class="n">td</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">tr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_summary"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_summary">[docs]</a><span class="k">def</span> <span class="nf">write_summary</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ifos</span><span class="p">,</span> <span class="n">skyError</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ipn</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ipnError</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write summary of information to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">gps</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">start_time</span>
+    <span class="n">grbdate</span> <span class="o">=</span> <span class="n">gps_to_utc</span><span class="p">(</span><span class="n">LIGOTimeGPS</span><span class="p">(</span><span class="n">gps</span><span class="p">))</span>\
+                                <span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%B </span><span class="si">%d</span><span class="s"> %Y, %H:%M:%S %ZUTC&quot;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;Basic information&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">ipn</span><span class="p">:</span>
+        <span class="n">ra</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dec</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">td1</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">td2</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">td3</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">timedelay</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">deltat</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">search_file</span> <span class="o">=</span> <span class="s">&#39;../../../S5IPN_GRB</span><span class="si">%s</span><span class="s">_search_180deg.txt&#39;</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">grb_name</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">search_file</span><span class="p">):</span>
+            <span class="n">ra</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">dec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">th1</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;GPS&#39;</span><span class="p">,</span> <span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="s">&#39;Error Box (sq.deg.)&#39;</span><span class="p">,</span> <span class="s">&#39;IFOs&#39;</span> <span class="p">]</span>
+        <span class="n">td1</span> <span class="o">=</span> <span class="p">[</span> <span class="n">gps</span><span class="p">,</span> <span class="n">grbdate</span><span class="p">,</span> <span class="n">ipnError</span><span class="p">,</span> <span class="n">ifos</span> <span class="p">]</span>
+        <span class="n">th2</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;RA&#39;</span><span class="p">,</span> <span class="s">&#39;DEC&#39;</span> <span class="p">]</span>
+        <span class="n">th3</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Timedelays (ms)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span> <span class="p">]</span>
+        <span class="k">for</span> <span class="n">ra_i</span><span class="p">,</span><span class="n">dec_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span><span class="n">dec</span><span class="p">):</span>
+            <span class="n">td_i</span> <span class="o">=</span> <span class="p">[</span> <span class="n">ra_i</span><span class="p">,</span> <span class="n">dec_i</span> <span class="p">]</span>
+            <span class="n">td2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">td_i</span><span class="p">)</span>
+        <span class="n">ifo_list</span> <span class="o">=</span> <span class="p">[</span> <span class="n">ifos</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">:(</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifos</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">td2</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ifo_list</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ifo_list</span><span class="p">)):</span>
+                    <span class="n">pairs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ifo_list</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">ifo_list</span><span class="p">[</span><span class="n">q</span><span class="p">]]</span>
+                    <span class="n">ifo_pairs</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+                    <span class="n">timedelay</span><span class="p">[</span><span class="n">ifo_pairs</span><span class="p">]</span> <span class="o">=</span> <span class="n">antenna</span><span class="o">.</span><span class="n">timeDelay</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">gps</span><span class="p">),</span>
+                            <span class="nb">float</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s">&#39;degree&#39;</span><span class="p">,</span> <span class="n">ifo_list</span><span class="p">[</span><span class="n">p</span><span class="p">],</span>
+                            <span class="n">ifo_list</span><span class="p">[</span><span class="n">q</span><span class="p">])</span>
+                    <span class="n">timedelay</span><span class="p">[</span><span class="n">ifo_pairs</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%.4f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">timedelay</span><span class="p">[</span><span class="n">ifo_pairs</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">ifos</span> <span class="o">==</span> <span class="s">&#39;H1H2L1&#39;</span><span class="p">:</span>
+                <span class="n">td3</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s">&#39;H1L1: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">timedelay</span><span class="p">[</span><span class="s">&#39;H1L1&#39;</span><span class="p">])])</span>
+            <span class="k">if</span> <span class="n">ifos</span> <span class="o">==</span> <span class="s">&#39;H1H2L1V1&#39;</span><span class="p">:</span>
+                <span class="n">td3</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s">&#39;H1L1: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">timedelay</span><span class="p">[</span><span class="s">&#39;H1L1&#39;</span><span class="p">]),</span>
+                            <span class="s">&#39;H1V1: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">timedelay</span><span class="p">[</span><span class="s">&#39;H1V1&#39;</span><span class="p">]),</span>
+                            <span class="s">&#39;L1V1: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">timedelay</span><span class="p">[</span><span class="s">&#39;L1V1&#39;</span><span class="p">])])</span>
+            <span class="k">if</span> <span class="n">ifos</span> <span class="o">==</span> <span class="s">&#39;L1V1&#39;</span><span class="p">:</span>
+                <span class="n">td3</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s">&#39;L1V1: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="n">timedelay</span><span class="p">[</span><span class="s">&#39;L1V1&#39;</span><span class="p">])])</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th1</span><span class="p">,</span> <span class="n">td1</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th2</span><span class="p">,</span> <span class="n">td2</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th3</span><span class="p">,</span> <span class="n">td3</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ra</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">ra</span>
+        <span class="n">dec</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dec</span>
+        <span class="k">if</span> <span class="n">skyError</span><span class="p">:</span>
+            <span class="n">th</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;GPS&#39;</span><span class="p">,</span> <span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="s">&#39;RA&#39;</span><span class="p">,</span> <span class="s">&#39;DEC&#39;</span><span class="p">,</span> <span class="s">&#39;Sky Error&#39;</span><span class="p">,</span> <span class="s">&#39;IFOs&#39;</span> <span class="p">]</span>
+            <span class="n">td</span> <span class="o">=</span> <span class="p">[</span> <span class="n">gps</span><span class="p">,</span> <span class="n">grbdate</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">skyError</span><span class="p">,</span> <span class="n">ifos</span> <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">th</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;GPS&#39;</span><span class="p">,</span> <span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="s">&#39;RA&#39;</span><span class="p">,</span> <span class="s">&#39;DEC&#39;</span><span class="p">,</span> <span class="s">&#39;IFOs&#39;</span> <span class="p">]</span>
+            <span class="n">td</span> <span class="o">=</span> <span class="p">[</span> <span class="n">gps</span><span class="p">,</span> <span class="n">grbdate</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">ifos</span> <span class="p">]</span>
+
+        <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_antenna"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_antenna">[docs]</a><span class="k">def</span> <span class="nf">write_antenna</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ipn</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write antenna factors to merkup.page object page and generate John&#39;s</span>
+<span class="sd">    detector response plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;Antenna factors and sky locations&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">th2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">td2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">ifos</span> <span class="o">=</span> <span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">ipn</span><span class="p">:</span>
+        <span class="n">antenna_ifo</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ra</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dec</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c"># FIXME: Remove hardcoding here and show this in all cases</span>
+        <span class="n">search_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;../../../S5IPN_GRB</span><span class="si">%s</span><span class="s">_search_180deg.txt&#39;</span>
+                           <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">grb_name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">search_file</span><span class="p">:</span>
+            <span class="n">ra</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">dec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">:</span>
+            <span class="n">antenna_ifo</span><span class="p">[</span><span class="n">ifo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">):</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">f_q</span> <span class="o">=</span> <span class="n">antenna</span><span class="o">.</span><span class="n">response</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">k</span><span class="p">),</span>
+                                                <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s">&#39;degree&#39;</span><span class="p">,</span>
+                                                <span class="n">ifo</span><span class="p">)</span>
+                <span class="n">antenna_ifo</span><span class="p">[</span><span class="n">ifo</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">f_q</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+        <span class="n">dectKeys</span> <span class="o">=</span> <span class="n">antenna_ifo</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">newList</span><span class="o">=</span><span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">antenna_ifo</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">newDict</span><span class="o">=</span><span class="p">{}</span>
+            <span class="k">for</span> <span class="n">detectors</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">antenna_ifo</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
+                <span class="n">newDict</span><span class="p">[</span><span class="n">dectKeys</span><span class="p">[</span><span class="n">detectors</span><span class="p">]]</span> <span class="o">=</span> <span class="n">antenna_ifo</span><span class="p">[</span>\
+                                               <span class="n">dectKeys</span><span class="p">[</span><span class="n">detectors</span><span class="p">]][</span><span class="n">elements</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">newDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">th</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newDict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>        
+        <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">th</span><span class="p">)),</span> <span class="n">td</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">f_q</span> <span class="o">=</span> <span class="n">antenna</span><span class="o">.</span><span class="n">response</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">ra</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dec</span><span class="p">,</span>
+                                        <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s">&#39;degree&#39;</span><span class="p">,</span><span class="n">ifo</span><span class="p">)</span>
+        <span class="n">th</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ifo</span><span class="p">)</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">f_q</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="c">#FIXME: Work out a way to make these external calls safely</span>
+    <span class="c">#cmmnd = &#39;projectedDetectorTensor --gps-sec %d --ra-deg %f --dec-deg %f&#39; \</span>
+    <span class="c">#         % (args.start_time,args.ra, args.dec)</span>
+    <span class="c">#for ifo in ifos:</span>
+    <span class="c">#    if ifo == &#39;H1&#39;:</span>
+    <span class="c">#        cmmnd += &#39; --display-lho&#39;</span>
+    <span class="c">#    elif ifo == &#39;L1&#39;:</span>
+    <span class="c">#        cmmnd += &#39; --display-llo&#39;</span>
+    <span class="c">#    elif ifo == &#39;V1&#39;:</span>
+    <span class="c">#        cmmnd += &#39; --display-virgo&#39;</span>
+    <span class="c">#status = make_external_call(cmmnd)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;projtens.png&quot;</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Detector response and polarization&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">th2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Response Diagram&#39;</span><span class="p">]</span>
+    <span class="n">td2</span> <span class="o">=</span> <span class="p">[</span><span class="n">plot</span><span class="p">()</span> <span class="p">]</span>
+
+        <span class="c"># FIXME: Add these in!!</span>
+<span class="c">#    plot = markup.page()</span>
+<span class="c">#    p = &quot;ALL_TIMES/plots_clustered/GRB%s_search.png&quot;\</span>
+<span class="c">#        % args.grb_name</span>
+<span class="c">#    plot.a(href=p, title=&quot;Error Box Search&quot;)</span>
+<span class="c">#    plot.img(src=p)</span>
+<span class="c">#    plot.a.close()</span>
+<span class="c">#    th2.append(&#39;Error Box Search&#39;)</span>
+<span class="c">#    td2.append(plot())</span>
+
+<span class="c">#    plot = markup.page()</span>
+<span class="c">#    p = &quot;ALL_TIMES/plots_clustered/GRB%s_simulations.png&quot;\</span>
+<span class="c">#        % args.grb_name</span>
+<span class="c">#    plot.a(href=p, title=&quot;Error Box Simulations&quot;)</span>
+<span class="c">#    plot.img(src=p)</span>
+<span class="c">#    plot.a.close()</span>
+<span class="c">#    th2.append(&#39;Error Box Simulations&#39;)</span>
+<span class="c">#    td2.append(plot())</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;ALL_TIMES/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_sky_grid.png&quot;</span>\
+            <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">grb_name</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Sky Grid&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">th2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Sky Grid&#39;</span><span class="p">)</span>
+    <span class="n">td2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;GRB</span><span class="si">%s</span><span class="s">_inspiral_horizon_distance.png&quot;</span>\
+            <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">grb_name</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Inspiral Horizon Distance&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">th2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Inspiral Horizon Distance&#39;</span><span class="p">)</span>
+    <span class="n">td2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th2</span><span class="p">,</span> <span class="n">td2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_offsource"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_offsource">[docs]</a><span class="k">def</span> <span class="nf">write_offsource</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">,</span> <span class="n">onsource</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write offsource SNR versus time plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Re-weighted SNR&#39;</span><span class="p">,</span> <span class="s">&#39;Coherent SNR&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">onsource</span><span class="p">:</span>
+        <span class="nb">dir</span> <span class="o">=</span> <span class="s">&#39;ALL_TIMES&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">dir</span> <span class="o">=</span> <span class="s">&#39;OFFSOURCE&#39;</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_bestnr_vs_time_noinj.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Coherent SNR versus time&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[</span> <span class="n">plot</span><span class="p">()</span> <span class="p">]</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_triggers_vs_time_noinj.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Coherent SNR versus time&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+
+    <span class="n">ifos</span> <span class="o">=</span> <span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">:</span>
+        <span class="n">th</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> SNR&#39;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">)</span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">_triggers_vs_time_noinj.png&quot;</span>\
+            <span class="o">%</span> <span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">,</span> <span class="n">ifo</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> SNR versus time&quot;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_chisq"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_chisq">[docs]</a><span class="k">def</span> <span class="nf">write_chisq</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">injList</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write injection chisq plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">injList</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">th</span><span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+        <span class="n">injList</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;bank_veto&#39;</span><span class="p">,</span><span class="s">&#39;auto_veto&#39;</span><span class="p">,</span><span class="s">&#39;chi_square&#39;</span><span class="p">,</span> <span class="s">&#39;mchirp&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+        <span class="n">pTag</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">,</span><span class="s">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">pTag</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">_vs_snr_zoom.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">,</span>
+                                                                 <span class="n">test</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> versus SNR&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">pTag</span><span class="p">))</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+  
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_inj_snrs"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_inj_snrs">[docs]</a><span class="k">def</span> <span class="nf">write_inj_snrs</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">ifos</span><span class="p">,</span> <span class="n">injList</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write injection chisq plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">injList</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">th</span><span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+        <span class="n">injList</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">ifos</span> <span class="o">=</span> <span class="p">[</span><span class="n">ifos</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ifos</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;null_stat2&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">_snr&#39;</span> <span class="o">%</span> <span class="n">ifo</span> <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+        <span class="n">pTag</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">,</span><span class="s">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">pTag</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;OFFSOURCE&#39;</span><span class="p">]:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/plots_clustered/GRB</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">_vs_snr_zoom.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">grbtag</span><span class="p">,</span>
+                                                                 <span class="n">row</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> versus SNR&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">pTag</span><span class="p">))</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_found_missed"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_found_missed">[docs]</a><span class="k">def</span> <span class="nf">write_found_missed</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">injList</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write injection found/missed plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">injList</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c">#FIXME: Work out a way to make externals calls safely</span>
+    <span class="c">#d = [&#39;Number of injections&#39;]</span>
+    <span class="c">#for inj in injList:</span>
+    <span class="c">#    cmmnd = &#39;lwtprint ../*&#39; + inj + &#39;*MISSED*xml -t sim_inspiral | wc -l&#39;</span>
+    <span class="c">#    output,status = make_external_call(cmmnd, shell=True)</span>
+    <span class="c">#    numInjs = int(output)</span>
+    <span class="c">#    cmmnd = &#39;lwtprint ../*&#39; + inj + &#39;*FOUND*xml -t sim_inspiral | wc -l&#39;</span>
+    <span class="c">#    output,status = make_external_call(cmmnd, shell=True)</span>
+    <span class="c">#    numInjs += int(output)</span>
+    <span class="c">#    d.append(str(numInjs))</span>
+    <span class="c">#td.append(d)</span>
+
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">text</span>  <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ifos</span> <span class="o">=</span> <span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ifo_tag</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">:</span>
+        <span class="n">plots</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s">&#39;effdist_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>\
+                      <span class="s">&#39;effdist_time_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()])</span>
+        <span class="n">text</span><span class="p">[</span><span class="s">&#39;effdist_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="s">&#39;Eff. dist. </span><span class="si">%s</span><span class="s"> vs Mchirp&#39;</span> <span class="o">%</span> <span class="n">ifo</span>
+        <span class="n">text</span><span class="p">[</span><span class="s">&#39;effdist_time_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">ifo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="s">&#39;Eff. dist </span><span class="si">%s</span><span class="s"> vs Time&#39;</span> <span class="o">%</span> <span class="n">ifo</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+        <span class="n">pTag</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">pTag</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency_OFFTRIAL_1/found_missed_injections_</span><span class="si">%s</span><span class="s">.png&quot;</span>\
+                <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">pTag</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s">&#39;Close injections without FAP = 0&#39;</span><span class="p">]</span><span class="o">+</span>\
+              <span class="p">[</span><span class="s">&#39;&lt;a href=&quot;</span><span class="si">%s</span><span class="s">/efficiency_OFFTRIAL_1/quiet_found_triggers.html&quot;&gt; &#39;</span>
+               <span class="s">&#39;here&lt;/a&gt;&#39;</span> <span class="o">%</span> <span class="n">inj</span> <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">])</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_recovery"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_recovery">[docs]</a><span class="k">def</span> <span class="nf">write_recovery</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">injList</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write injection recovery plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">injList</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sky_error_time&#39;</span><span class="p">,</span><span class="s">&#39;sky_error_mchirp&#39;</span><span class="p">,</span><span class="s">&#39;sky_error_distance&#39;</span><span class="p">]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;sky_error_time&#39;</span><span class="p">:</span><span class="s">&#39;Sky error vs time&#39;</span><span class="p">,</span>\
+                      <span class="s">&#39;sky_error_mchirp&#39;</span><span class="p">:</span><span class="s">&#39;Sky error vs mchirp&#39;</span><span class="p">,</span>\
+                      <span class="s">&#39;sky_error_distance&#39;</span><span class="p">:</span><span class="s">&#39;Sky error vs distance&#39;</span> <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+        <span class="n">pTag</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">pTag</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">:</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency_OFFTRIAL_1/found_</span><span class="si">%s</span><span class="s">.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">pTag</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_loudest_events"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_loudest_events">[docs]</a><span class="k">def</span> <span class="nf">write_loudest_events</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">onsource</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write injection chisq plots to markup.page object page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s">&#39;Mchirp </span><span class="si">%s</span><span class="s"> - </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span> <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">]</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;BestNR&#39;</span><span class="p">,</span><span class="s">&#39;SNR&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">onsource</span><span class="p">:</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="s">&#39;ONSOURCE&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="s">&#39;OFFTRIAL_1&#39;</span>
+
+    <span class="k">for</span> <span class="n">pTag</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">:</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">pTag</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">pTag</span><span class="p">]</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span>
+            <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency/</span><span class="si">%s</span><span class="s">_vs_fap_</span><span class="si">%s</span><span class="s">.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;FAP versus </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">pTag</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="s">&#39;snruncut&#39;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;SNR after cuts &lt;br&gt; have been applied&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">:</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency/</span><span class="si">%s</span><span class="s">_vs_fap_</span><span class="si">%s</span><span class="s">.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;FAP versus </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">pTag</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;For more details on the loudest offsource events see&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/efficiency/loudest_offsource_trigs.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trial</span><span class="p">))</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;here.&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+    <span class="k">return</span> <span class="n">page</span>
+
+</div>
+<div class="viewcode-block" id="write_exclusion_distances"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.legacy_grb.write_exclusion_distances">[docs]</a><span class="k">def</span> <span class="nf">write_exclusion_distances</span><span class="p">(</span><span class="n">page</span> <span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">injList</span><span class="p">,</span> <span class="n">massbins</span><span class="p">,</span> <span class="n">reduced</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                              <span class="n">onsource</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/efficiency/loud_numbers.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trial</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">FAPS</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">FAPS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;No event&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">FAPS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+
+    <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s">&#39;Mchirp </span><span class="si">%s</span><span class="s"> - </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">bin</span><span class="p">)</span> <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">massbins</span><span class="p">]</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;FAP&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">FAPS</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;For more details on the loudest onsource events see&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/efficiency/loudest_events.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trial</span><span class="p">))</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;here.&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">reduced</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">page</span>  
+
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;Detection efficiency plots - injections louder than loudest &#39;</span>
+             <span class="s">&#39;background trigger&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="n">injList</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency_</span><span class="si">%s</span><span class="s">/BestNR_max_efficiency.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Detection efficiency&quot;</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;Exclusion distance plots - injections louder than loudest &#39;</span>
+             <span class="s">&#39;foreground trigger&#39;</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">th</span> <span class="o">=</span> <span class="n">injList</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">markup</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/efficiency_</span><span class="si">%s</span><span class="s">/BestNR_on_efficiency.png&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Exclusion efficiency&quot;</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot</span><span class="p">())</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="p">()</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;90</span><span class="si">% c</span><span class="s">onfidence exclusion distances (Mpc)&#39;</span><span class="p">)</span>
+    <span class="n">th</span> <span class="o">=</span> <span class="n">injList</span>
+    <span class="n">td</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">inj</span> <span class="ow">in</span> <span class="n">injList</span><span class="p">:</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">/efficiency_</span><span class="si">%s</span><span class="s">/exclusion_distance.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">inj</span><span class="p">,</span> <span class="n">trial</span><span class="p">),</span>
+                    <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">excl_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">excl_dist</span><span class="p">)</span>
+        <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">write_table</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">th</span><span class="p">,</span> <span class="n">td</span><span class="p">)</span>
+
+    <span class="n">page</span><span class="o">.</span><span class="n">h3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">page</span>
+    </div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alexander Nitz.
+      Last updated on Sep 25, 2015.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
