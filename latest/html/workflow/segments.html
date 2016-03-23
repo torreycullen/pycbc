@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The workflow segment generation module &mdash; PyCBC 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PyCBC 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Workflow: the inspiral analysis workflow generator (pycbc.workflow)" href="../workflow.html"/>
+        <link rel="next" title="The workflow datafind and validation module" href="datafind.html"/>
+        <link rel="prev" title="Pycbc’s workflow module configuration file(s) and command line interface" href="initialization.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCBC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_psd_estimation_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code>: A workflow generator for noise estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_coinc_search_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_coinc_search_workflow</span></code>: A workflow to search for gravitational waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pycbc_make_sngl_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code>: A single-ifo detchar workflow generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pygrb.html"><code class="docutils literal"><span class="pre">pycbc_make_offline_grb_workflow</span></code>: A GRB triggered CBC analysis workflow generator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tmpltbank.html">PyCBC template bank generation documentation (<code class="docutils literal"><span class="pre">pycbc.tmpltbank</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hwinj.html">Hardware injection waveform generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../banksim.html">Calculating the Effectualness (Fitting Factor) of Template Banks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faithsim.html">Dag Generator for Doing Faithfulness Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upload_to_gracedb.html">Uploading triggers to gracedb</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../waveform.html">Waveforms</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documenting PyCBC code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Creating Releases of PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../frame.html">Reading Gravitational-wave Frames (<code class="docutils literal"><span class="pre">pycbc.frame</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/hdf_format.html">HDF files within the PyCBC workflow</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html#introduction">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../workflow.html#workflow-module-documentation">Workflow module documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#initialization">Initialization</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../workflow.html#generating-segments">Generating segments</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="">The workflow segment generation module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#obtaining-data">Obtaining data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#injection-generation">Injection generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#time-slide-generation">Time-slide generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#template-bank">Template bank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#split-table">Split table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#matched-filtering">Matched-filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#coincidence">Coincidence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#post-processing-preparation">Post processing preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow.html#post-processing">Post-processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow.html#method-documentation">Method documentation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">pycbc</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PyCBC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a> &raquo;</li>
+      
+    <li>The workflow segment generation module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/workflow/segments.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-workflow-segment-generation-module">
+<span id="workflowsegmentsmod"></span><h1>The workflow segment generation module<a class="headerlink" href="#the-workflow-segment-generation-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This page is designed to give you an introduction to the capabilities of the
+pycbc workflow segment generation module and how to use this as part of a pycbc
+workflow.</p>
+<p>This module is designed to be able to support multiple ways of obtaining these
+segments (different codes/interfaces whatever), although new code will always
+be needed to support some code/interface that is not currently supported.</p>
+<p>This module will generate science segments and any appropriate veto segments
+and combine these together to identify a set of segments to be used in the
+analysis. The various files will also be returned for later use in the analysis
+(ie. for vetoing triggers with data-quality vetoes). The module also supports
+generating cumulative and multiple-detector veto files for easy use with
+ligolw_thinca and pipedown. If other workflows require similar combined files
+these can be added on request.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Using this module requires a number of things</p>
+<ul class="simple">
+<li>A configuration file (or files) containing the information needed to tell this module how to generate the segments (described below).</li>
+<li>An initialized instance of the pycbc Workflow class, containing the ConfigParser.</li>
+</ul>
+<p>The module is then called according to</p>
+<div class="section" id="configuration-file-setup">
+<h3>Configuration file setup<a class="headerlink" href="#configuration-file-setup" title="Permalink to this headline">¶</a></h3>
+<p>Here we describe the options given in the configuration file used in the
+workflow that will be needed in this section</p>
+<div class="section" id="workflow-segments-section">
+<h4>[workflow-segments] section<a class="headerlink" href="#workflow-segments-section" title="Permalink to this headline">¶</a></h4>
+<p>The configuration file must have a [workflow-segments] section, which is used to
+tell the workflow how to construct the segments. The first option to choose
+and provide is</p>
+<p>segments-method = VALUE</p>
+<p>The choices here and their description are as described below</p>
+<ul class="simple">
+<li>AT_RUNTIME - Use the setup_segment_gen_mixed to generate segments and generate all segment files at runtime</li>
+<li>CAT2_PLUS_DAG - Use the setup_segment_gen_mixed to generate segments, generate all veto files up to CATEGORY_1 at runtime, and add jobs to produce the remaining files to the workflow.</li>
+<li>CAT3_PLUS_DAG - Use the setup_segment_gen_mixed to generate segments, generate all veto files up to CATEGORY_2 at runtime, and add jobs to produce the remaining files to the workflow.</li>
+<li>CAT4_PLUS_DAG - Use the setup_segment_gen_mixed to generate segments, generate all veto files up to CATEGORY_3 at runtime, and add jobs to produce the remaining files to the workflow.</li>
+</ul>
+<p>Each of these options will describe which subfunction to use. These are described here</p>
+<p>When using the setup_segment_gen_mixed function the following additional options apply</p>
+<ul class="simple">
+<li>segments-X1-science-name = NAME - REQUIRED. Where X1 is replaced by the ifo name for each ifo. The NAME should be the full channel name corresponding to analysable times for e.g. H1:DMT-SCIENCE:4</li>
+<li>segments-database-url = URL - REQUIRED. The URL to the segment databse that will be used to obtain this information</li>
+<li>segments-veto-definer-url = PATH - REQUIRED. The location to the veto-definer file that is used to identify which channels are CAT_1, which are CAT_2 etc.</li>
+<li>segments-veto-categories = COMMA-SEPARATED LIST OF INTS - OPTIONAL. Generate veto files for veto categories given by the ints in the list. These ranged from 1 through 4 or 5 for S5/S6 veto definers. Standard results have used categories 2,3,4.</li>
+<li>segments-minimum-segment-length = INT - OPTIONAL. If given, any segments of analysable data shorter than INT will not be included in the list of analysable times returned by this module.</li>
+<li>segments-generate-coincident-segments - OPTIONAL. Option takes no value. If given the module will generate cumulative, multiple detector coincidence files for easy use in ligolw_thinca and pipedown.</li>
+<li>segments-generate-segment-files - OPTIONAL (DEFAULT=&#8217;always&#8217;). This option can be used if the user wants to re-use segment files generated previously. It is not recommended to use this option unless necessary. Options are<ul>
+<li>generate_segment_files=&#8217;always&#8217; : DEFAULT: All files will be generated even if they already exist.</li>
+<li>generate_segment_files=&#8217;if_not_present&#8217;: Files will be generated if they do not already exist. Pre-existing files will be read in and used.</li>
+<li>generate_segment_files=&#8217;error_on_duplicate&#8217;: Files will be generated if they do not already exist. Pre-existing files will raise a failure.</li>
+<li>generate_segment_files=&#8217;never&#8217;: Pre-existing files will be read in and used. If no file exists the code will fail.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="executables">
+<h4>[executables]<a class="headerlink" href="#executables" title="Permalink to this headline">¶</a></h4>
+<p>The following executable paths must be provided in the [executables] section
+when running this module:</p>
+<div class="highlight-python"><div class="highlight"><pre>* segment_query = /home/ahnitz/local/lalsuite/bin/ligolw_segment_query
+* segments_from_cats = /home/ahnitz/local/lalsuite/bin/ligolw_segments_from_cats
+* llwadd = /home/ahnitz/local/lalsuite/bin/ligolw_add
+* ligolw_combine_segments = /home/ahnitz/local/lalsuite/bin/ligolw_combine_segments
+</pre></div>
+</div>
+<p>segment_query is used to obtain the science segments. segments_from_cats is used to obtain the files containing the CAT_1,2,3,4,5 segments. ligolw_combine_segments produces cumulative veto-files. llwadd is used to add the cumulative veto-files from different ifos together when producing cumulative, multiple-detector veto lists.</p>
+</div>
+<div class="section" id="other-sections">
+<h4>Other sections<a class="headerlink" href="#other-sections" title="Permalink to this headline">¶</a></h4>
+<p>For other sub-modules in the pycbc workflow module we would see sections like [segment_query], [segments_from_cats] etc. which would provide the options provided to those jobs. In this case the codes require rather specific input so for now these are hardcoded in this module and any segment like [segment_query] would either be ignored or
+could break the code.</p>
+<p>If there is a reason to do so we could add these sections in.</p>
+</div>
+</div>
+</div>
+<div class="section" id="pycbc-workflow-segment-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">pycbc.workflow.segment</span></code> Module<a class="headerlink" href="#pycbc-workflow-segment-module" title="Permalink to this headline">¶</a></h2>
+<p>This is complete documentation of this module&#8217;s code</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="datafind.html" class="btn btn-neutral float-right" title="The workflow datafind and validation module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="initialization.html" class="btn btn-neutral" title="Pycbc’s workflow module configuration file(s) and command line interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alexander Nitz.
+      Last updated on Mar 23, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
