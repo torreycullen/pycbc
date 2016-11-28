@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycbc.results.scatter_histograms &mdash; PyCBC 3dc36a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PyCBC 3dc36a documentation" href="../../../index.html"/>
+        <link rel="up" title="pycbc" href="../../pycbc.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyCBC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.10
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_psd_estimation_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code>: A workflow generator for noise estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_coinc_search_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_coinc_search_workflow</span></code>: A workflow to search for gravitational waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_sngl_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code>: A single-ifo detchar workflow generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pygrb.html"><code class="docutils literal"><span class="pre">pycbc_make_offline_grb_workflow</span></code>: A GRB triggered CBC analysis workflow generator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_inference_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_inference_workflow</span></code>: A parameter estimation workflow generator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tmpltbank.html">PyCBC template bank generation documentation (<code class="docutils literal"><span class="pre">pycbc.tmpltbank</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference.html">PyCBC inference documentation (<code class="docutils literal"><span class="pre">pycbc.inference</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hwinj.html">Hardware injection waveform generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../banksim.html">Calculating the Effectualness (Fitting Factor) of Template Banks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faithsim.html">Dag Generator for Doing Faithfulness Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../upload_to_gracedb.html">Uploading triggers to gracedb</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../waveform.html">Waveforms</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documenting PyCBC code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Creating Releases of PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../frame.html">Reading Gravitational-wave Frames (<code class="docutils literal"><span class="pre">pycbc.frame</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../formats/hdf_format.html">HDF files within the PyCBC workflow</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycbc</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PyCBC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../../pycbc.html">pycbc</a> &raquo;</li>
+      
+    <li>pycbc.results.scatter_histograms</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycbc.results.scatter_histograms</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2016 Miriam Cabero Mueller, Collin Capano</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software; you can redistribute it and/or modify it</span>
+<span class="c1"># under the terms of the GNU General Public License as published by the</span>
+<span class="c1"># Free Software Foundation; either version 3 of the License, or (at your</span>
+<span class="c1"># option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful, but</span>
+<span class="c1"># WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General</span>
+<span class="c1"># Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License along</span>
+<span class="c1"># with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="c1"># 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1">#</span>
+<span class="c1">#                                   Preamble</span>
+<span class="c1">#</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module to generate figures with scatter plots and histograms.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="kn">from</span> <span class="nn">pycbc.results</span> <span class="k">import</span> <span class="n">str_utils</span>
+<span class="c1">#pyplot.rcParams.update({&#39;text.usetex&#39;: True})</span>
+
+<div class="viewcode-block" id="create_axes_grid"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.create_axes_grid">[docs]</a><span class="k">def</span> <span class="nf">create_axes_grid</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of parameters, creates a figure with an axis for</span>
+<span class="sd">    every possible combination of the parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parameters : list</span>
+<span class="sd">        Names of the variables to be plotted.</span>
+<span class="sd">    labels : {None, list}, optional</span>
+<span class="sd">        A list of names for the parameters.</span>
+<span class="sd">    fiducial_figsize : {None, tuple}, optional</span>
+<span class="sd">        Specify the default figure size to use. If the number of parameters</span>
+<span class="sd">        is &gt; 3, this will be scaled up. If None, will use (8,7).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : pyplot.figure</span>
+<span class="sd">        The figure that was created.</span>
+<span class="sd">    axis_dict : dict</span>
+<span class="sd">        A dictionary mapping the parameter combinations to the axis and their</span>
+<span class="sd">        location in the subplots grid; i.e., the key, values are:</span>
+<span class="sd">        `{(&#39;param1&#39;, &#39;param2&#39;): (pyplot.axes, row index, column index)}`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">parameters</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;labels and parameters must be same length&quot;</span><span class="p">)</span>
+    <span class="c1"># Create figure with adequate size for number of parameters.</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ndim</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">fsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fsize</span> <span class="o">=</span> <span class="p">(</span><span class="n">ndim</span><span class="o">*</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ndim</span><span class="o">*</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">fsize</span><span class="p">)</span>
+    <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="c1"># create grid of axis numbers to easily create axes in the right locations</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ndim</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">))</span>
+
+    <span class="c1"># Select possible combinations of plots and establish rows and columns.</span>
+    <span class="n">combos</span> <span class="o">=</span>  <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+    <span class="c1"># add the diagonals</span>
+    <span class="n">combos</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">ii</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)]</span>
+
+    <span class="c1"># create the mapping between parameter combos and axes</span>
+    <span class="n">axis_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># cycle over all the axes, setting thing as needed</span>
+    <span class="k">for</span> <span class="n">nrow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ncolumn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">axes</span><span class="p">[</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncolumn</span><span class="p">]])</span>
+            <span class="c1"># map to a parameter index</span>
+            <span class="n">px</span> <span class="o">=</span> <span class="n">ncolumn</span>
+            <span class="n">py</span> <span class="o">=</span> <span class="n">nrow</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">)</span> <span class="ow">in</span> <span class="n">combos</span><span class="p">:</span>
+                <span class="n">axis_dict</span><span class="p">[</span><span class="n">parameters</span><span class="p">[</span><span class="n">px</span><span class="p">],</span> <span class="n">parameters</span><span class="p">[</span><span class="n">py</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">ncolumn</span><span class="p">)</span>
+                <span class="c1"># x labels only on bottom</span>
+                <span class="k">if</span> <span class="n">nrow</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">ndim</span><span class="p">:</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">px</span><span class="p">]))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pyplot</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="c1"># y labels only on left and non-diagonal</span>
+                <span class="k">if</span> <span class="n">ncolumn</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nrow</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">py</span><span class="p">]))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pyplot</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># make non-used axes invisible</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axis_dict</span></div>
+
+<div class="viewcode-block" id="get_scale_fac"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.get_scale_fac">[docs]</a><span class="k">def</span> <span class="nf">get_scale_fac</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">fiducial_width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fiducial_height</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets a factor to scale fonts by for the given figure. The scale</span>
+<span class="sd">    factor is relative to a figure with dimensions</span>
+<span class="sd">    (`fiducial_width`, `fiducial_height`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_size_inches</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="p">(</span><span class="n">fiducial_width</span><span class="o">*</span><span class="n">fiducial_height</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span></div>
+
+<div class="viewcode-block" id="construct_kde"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.construct_kde">[docs]</a><span class="k">def</span> <span class="nf">construct_kde</span><span class="p">(</span><span class="n">samples_array</span><span class="p">,</span> <span class="n">use_kombine</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Constructs a KDE from the given samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_kombine</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">kombine</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;kombine is not installed.&quot;</span><span class="p">)</span>
+    <span class="c1"># construct the kde</span>
+    <span class="k">if</span> <span class="n">use_kombine</span><span class="p">:</span>
+        <span class="n">kde</span> <span class="o">=</span> <span class="n">kombine</span><span class="o">.</span><span class="n">KDE</span><span class="p">(</span><span class="n">samples_array</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kde</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">samples_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">kde</span></div>
+
+
+<div class="viewcode-block" id="create_density_plot"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.create_density_plot">[docs]</a><span class="k">def</span> <span class="nf">create_density_plot</span><span class="p">(</span><span class="n">xparam</span><span class="p">,</span> <span class="n">yparam</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">plot_density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">plot_contours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">percentiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+        <span class="n">contour_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_kombine</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes and plots posterior density and confidence intervals using the</span>
+<span class="sd">    given samples.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xparam : string</span>
+<span class="sd">        The parameter to plot on the x-axis.</span>
+<span class="sd">    yparam : string</span>
+<span class="sd">        The parameter to plot on the y-axis.</span>
+<span class="sd">    samples : FieldArray</span>
+<span class="sd">        A field array of the samples to plot.</span>
+<span class="sd">    plot_density : {True, bool}</span>
+<span class="sd">        Plot a color map of the density.</span>
+<span class="sd">    plot_contours : {True, bool}</span>
+<span class="sd">        Plot contours showing the n-th percentiles of the density.</span>
+<span class="sd">    percentiles : {None, float or array}</span>
+<span class="sd">        What percentile contours to draw. If None, will plot the 50th</span>
+<span class="sd">        and 90th percentiles.</span>
+<span class="sd">    cmap : {&#39;viridis&#39;, string}</span>
+<span class="sd">        The name of the colormap to use for the density plot.</span>
+<span class="sd">    contour_color : {None, string}</span>
+<span class="sd">        What color to make the contours. Default is white for density</span>
+<span class="sd">        plots and black for other plots.</span>
+<span class="sd">    xmin : {None, float}</span>
+<span class="sd">        Minimum value to plot on x-axis.</span>
+<span class="sd">    xmax : {None, float}</span>
+<span class="sd">        Maximum value to plot on x-axis.</span>
+<span class="sd">    ymin : {None, float}</span>
+<span class="sd">        Minimum value to plot on y-axis.</span>
+<span class="sd">    ymax : {None, float}</span>
+<span class="sd">        Maximum value to plot on y-axis.</span>
+<span class="sd">    fig : {None, pyplot.figure}</span>
+<span class="sd">        Add the plot to the given figure. If None and ax is None, will create</span>
+<span class="sd">        a new figure.</span>
+<span class="sd">    ax : {None, pyplot.axes}</span>
+<span class="sd">        Draw plot on the given axis. If None, will create a new axis from</span>
+<span class="sd">        `fig`.</span>
+<span class="sd">    use_kombine : {False, bool}</span>
+<span class="sd">        Use kombine&#39;s KDE to calculate density. Otherwise, will use</span>
+<span class="sd">        `scipy.stats.gaussian_kde.` Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : pyplot.figure</span>
+<span class="sd">        The figure the plot was made on.</span>
+<span class="sd">    ax : pyplot.axes</span>
+<span class="sd">        The axes the plot was drawn on.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">percentiles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">percentiles</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">50.</span><span class="p">,</span> <span class="mf">90.</span><span class="p">])</span>
+    <span class="n">percentiles</span> <span class="o">=</span> <span class="mf">100.</span> <span class="o">-</span> <span class="n">percentiles</span>
+    <span class="n">percentiles</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+    <span class="c1"># convert samples to array and construct kde</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">to_array</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="n">xparam</span><span class="p">,</span> <span class="n">yparam</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">construct_kde</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">use_kombine</span><span class="o">=</span><span class="n">use_kombine</span><span class="p">)</span>
+
+    <span class="c1"># construct grid to evaluate on</span>
+    <span class="k">if</span> <span class="n">xmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xmin</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">xparam</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">xmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xmax</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">xparam</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ymin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ymin</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">yparam</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ymax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ymax</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">yparam</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">npts</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">:</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">npts</span><span class="p">),</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">:</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">npts</span><span class="p">)]</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="k">if</span> <span class="n">use_kombine</span><span class="p">:</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kde</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">draw</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">resample</span>
+
+    <span class="c1"># Exclude out-of-bound regions</span>
+    <span class="c1"># this is a bit kludgy; should probably figure out a better solution</span>
+    <span class="c1"># eventually for more than just m_p m_s</span>
+    <span class="n">bnds_mask</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">xparam</span> <span class="o">==</span> <span class="s1">&#39;m_p&#39;</span> <span class="ow">and</span> <span class="n">yparam</span> <span class="o">==</span> <span class="s1">&#39;m_s&#39;</span><span class="p">:</span>
+        <span class="n">bnds_mask</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">&gt;</span> <span class="n">X</span>
+    <span class="k">elif</span> <span class="n">xparam</span> <span class="o">==</span> <span class="s1">&#39;m_s&#39;</span> <span class="ow">and</span> <span class="n">yparam</span> <span class="o">==</span> <span class="s1">&#39;m_p&#39;</span><span class="p">:</span>
+        <span class="n">bnds_mask</span> <span class="o">=</span> <span class="n">X</span> <span class="o">&gt;</span> <span class="n">Y</span>
+    <span class="k">if</span> <span class="n">bnds_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">Z</span><span class="p">[</span><span class="n">bnds_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="k">if</span> <span class="n">plot_density</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="n">Z</span><span class="p">),</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">],</span>
+            <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">contour_color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contour_color</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+
+    <span class="k">if</span> <span class="n">plot_contours</span><span class="p">:</span>
+        <span class="c1"># compute the percentile values</span>
+        <span class="n">resamps</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">draw</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">npts</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">use_kombine</span><span class="p">:</span>
+            <span class="n">resamps</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">resamps</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">resamps</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">contour_color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contour_color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">contour_color</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># label contours</span>
+        <span class="n">lbls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">100.</span> <span class="o">-</span> <span class="n">percentiles</span><span class="p">)]</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">levels</span><span class="p">,</span> <span class="n">lbls</span><span class="p">))</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># scale appropriately</span>
+            <span class="n">scale_fac</span> <span class="o">=</span> <span class="n">get_scale_fac</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+            <span class="n">fs</span> <span class="o">*=</span> <span class="n">scale_fac</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">levels</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="create_marginalized_hist"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.create_marginalized_hist">[docs]</a><span class="k">def</span> <span class="nf">create_marginalized_hist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">percentiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots a 1D marginalized histogram of the given param from the given</span>
+<span class="sd">    samples.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : pyplot.Axes</span>
+<span class="sd">        The axes on which to draw the plot.</span>
+<span class="sd">    param : string</span>
+<span class="sd">        The parameter to plot.</span>
+<span class="sd">    samples : FieldArray</span>
+<span class="sd">        A field array of the samples to plot.</span>
+<span class="sd">    percentiles : {None, float or array}</span>
+<span class="sd">        What percentiles to draw lines at. If None, will draw lines at</span>
+<span class="sd">        `[5, 50, 95]` (i.e., the bounds on the upper 90th percentile and the</span>
+<span class="sd">        median).</span>
+<span class="sd">    label : {None, string}</span>
+<span class="sd">        A label for the parameter. If None, will use `param`.</span>
+<span class="sd">    color : {&#39;navy&#39;, string}</span>
+<span class="sd">        What color to make the histogram; default is navy.</span>
+<span class="sd">    filled : {False, bool}</span>
+<span class="sd">        Whether to fill the histogram; default is False.</span>
+<span class="sd">    linecolor : {&#39;b&#39;, string}</span>
+<span class="sd">        What color to use for the percentile lines.</span>
+<span class="sd">    title : {True, bool}</span>
+<span class="sd">        Add a title with the median value +/- uncertainty, with the</span>
+<span class="sd">        max(min) `percentile` used for the +(-) uncertainty.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">param</span>
+    <span class="k">if</span> <span class="n">filled</span><span class="p">:</span>
+        <span class="n">htype</span> <span class="o">=</span> <span class="s1">&#39;stepfilled&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">htype</span> <span class="o">=</span> <span class="s1">&#39;step&#39;</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="n">htype</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">percentiles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">percentiles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="mf">95.</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">linecolor</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">values_med</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">values_min</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">values_max</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">negerror</span> <span class="o">=</span> <span class="n">values_med</span> <span class="o">-</span> <span class="n">values_min</span>
+        <span class="n">poserror</span> <span class="o">=</span> <span class="n">values_max</span> <span class="o">-</span> <span class="n">values_med</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="n">str_utils</span><span class="o">.</span><span class="n">format_value</span><span class="p">(</span><span class="n">values_med</span><span class="p">,</span> <span class="n">negerror</span><span class="p">,</span>
+              <span class="n">plus_error</span><span class="o">=</span><span class="n">poserror</span><span class="p">,</span> <span class="n">ndecs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">fmt</span><span class="p">))</span>
+    <span class="c1"># Remove y-ticks</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span></div>
+
+
+<div class="viewcode-block" id="create_multidim_plot"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.create_multidim_plot">[docs]</a><span class="k">def</span> <span class="nf">create_multidim_plot</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">mins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">plot_marginal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">plot_scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">zvals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cbar_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scatter_cmap</span><span class="o">=</span><span class="s1">&#39;plasma_r&#39;</span><span class="p">,</span>
+                <span class="n">plot_density</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_contours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">density_cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">contour_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">use_kombine</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a figure with several plots and histograms.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parameters: list</span>
+<span class="sd">        Names of the variables to be plotted.</span>
+<span class="sd">    samples : FieldArray</span>
+<span class="sd">        A field array of the samples to plot.</span>
+<span class="sd">    labels: {None, list}, optional</span>
+<span class="sd">        A list of names for the parameters.</span>
+<span class="sd">    mins : {None, dict}, optional</span>
+<span class="sd">        Minimum value for the axis of each variable in `parameters`.</span>
+<span class="sd">        If None, it will use the minimum of the corresponding variable in</span>
+<span class="sd">        `samples`.</span>
+<span class="sd">    maxs : {None, dict}, optional</span>
+<span class="sd">        Maximum value for the axis of each variable in `parameters`.</span>
+<span class="sd">        If None, it will use the maximum of the corresponding variable in</span>
+<span class="sd">        `samples`.</span>
+<span class="sd">    plot_marginal : {True, bool}</span>
+<span class="sd">        Plot the marginalized distribution on the diagonals. If False, the</span>
+<span class="sd">        diagonal axes will be turned off.</span>
+<span class="sd">    plot_scatter : {True, bool}</span>
+<span class="sd">        Plot each sample point as a scatter plot.</span>
+<span class="sd">    zvals : {None, array}</span>
+<span class="sd">        An array to use for coloring the scatter plots. If None, scatter points</span>
+<span class="sd">        will be the same color.</span>
+<span class="sd">    show_colorbar : {True, bool}</span>
+<span class="sd">        Show the colorbar of zvalues used for the scatter points. A ValueError</span>
+<span class="sd">        will be raised if zvals is None and this is True.</span>
+<span class="sd">    cbar_label : {None, str}</span>
+<span class="sd">        Specify a label to add to the colorbar.</span>
+<span class="sd">    vmin: {None, float}, optional</span>
+<span class="sd">        Minimum value for the colorbar. If None, will use the minimum of zvals.</span>
+<span class="sd">    vmax: {None, float}, optional</span>
+<span class="sd">        Maximum value for the colorbar. If None, will use the maxmimum of</span>
+<span class="sd">        zvals.</span>
+<span class="sd">    scatter_cmap : {&#39;plasma_r&#39;, string}</span>
+<span class="sd">        The color map to use for the scatter points. Default is &#39;plasma_r&#39;.</span>
+<span class="sd">    plot_density : {False, bool}</span>
+<span class="sd">        Plot the density of points as a color map.</span>
+<span class="sd">    plot_contours : {True, bool}</span>
+<span class="sd">        Draw contours showing the 50th and 90th percentile confidence regions.</span>
+<span class="sd">    density_cmap : {&#39;viridis&#39;, string}</span>
+<span class="sd">        The color map to use for the density plot.</span>
+<span class="sd">    contour_color : {None, string}</span>
+<span class="sd">        The color to use for the contour lines. Defaults to white for</span>
+<span class="sd">        density plots and black for other plots.</span>
+<span class="sd">    use_kombine : {False, bool}</span>
+<span class="sd">        Use kombine&#39;s KDE to calculate density. Otherwise, will use</span>
+<span class="sd">        `scipy.stats.gaussian_kde.` Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : pyplot.figure</span>
+<span class="sd">        The figure that was created.</span>
+<span class="sd">    axis_dict : dict</span>
+<span class="sd">        A dictionary mapping the parameter combinations to the axis and their</span>
+<span class="sd">        location in the subplots grid; i.e., the key, values are:</span>
+<span class="sd">        `{(&#39;param1&#39;, &#39;param2&#39;): (pyplot.axes, row index, column index)}`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">parameters</span>
+
+    <span class="c1"># set up the figure with a grid of axes</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axis_dict</span> <span class="o">=</span> <span class="n">create_axes_grid</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+
+    <span class="c1"># turn labels into a dict for easier access</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+
+    <span class="c1"># values for axis bounds</span>
+    <span class="k">if</span> <span class="n">mins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mins</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">samples</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">maxs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">maxs</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span><span class="n">samples</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">}</span>
+
+    <span class="c1"># Diagonals...</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">axis_dict</span><span class="p">[</span><span class="n">param</span><span class="p">,</span> <span class="n">param</span><span class="p">]</span>
+        <span class="c1"># plot marginal...</span>
+        <span class="k">if</span> <span class="n">plot_marginal</span><span class="p">:</span>
+            <span class="n">create_marginalized_hist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">param</span><span class="p">],</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># ... or turn off</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Off-diagonals...</span>
+    <span class="k">for</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span> <span class="ow">in</span> <span class="n">axis_dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">px</span> <span class="o">==</span> <span class="n">py</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">ax</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">axis_dict</span><span class="p">[</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">plot_scatter</span><span class="p">:</span>
+            <span class="c1"># Sort zvals to get higher values on top in scatter plots</span>
+            <span class="k">if</span> <span class="n">zvals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sort_indices</span> <span class="o">=</span> <span class="n">zvals</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+                <span class="n">zvals</span> <span class="o">=</span> <span class="n">zvals</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">]</span>
+                <span class="n">samples</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">sort_indices</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># use the 0th part of the scatter cmap for the color</span>
+                <span class="n">zvals</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">plot_density</span><span class="p">:</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.</span>
+            <span class="n">plt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">samples</span><span class="p">[</span><span class="n">px</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">samples</span><span class="p">[</span><span class="n">py</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">zvals</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                        <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                        <span class="n">cmap</span><span class="o">=</span><span class="n">scatter_cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">plot_contours</span> <span class="ow">or</span> <span class="n">plot_density</span><span class="p">:</span>
+            <span class="n">create_density_plot</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">plot_density</span><span class="o">=</span><span class="n">plot_density</span><span class="p">,</span>
+                    <span class="n">plot_contours</span><span class="o">=</span><span class="n">plot_contours</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">density_cmap</span><span class="p">,</span>
+                    <span class="n">contour_color</span><span class="o">=</span><span class="n">contour_color</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="n">mins</span><span class="p">[</span><span class="n">px</span><span class="p">],</span> <span class="n">xmax</span><span class="o">=</span><span class="n">maxs</span><span class="p">[</span><span class="n">px</span><span class="p">],</span>
+                    <span class="n">ymin</span><span class="o">=</span><span class="n">mins</span><span class="p">[</span><span class="n">py</span><span class="p">],</span> <span class="n">ymax</span><span class="o">=</span><span class="n">maxs</span><span class="p">[</span><span class="n">py</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                    <span class="n">use_kombine</span><span class="o">=</span><span class="n">use_kombine</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">mins</span><span class="p">[</span><span class="n">px</span><span class="p">],</span> <span class="n">maxs</span><span class="p">[</span><span class="n">px</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">mins</span><span class="p">[</span><span class="n">py</span><span class="p">],</span> <span class="n">maxs</span><span class="p">[</span><span class="n">py</span><span class="p">])</span>
+
+    <span class="c1"># adjust tick number for large number of plots</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span> <span class="ow">in</span> <span class="n">axis_dict</span><span class="p">:</span>
+            <span class="n">ax</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">axis_dict</span><span class="p">[</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">reduce_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">maxticks</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">reduce_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">maxticks</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">plot_scatter</span> <span class="ow">and</span> <span class="n">show_colorbar</span><span class="p">:</span>
+        <span class="c1"># compute font size based on fig size</span>
+        <span class="n">scale_fac</span> <span class="o">=</span> <span class="n">get_scale_fac</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+        <span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cbar_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cbar_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="n">scale_fac</span><span class="p">)</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="n">scale_fac</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axis_dict</span></div>
+
+
+<div class="viewcode-block" id="reduce_ticks"><a class="viewcode-back" href="../../../pycbc.results.html#pycbc.results.scatter_histograms.reduce_ticks">[docs]</a><span class="k">def</span> <span class="nf">reduce_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span> <span class="n">maxticks</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a pyplot axis, resamples its `which`-axis ticks such that are at most</span>
+<span class="sd">    `maxticks` left.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : axis</span>
+<span class="sd">        The axis to adjust.</span>
+<span class="sd">    which : {&#39;x&#39; | &#39;y&#39;}</span>
+<span class="sd">        Which axis to adjust.</span>
+<span class="sd">    maxticks : {3, int}</span>
+<span class="sd">        Maximum number of ticks to use.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    array</span>
+<span class="sd">        An array of the selected ticks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;get_</span><span class="si">{}</span><span class="s1">ticks&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">which</span><span class="p">))()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxticks</span><span class="p">:</span>
+        <span class="c1"># make sure the left/right value is not at the edge</span>
+        <span class="n">minax</span><span class="p">,</span> <span class="n">maxax</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;get_</span><span class="si">{}</span><span class="s1">lim&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">which</span><span class="p">))()</span>
+        <span class="n">dw</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">maxax</span><span class="o">-</span><span class="n">minax</span><span class="p">)</span><span class="o">/</span><span class="mf">10.</span>
+        <span class="n">start_idx</span><span class="p">,</span> <span class="n">end_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">minax</span> <span class="o">+</span> <span class="n">dw</span><span class="p">:</span>
+            <span class="n">start_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxax</span> <span class="o">-</span> <span class="n">dw</span><span class="p">:</span>
+            <span class="n">end_idx</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="c1"># get reduction factor</span>
+        <span class="n">fac</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span> <span class="o">/</span> <span class="n">maxticks</span><span class="p">)</span>
+        <span class="n">ticks</span> <span class="o">=</span> <span class="n">ticks</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">:</span><span class="n">fac</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ticks</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alexander Nitz.
+      Last updated on Nov 28, 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'3dc36a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
