@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycbc.inference.option_utils &mdash; PyCBC e1cf29 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PyCBC e1cf29 documentation" href="../../../index.html"/>
+        <link rel="up" title="pycbc" href="../../pycbc.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyCBC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installing PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_psd_estimation_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_psd_estimation_workflow</span></code>: A workflow generator for noise estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_coinc_search_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_coinc_search_workflow</span></code>: A workflow to search for gravitational waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_sngl_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_sngl_workflow</span></code>: A single-ifo detchar workflow generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pygrb.html"><code class="docutils literal"><span class="pre">pycbc_make_offline_grb_workflow</span></code>: A GRB triggered CBC analysis workflow generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_production_binaries.html">Using Production PyCBC Binary Bundles</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/pycbc_make_inference_workflow.html"><code class="docutils literal"><span class="pre">pycbc_make_inference_workflow</span></code>: A parameter estimation workflow generator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tmpltbank.html">PyCBC template bank generation documentation (<code class="docutils literal"><span class="pre">pycbc.tmpltbank</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inference.html">PyCBC inference documentation (<code class="docutils literal"><span class="pre">pycbc.inference</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hwinj.html">Hardware injection waveform generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../banksim.html">Calculating the Effectualness (Fitting Factor) of Template Banks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faithsim.html">Dag Generator for Doing Faithfulness Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../upload_to_gracedb.html">Uploading triggers to gracedb</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../frame.html">Reading Gravitational-wave Frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../psd.html">Handling PSDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../noise.html">Generating Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../waveform.html">Waveforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../filter.html">Filtering</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation.html">Documenting PyCBC code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Creating Releases of PyCBC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../formats/hdf_format.html">HDF files within the PyCBC workflow</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow.html">Workflow: the inspiral analysis workflow generator (<code class="docutils literal"><span class="pre">pycbc.workflow</span></code>)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycbc</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PyCBC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../../pycbc.html">pycbc</a> &raquo;</li>
+      
+    <li>pycbc.inference.option_utils</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycbc.inference.option_utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2016 Collin Capano</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software; you can redistribute it and/or modify it</span>
+<span class="c1"># under the terms of the GNU General Public License as published by the</span>
+<span class="c1"># Free Software Foundation; either version 3 of the License, or (at your</span>
+<span class="c1"># option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful, but</span>
+<span class="c1"># WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Generals</span>
+<span class="c1"># Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License along</span>
+<span class="c1"># with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="c1"># 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains standard options used for inference-related programs.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pycbc.io</span> <span class="k">import</span> <span class="n">InferenceFile</span>
+<span class="kn">import</span> <span class="nn">pycbc.inference.sampler</span>
+<span class="kn">from</span> <span class="nn">pycbc.inference</span> <span class="k">import</span> <span class="n">likelihood</span>
+
+
+<div class="viewcode-block" id="add_sampler_option_group"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.add_sampler_option_group">[docs]</a><span class="k">def</span> <span class="nf">add_sampler_option_group</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds the options needed to set up an inference sampler.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : object</span>
+<span class="sd">        ArgumentParser instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sampler_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Arguments for setting up &quot;</span>
+        <span class="s2">&quot;a sampler&quot;</span><span class="p">)</span>
+
+    <span class="c1"># required options</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--sampler&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="n">pycbc</span><span class="o">.</span><span class="n">inference</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Sampler class to use for finding posterior.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--niterations&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of iterations to perform after burn in.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--nprocesses&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of processes to use. If not given then use maximum.&quot;</span><span class="p">)</span>
+    <span class="c1"># sampler-specific options</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--nwalkers&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of walkers to use in sampler. Required for MCMC &quot;</span>
+             <span class="s2">&quot;samplers.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--ntemps&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of temperatures to use in sampler. Required for parallel &quot;</span>
+             <span class="s2">&quot;tempered MCMC samplers.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--min-burn-in&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Force the burn-in to be at least the given number of &quot;</span>
+             <span class="s2">&quot;iterations. If a sampler has an internal algorithm for &quot;</span>
+             <span class="s2">&quot;determining the burn-in size (e.g., kombine), and it returns &quot;</span>
+             <span class="s2">&quot;a value &lt; this, the burn-in will be repeated until the &quot;</span>
+             <span class="s2">&quot;number of iterations is at least this value.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--skip-burn-in&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Do not burn in with sampler. An error will be raised if &quot;</span>
+             <span class="s2">&quot;min-burn-in is also provided.&quot;</span><span class="p">)</span>
+    <span class="n">sampler_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--update-interval&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;If using kombine, specify the number of steps to take between &quot;</span>
+             <span class="s2">&quot;proposal updates. Note: for purposes of updating, kombine &quot;</span>
+             <span class="s2">&quot;counts iterations since the last checkpoint. This interval &quot;</span>
+             <span class="s2">&quot;should therefore be less than the checkpoint interval, else &quot;</span>
+             <span class="s2">&quot;no updates will occur. To ensure that updates happen at equal &quot;</span>
+             <span class="s2">&quot;intervals, make checkpoint-interval a multiple of &quot;</span>
+             <span class="s2">&quot;update-interval.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sampler_group</span></div>
+
+
+<div class="viewcode-block" id="sampler_from_cli"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.sampler_from_cli">[docs]</a><span class="k">def</span> <span class="nf">sampler_from_cli</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">likelihood_evaluator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses the given command-line options to set up a sampler.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    opts : object</span>
+<span class="sd">        ArgumentParser options.</span>
+<span class="sd">    likelihood_evaluator : LikelihoodEvaluator</span>
+<span class="sd">        The likelihood evaluator to use with the sampler.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pycbc.inference.sampler</span>
+<span class="sd">        A sampler initialized based on the given arguments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sclass</span> <span class="o">=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">inference</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">samplers</span><span class="p">[</span><span class="n">opts</span><span class="o">.</span><span class="n">sampler</span><span class="p">]</span>
+    <span class="c1"># check for consistency</span>
+    <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">skip_burn_in</span> <span class="ow">and</span> <span class="n">opts</span><span class="o">.</span><span class="n">min_burn_in</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;both skip-burn-in and min-burn-in specified&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sclass</span><span class="o">.</span><span class="n">from_cli</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">likelihood_evaluator</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_inference_results_option_group"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.add_inference_results_option_group">[docs]</a><span class="k">def</span> <span class="nf">add_inference_results_option_group</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds the options used to call pycbc.inference.results_from_cli function</span>
+<span class="sd">    to an argument parser. These are options releated to loading the results</span>
+<span class="sd">    from a run of pycbc_inference, for purposes of plotting and/or creating</span>
+<span class="sd">    tables.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : object</span>
+<span class="sd">        ArgumentParser instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">results_reading_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Arguments for loading &quot;</span>
+        <span class="s2">&quot;inference results&quot;</span><span class="p">)</span>
+
+    <span class="c1"># required options</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--input-file&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to input HDF file.&quot;</span><span class="p">)</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--parameters&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;PARAM[:LABEL]&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of parameters to plot. If none provided will load all of &quot;</span>
+             <span class="s2">&quot;the variable args in the input-file. If provided, the &quot;</span>
+             <span class="s2">&quot;parameters can be any of the variable args or posteriors in &quot;</span>
+             <span class="s2">&quot;the input file, derived parameters from them, or any function &quot;</span>
+             <span class="s2">&quot;of them. Syntax for functions is python; any math functions in &quot;</span>
+             <span class="s2">&quot;the numpy libary may be used. Can optionally also specify a &quot;</span>
+             <span class="s2">&quot;label for each parameter. If no label is provided, will try to &quot;</span>
+             <span class="s2">&quot;retrieve a label from the input-file. If no label can be found &quot;</span>
+             <span class="s2">&quot;in the input-file, will try to get a label from &quot;</span>
+             <span class="s2">&quot;pycbc.waveform.parameters. If no label can be found in either &quot;</span>
+             <span class="s2">&quot;place, will just use the parameter.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># optionals</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--thin-start&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Sample number to start collecting samples to plot. If none &quot;</span>
+             <span class="s2">&quot;provided, will start at the end of the burn-in.&quot;</span><span class="p">)</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--thin-interval&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Interval to use for thinning samples. If none provided, will &quot;</span>
+             <span class="s2">&quot;use the auto-correlation length found in the file.&quot;</span><span class="p">)</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--thin-end&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Sample number to stop collecting samples to plot. If none &quot;</span>
+             <span class="s2">&quot;provided, will stop at the last sample from the sampler.&quot;</span><span class="p">)</span>
+    <span class="n">results_reading_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--iteration&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Only retrieve the given iteration. To load the last n-th sampe &quot;</span>
+             <span class="s2">&quot;use -n, e.g., -1 will load the last iteration. This overrides &quot;</span>
+             <span class="s2">&quot;the thin-start/interval/end options.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results_reading_group</span></div>
+
+
+<div class="viewcode-block" id="results_from_cli"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.results_from_cli">[docs]</a><span class="k">def</span> <span class="nf">results_from_cli</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">load_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">walkers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads an inference result file along with any labels associated with it</span>
+<span class="sd">    from the command line options.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    opts : ArgumentParser options</span>
+<span class="sd">        The options from the command line.</span>
+<span class="sd">    load_samples : {True, bool}</span>
+<span class="sd">        Load samples from the results file using the parameters, thin_start,</span>
+<span class="sd">        and thin_interval specified in the options. The samples are returned</span>
+<span class="sd">        as a WaveformArray instance.</span>
+<span class="sd">    walkers : {None, (list of) int}</span>
+<span class="sd">        If loading samples, the walkers to load from. If None, will load from</span>
+<span class="sd">        all walkers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    result_file : pycbc.io.InferenceFile</span>
+<span class="sd">        The result file as an InferenceFile.</span>
+<span class="sd">    parameters : list</span>
+<span class="sd">        List of the parameters to use, parsed from the parameters option.</span>
+<span class="sd">    labels : list</span>
+<span class="sd">        List of labels to associate with the parameters.</span>
+<span class="sd">    samples : {None, WaveformArray}</span>
+<span class="sd">        If load_samples, the samples as a WaveformArray; otherwise, None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading input file&quot;</span><span class="p">)</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">InferenceFile</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">variable_args</span> <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span> \
+                 <span class="k">else</span> <span class="n">opts</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="c1"># load the labels</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read_label</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">load_samples</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading samples&quot;</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read_samples</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">walkers</span><span class="o">=</span><span class="n">walkers</span><span class="p">,</span>
+            <span class="n">thin_start</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">thin_start</span><span class="p">,</span> <span class="n">thin_interval</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">thin_interval</span><span class="p">,</span>
+            <span class="n">thin_end</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">thin_end</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">iteration</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">fp</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">samples</span></div>
+
+
+<div class="viewcode-block" id="get_zvalues"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.get_zvalues">[docs]</a><span class="k">def</span> <span class="nf">get_zvalues</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">likelihood_stats</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reads the data for the z-value of the plots from the inference file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fp : InferenceFile</span>
+<span class="sd">        An open inference file; needed to get the value of the log noise</span>
+<span class="sd">        likelihood.</span>
+<span class="sd">    arg : str</span>
+<span class="sd">        The argument to plot; must be one of `loglr`, `snr`, `logplr`,</span>
+<span class="sd">        `logposterior`, or `prior`. If not one of these, a ValueError is</span>
+<span class="sd">        raised.</span>
+<span class="sd">    likelihood_stats : FieldArray</span>
+<span class="sd">        The likelihood stats; the sort of thing returned by</span>
+<span class="sd">        `fp.read_likelihood_stats`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    zvals : numpy.array</span>
+<span class="sd">        An array of the desired likelihood values to plot.</span>
+<span class="sd">    zlbl : str</span>
+<span class="sd">        The label to use for the values on a plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="s1">&#39;loglr&#39;</span><span class="p">:</span>
+        <span class="n">zvals</span> <span class="o">=</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">loglr</span>
+        <span class="n">zlbl</span> <span class="o">=</span> <span class="s1">r&#39;$\log\mathcal</span><span class="si">{L}</span><span class="s1">(\vec{\vartheta})$&#39;</span>
+    <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s1">&#39;snr&#39;</span><span class="p">:</span>
+        <span class="n">zvals</span> <span class="o">=</span> <span class="n">likelihood</span><span class="o">.</span><span class="n">snr_from_loglr</span><span class="p">(</span><span class="n">likelihood_stats</span><span class="o">.</span><span class="n">loglr</span><span class="p">)</span>
+        <span class="n">zlbl</span> <span class="o">=</span> <span class="s1">r&#39;$\rho(\vec{\vartheta})$&#39;</span>
+    <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s1">&#39;logplr&#39;</span><span class="p">:</span>
+        <span class="n">zvals</span> <span class="o">=</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">loglr</span> <span class="o">+</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">prior</span>
+        <span class="n">zlbl</span> <span class="o">=</span> <span class="s1">r&#39;$\log[\mathcal</span><span class="si">{L}</span><span class="s1">(\vec{\vartheta})p(\vec{\vartheta})]$&#39;</span>
+    <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s1">&#39;logposterior&#39;</span><span class="p">:</span>
+        <span class="n">zvals</span> <span class="o">=</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">loglr</span> <span class="o">+</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">prior</span> <span class="o">+</span> <span class="n">fp</span><span class="o">.</span><span class="n">lognl</span>
+        <span class="n">zlbl</span> <span class="o">=</span> <span class="s1">r&#39;$\log[p(d|\vec{\vartheta})p(\vec{\vartheta})]$&#39;</span>
+    <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s1">&#39;prior&#39;</span><span class="p">:</span>
+        <span class="n">zvals</span> <span class="o">=</span> <span class="n">likelihood_stats</span><span class="o">.</span><span class="n">prior</span>
+        <span class="n">zlbl</span> <span class="o">=</span> <span class="s1">r&#39;$\log p(\vec{\vartheta})$&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unrecognized arg </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">zvals</span><span class="p">,</span> <span class="n">zlbl</span></div>
+
+
+<div class="viewcode-block" id="add_plot_posterior_option_group"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.add_plot_posterior_option_group">[docs]</a><span class="k">def</span> <span class="nf">add_plot_posterior_option_group</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds the options needed to configure plots of posterior results.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : object</span>
+<span class="sd">        ArgumentParser instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pgroup</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Options for what plots to create and &quot;</span>
+                                         <span class="s2">&quot;their formats.&quot;</span><span class="p">)</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--plot-marginal&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plot 1D marginalized distributions on the &quot;</span>
+                             <span class="s2">&quot;diagonal axes.&quot;</span><span class="p">)</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--plot-scatter&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plot each sample point as a scatter plot.&quot;</span><span class="p">)</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--plot-density&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plot the posterior density as a color map.&quot;</span><span class="p">)</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--plot-contours&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Draw contours showing the 50th and 90th &quot;</span>
+                             <span class="s2">&quot;percentile confidence regions.&quot;</span><span class="p">)</span>
+    <span class="c1"># add mins, maxs options</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--mins&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;PARAM:VAL&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Specify minimum parameter values to plot. This &quot;</span>
+                             <span class="s2">&quot;should be done by specifying the parameter name &quot;</span>
+                             <span class="s2">&quot;followed by the value. Parameter names must be &quot;</span>
+                             <span class="s2">&quot;the same as the PARAM argument in --parameters &quot;</span>
+                             <span class="s2">&quot;(or, if no parameters are provided, the same as &quot;</span>
+                             <span class="s2">&quot;the parameter name specified in the variable &quot;</span>
+                             <span class="s2">&quot;args in the input file. If none provided, &quot;</span>
+                             <span class="s2">&quot;the smallest parameter value in the posterior &quot;</span>
+                             <span class="s2">&quot;will be used.&quot;</span><span class="p">)</span>
+    <span class="n">pgroup</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--maxs&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;PARAM:VAL&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Same as mins, but for the maximum values to &quot;</span>
+                             <span class="s2">&quot;plot.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pgroup</span></div>
+
+
+<div class="viewcode-block" id="plot_ranges_from_cli"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.plot_ranges_from_cli">[docs]</a><span class="k">def</span> <span class="nf">plot_ranges_from_cli</span><span class="p">(</span><span class="n">opts</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses the mins and maxs arguments from the `plot_posterior` option</span>
+<span class="sd">    group.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    opts : ArgumentParser</span>
+<span class="sd">        The parsed arguments from the command line.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mins : dict</span>
+<span class="sd">        Dictionary of parameter name -&gt; specified mins. Only parameters that</span>
+<span class="sd">        were specified in the --mins option will be included; if no parameters</span>
+<span class="sd">        were provided, will return an empty dictionary.</span>
+<span class="sd">    maxs : dict</span>
+<span class="sd">        Dictionary of parameter name -&gt; specified maxs. Only parameters that</span>
+<span class="sd">        were specified in the --mins option will be included; if no parameters</span>
+<span class="sd">        were provided, will return an empty dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mins</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">mins</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;option --mins not specified correctly; see help&quot;</span><span class="p">)</span>
+        <span class="n">mins</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">maxs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">maxs</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;option --maxs not specified correctly; see help&quot;</span><span class="p">)</span>
+        <span class="n">maxs</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">mins</span><span class="p">,</span> <span class="n">maxs</span></div>
+
+
+<div class="viewcode-block" id="add_scatter_option_group"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.add_scatter_option_group">[docs]</a><span class="k">def</span> <span class="nf">add_scatter_option_group</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds the options needed to configure scatter plots.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : object</span>
+<span class="sd">        ArgumentParser instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scatter_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Options for configuring the &quot;</span>
+                                              <span class="s2">&quot;scatter plot.&quot;</span><span class="p">)</span>
+
+    <span class="n">scatter_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--z-arg&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;loglr&#39;</span><span class="p">,</span> <span class="s1">&#39;snr&#39;</span><span class="p">,</span> <span class="s1">&#39;logplr&#39;</span><span class="p">,</span> <span class="s1">&#39;logposterior&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;prior&#39;</span><span class="p">],</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;What to color the scatter points by. If not set, &#39;</span>
+                         <span class="s1">&#39;all points will be the same color. Choices are: &#39;</span>
+                         <span class="s1">&#39;loglr: the log likelihood ratio; snr: SNR; &#39;</span>
+                         <span class="s1">&#39;logplr: loglr + log of the prior; &#39;</span>
+                         <span class="s1">&#39;logposterior: log likelihood function + log prior; &#39;</span>
+                         <span class="s1">&#39;prior: the log of the prior.&#39;</span><span class="p">)</span>
+    <span class="n">scatter_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--vmin&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimum value for the colorbar.&quot;</span><span class="p">)</span>
+    <span class="n">scatter_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--vmax&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Maximum value for the colorbar.&quot;</span><span class="p">)</span>
+    <span class="n">scatter_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--scatter-cmap&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Specify the colormap to use for points. Default is &quot;</span>
+                         <span class="s2">&quot;plasma.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scatter_group</span></div>
+
+
+<div class="viewcode-block" id="add_density_option_group"><a class="viewcode-back" href="../../../pycbc.inference.html#pycbc.inference.option_utils.add_density_option_group">[docs]</a><span class="k">def</span> <span class="nf">add_density_option_group</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds the options needed to configure contours and density colour map.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : object</span>
+<span class="sd">        ArgumentParser instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">density_group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Options for configuring the &quot;</span>
+                                          <span class="s2">&quot;contours and density color map&quot;</span><span class="p">)</span>
+
+    <span class="n">density_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--density-cmap&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Specify the colormap to use for the density. &quot;</span>
+                         <span class="s2">&quot;Default is viridis.&quot;</span><span class="p">)</span>
+    <span class="n">density_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--contour-color&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Specify the color to use for the contour lines. &quot;</span>
+                         <span class="s2">&quot;Default is white for density plots and black &quot;</span>
+                         <span class="s2">&quot;for scatter plots.&quot;</span><span class="p">)</span>
+    <span class="n">density_group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--use-kombine-kde&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Use kombine&#39;s KDE for determining contours. Default &quot;</span>
+                         <span class="s2">&quot;is to use scipy&#39;s gaussian_kde.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">density_group</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Alexander Nitz.
+      Last updated on Jan 15, 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'e1cf29',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
