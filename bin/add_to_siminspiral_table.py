@@ -22,7 +22,7 @@ This program adds an additional column "f_ref" to an existing sim_inspiral xml t
 
 
 import sys
-import numpy as np
+#import numpy as np
 from optparse import OptionParser
 from glue.ligolw import ligolw
 from glue.ligolw import table
@@ -31,7 +31,7 @@ from glue.ligolw import ilwd
 from glue.ligolw import utils
 from glue.ligolw.utils import process as ligolw_process
 import lal
-
+import numpy as np
 
 class ContentHandler(ligolw.LIGOLWContentHandler):
     pass
