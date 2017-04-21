@@ -431,7 +431,7 @@ setup (
                'bin/pycbc_submit_dax',
                'bin/mvsc/pycbc_mvsc_get_features',
                'bin/pycbc_coinc_time',
-               'bin/add_to_siminspiral_table.py',
+               'bin/pycbc_add_to_siminspiral_table',
                'bin/pygrb/pycbc_make_offline_grb_workflow',
                'bin/pygrb/pycbc_make_grb_summary_page',
                'bin/pycbc_condition_strain',
