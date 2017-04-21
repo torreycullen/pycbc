@@ -43,6 +43,22 @@ __date__    = pycbc.version.date
 __program__ = "pycbc_create_bank_verifier_workflow"
 
 # Some new executable classes. These can be moved into modules if needed
+class AddColsExectuables(wf.Executable):
+    """Class for running pycbc_add_to_siminspiral_table
+    """
+    current_retention_level = wf.Executable.ALL_TRIGGERS
+    file_input_options = []
+
+    def create_node(self, analysis_time, input_file, extra_tags=None):
+        if extra_tags is None:
+            extra_tags = []
+        node = wf.Executable.create_node(self)
+        node.add_input_opt('--input-file', input_file)
+        node.new_output_file_opt(analysis_time, '.xml', '--output-file',
+                                 tags=self.tags + extra_tags)
+        return node
+
+
 class BanksimExecutable(wf.Executable):
     """Class for running pycbc_banksim
     """
@@ -183,8 +199,12 @@ inp_bank.ifo_list=(['H1','L1','V1'])
 inp_bank.segment = workflow.analysis_time
 
 # Inspinj job
-inspinj_job = LalappsInspinjExecutable(workflow.cp, 'injection', out_dir='.',
+inspinj_job = LalappsInspinjExecutable(workflow.cp, 'injection',
+                                       out_dir='inj_files',
                                        ifos='HL', tags=[])
+add_cols_job = AddColsExectuables(workflow.cp, 'add_cols_to_inj_file',
+                                  out_dir='inj_files',
+                                  ifos='HL', tags=[])
 
 def add_banksim_set(workflow, file_tag, num_injs, curr_tags, split_banks):
     """Add a group of jobs that does a complete banksim.
@@ -193,7 +213,12 @@ def add_banksim_set(workflow, file_tag, num_injs, curr_tags, split_banks):
     t_seg = segments.segment([1000000000, 1000000000+int(num_injs)])
     node = inspinj_job.create_node(t_seg)
     workflow += node
+    tmp_inj_file = node.output_file
+    add_cols_job.update_current_tags(curr_tags)
+    node = add_cols_job.create_node(t_seg, tmp_inj_file)
+    workflow += node
     inj_file = node.output_file
+
     split_injs = setup_splittable_dax_generated(workflow, [inj_file],
                                                 'splitinjfiles', curr_tags)
     # Banksim job
