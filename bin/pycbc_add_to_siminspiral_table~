@@ -17,7 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 """
-This program adds an additional column "lambda1, lambda2, and tidal_order" to an existing sim_inspiral xml table. This additional parameter is relevant for Torrey's banksim with tidal coefficients"
+This program adds an additional column "f_ref" to an existing sim_inspiral xml table. This additional parameter is relevant for NR injections.
 """
 
 
@@ -76,7 +76,10 @@ oldxml = utils.load_filename(opts.input_file, gz=opts.input_file.endswith('gz'),
                              contenthandler=ContentHandler)
 oldSimTable = table.get_table(oldxml,"sim_inspiral")
 
+#hdfxml = utils.load_filename(opts.catalog_file, gz=opts.catalog_file.endswith('gz'),
+#contenthandler=ContentHandler)
 
+#hdfSimTable = table.get_table(hdfxml, "sim_inspiral")
 data_O1extreme_final = np.loadtxt('/home/torrey.cullen/lambdas/lambdas.txt')
 fit = np.poly1d(np.polyfit(np.arange(1,2,.01),data_O1extreme_final, 10))
 
@@ -87,6 +90,6 @@ for key in cols.keys():
 for sim in oldSimTable:
     sim.lambda1 = fit(sim.mass1)
     sim.lambda2 = fit(sim.mass2)
-    sim.tidal_order = 12
+    
 utils.write_filename(oldxml, opts.output_file,
                      gz=opts.output_file.endswith('gz'))
