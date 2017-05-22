@@ -1,0 +1,288 @@
+From 5b5d3162955ee96e977828992b368910e101b85e Mon Sep 17 00:00:00 2001
+From: Ian Harry <ian.harry@ligo.org>
+Date: Fri, 21 Apr 2017 16:03:29 +0200
+Subject: [PATCH] Changes to run add_to_siminspiral_table in banksim
+
+---
+ bin/add_to_siminspiral_table.py                   | 96 -----------------------
+ bin/pycbc_add_to_siminspiral_table                | 96 +++++++++++++++++++++++
+ bin/workflows/pycbc_create_bank_verifier_workflow | 27 ++++++-
+ setup.py                                          |  2 +-
+ 4 files changed, 123 insertions(+), 98 deletions(-)
+ delete mode 100644 bin/add_to_siminspiral_table.py
+ create mode 100644 bin/pycbc_add_to_siminspiral_table
+
+diff --git a/bin/add_to_siminspiral_table.py b/bin/add_to_siminspiral_table.py
+deleted file mode 100644
+index c6e7716..0000000
+--- a/bin/add_to_siminspiral_table.py
++++ /dev/null
+@@ -1,96 +0,0 @@
+-#!/usr/bin/env python
+-
+-# Copyright (C) 2015 Ian W. Harry, Patricia Schmidt
+-#
+-# This program is free software; you can redistribute it and/or modify it
+-# under the terms of the GNU General Public License as published by the
+-# Free Software Foundation; either version 3 of the License, or (at your
+-# option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful, but
+-# WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+-# Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License along
+-# with this program; if not, write to the Free Software Foundation, Inc.,
+-# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-
+-"""
+-This program adds an additional column "f_ref" to an existing sim_inspiral xml table. This additional parameter is relevant for NR injections.
+-"""
+-
+-
+-import sys
+-#import numpy as np
+-from optparse import OptionParser
+-from glue.ligolw import ligolw
+-from glue.ligolw import table
+-from glue.ligolw import lsctables
+-from glue.ligolw import ilwd
+-from glue.ligolw import utils
+-from glue.ligolw.utils import process as ligolw_process
+-import lal
+-import numpy as np
+-
+-class ContentHandler(ligolw.LIGOLWContentHandler):
+-    pass
+-lsctables.use_in(ContentHandler)
+-
+-cols = lsctables.SimInspiralTable.validcolumns
+-
+-def fill_missing_columns(sngl):
+-    for entry in cols.keys():
+-        if not(hasattr(sngl,entry)):
+-            if cols[entry] in ['real_4','real_8']:
+-                setattr(sngl,entry,0.)
+-            elif cols[entry] == 'int_4s':
+-                setattr(sngl,entry,0)
+-            elif cols[entry] == 'lstring':
+-                setattr(sngl,entry,'')
+-            elif entry == 'process_id':
+-                sngl.process_id = ilwd.ilwdchar("sim_inspiral:process_id:0")
+-            elif entry == 'simulation_id':
+-                sngl.event_id = ilwd.ilwdchar("sim_inspiral:simulation_id:0")
+-            else:
+-                print >> sys.stderr, "Column %s not recognized" %(entry)
+-                raise ValueError
+-
+-parser = OptionParser(
+-    usage   = "%prog [OPTIONS]",
+-    description = "Add fref column to inspinj output" )
+-
+-parser.add_option("-V", "--verbose", action="store_true", help="print extra debugging information", default=False )
+-parser.add_option("-i", "--input-file", action="store", type="string",  help="Input file with sngl_inspiral xml table")
+-parser.add_option("-o", "--output-file", action="store", type="string",  help="Output file name")
+-(opts,args) = parser.parse_args()
+-
+-if not opts.input_file:
+-    print >> sys.stderr, "--input-file must be supplied"
+-    sys.exit(1)
+-if not opts.output_file:
+-    print >> sys.stderr, "--output-file must be supplied"
+-    sys.exit(1)
+-
+-oldxml = utils.load_filename(opts.input_file, gz=opts.input_file.endswith('gz'),
+-                             contenthandler=ContentHandler)
+-oldSimTable = table.get_table(oldxml,"sim_inspiral")
+-
+-#hdfxml = utils.load_filename(opts.catalog_file, gz=opts.catalog_file.endswith('gz'),
+-#contenthandler=ContentHandler)
+-
+-#hdfSimTable = table.get_table(hdfxml, "sim_inspiral")
+-data_O1extreme_final = np.loadtxt('/home/torrey.cullen/lambdas/lambdas.txt')
+-fit = np.poly1d(np.polyfit(np.arange(1,2,.01),data_O1extreme_final, 10))
+-
+-for key in cols.keys():
+-    if key not in oldSimTable.columnnames:
+-        oldSimTable.appendColumn(key)
+-
+-for sim in oldSimTable:
+-    sim.lambda1 = fit(sim.mass1)
+-    sim.lambda2 = fit(sim.mass2)
+-    #print sim.mass1,sim.lambda1
+-    #print sim.mass2,sim.lambda2
+-utils.write_filename(oldxml, opts.output_file,
+-                     gz=opts.output_file.endswith('gz'))
+diff --git a/bin/pycbc_add_to_siminspiral_table b/bin/pycbc_add_to_siminspiral_table
+new file mode 100644
+index 0000000..c6e7716
+--- /dev/null
++++ b/bin/pycbc_add_to_siminspiral_table
+@@ -0,0 +1,96 @@
++#!/usr/bin/env python
++
++# Copyright (C) 2015 Ian W. Harry, Patricia Schmidt
++#
++# This program is free software; you can redistribute it and/or modify it
++# under the terms of the GNU General Public License as published by the
++# Free Software Foundation; either version 3 of the License, or (at your
++# option) any later version.
++#
++# This program is distributed in the hope that it will be useful, but
++# WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
++# Public License for more details.
++#
++# You should have received a copy of the GNU General Public License along
++# with this program; if not, write to the Free Software Foundation, Inc.,
++# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++
++"""
++This program adds an additional column "f_ref" to an existing sim_inspiral xml table. This additional parameter is relevant for NR injections.
++"""
++
++
++import sys
++#import numpy as np
++from optparse import OptionParser
++from glue.ligolw import ligolw
++from glue.ligolw import table
++from glue.ligolw import lsctables
++from glue.ligolw import ilwd
++from glue.ligolw import utils
++from glue.ligolw.utils import process as ligolw_process
++import lal
++import numpy as np
++
++class ContentHandler(ligolw.LIGOLWContentHandler):
++    pass
++lsctables.use_in(ContentHandler)
++
++cols = lsctables.SimInspiralTable.validcolumns
++
++def fill_missing_columns(sngl):
++    for entry in cols.keys():
++        if not(hasattr(sngl,entry)):
++            if cols[entry] in ['real_4','real_8']:
++                setattr(sngl,entry,0.)
++            elif cols[entry] == 'int_4s':
++                setattr(sngl,entry,0)
++            elif cols[entry] == 'lstring':
++                setattr(sngl,entry,'')
++            elif entry == 'process_id':
++                sngl.process_id = ilwd.ilwdchar("sim_inspiral:process_id:0")
++            elif entry == 'simulation_id':
++                sngl.event_id = ilwd.ilwdchar("sim_inspiral:simulation_id:0")
++            else:
++                print >> sys.stderr, "Column %s not recognized" %(entry)
++                raise ValueError
++
++parser = OptionParser(
++    usage   = "%prog [OPTIONS]",
++    description = "Add fref column to inspinj output" )
++
++parser.add_option("-V", "--verbose", action="store_true", help="print extra debugging information", default=False )
++parser.add_option("-i", "--input-file", action="store", type="string",  help="Input file with sngl_inspiral xml table")
++parser.add_option("-o", "--output-file", action="store", type="string",  help="Output file name")
++(opts,args) = parser.parse_args()
++
++if not opts.input_file:
++    print >> sys.stderr, "--input-file must be supplied"
++    sys.exit(1)
++if not opts.output_file:
++    print >> sys.stderr, "--output-file must be supplied"
++    sys.exit(1)
++
++oldxml = utils.load_filename(opts.input_file, gz=opts.input_file.endswith('gz'),
++                             contenthandler=ContentHandler)
++oldSimTable = table.get_table(oldxml,"sim_inspiral")
++
++#hdfxml = utils.load_filename(opts.catalog_file, gz=opts.catalog_file.endswith('gz'),
++#contenthandler=ContentHandler)
++
++#hdfSimTable = table.get_table(hdfxml, "sim_inspiral")
++data_O1extreme_final = np.loadtxt('/home/torrey.cullen/lambdas/lambdas.txt')
++fit = np.poly1d(np.polyfit(np.arange(1,2,.01),data_O1extreme_final, 10))
++
++for key in cols.keys():
++    if key not in oldSimTable.columnnames:
++        oldSimTable.appendColumn(key)
++
++for sim in oldSimTable:
++    sim.lambda1 = fit(sim.mass1)
++    sim.lambda2 = fit(sim.mass2)
++    #print sim.mass1,sim.lambda1
++    #print sim.mass2,sim.lambda2
++utils.write_filename(oldxml, opts.output_file,
++                     gz=opts.output_file.endswith('gz'))
+diff --git a/bin/workflows/pycbc_create_bank_verifier_workflow b/bin/workflows/pycbc_create_bank_verifier_workflow
+index 494f533..8162773 100644
+--- a/bin/workflows/pycbc_create_bank_verifier_workflow
++++ b/bin/workflows/pycbc_create_bank_verifier_workflow
+@@ -43,6 +43,22 @@ __date__    = pycbc.version.date
+ __program__ = "pycbc_create_bank_verifier_workflow"
+ 
+ # Some new executable classes. These can be moved into modules if needed
++class AddColsExectuables(wf.Executable):
++    """Class for running pycbc_add_to_siminspiral_table
++    """
++    current_retention_level = wf.Executable.ALL_TRIGGERS
++    file_input_options = []
++
++    def create_node(self, analysis_time, input_file, extra_tags=None):
++        if extra_tags is None:
++            extra_tags = []
++        node = wf.Executable.create_node(self)
++        node.add_input_opt('--input-file', input_file)
++        node.new_output_file_opt(analysis_time, '.xml', '--output-file',
++                                 tags=self.tags + extra_tags)
++        return node
++
++
+ class BanksimExecutable(wf.Executable):
+     """Class for running pycbc_banksim
+     """
+@@ -183,8 +199,12 @@ inp_bank.ifo_list=(['H1','L1','V1'])
+ inp_bank.segment = workflow.analysis_time
+ 
+ # Inspinj job
+-inspinj_job = LalappsInspinjExecutable(workflow.cp, 'injection', out_dir='.',
++inspinj_job = LalappsInspinjExecutable(workflow.cp, 'injection',
++                                       out_dir='inj_files',
+                                        ifos='HL', tags=[])
++add_cols_job = AddColsExectuables(workflow.cp, 'add_cols_to_inj_file',
++                                  out_dir='inj_files',
++                                  ifos='HL', tags=[])
+ 
+ def add_banksim_set(workflow, file_tag, num_injs, curr_tags, split_banks):
+     """Add a group of jobs that does a complete banksim.
+@@ -193,7 +213,12 @@ def add_banksim_set(workflow, file_tag, num_injs, curr_tags, split_banks):
+     t_seg = segments.segment([1000000000, 1000000000+int(num_injs)])
+     node = inspinj_job.create_node(t_seg)
+     workflow += node
++    tmp_inj_file = node.output_file
++    add_cols_job.update_current_tags(curr_tags)
++    node = add_cols_job.create_node(t_seg, tmp_inj_file)
++    workflow += node
+     inj_file = node.output_file
++
+     split_injs = setup_splittable_dax_generated(workflow, [inj_file],
+                                                 'splitinjfiles', curr_tags)
+     # Banksim job
+diff --git a/setup.py b/setup.py
+index 02ab3db..fc1afdf 100644
+--- a/setup.py
++++ b/setup.py
+@@ -431,7 +431,7 @@ setup (
+                'bin/pycbc_submit_dax',
+                'bin/mvsc/pycbc_mvsc_get_features',
+                'bin/pycbc_coinc_time',
+-               'bin/add_to_siminspiral_table.py',
++               'bin/pycbc_add_to_siminspiral_table',
+                'bin/pygrb/pycbc_make_offline_grb_workflow',
+                'bin/pygrb/pycbc_make_grb_summary_page',
+                'bin/pycbc_condition_strain',
+-- 
+2.7.4 (Apple Git-66)
+
